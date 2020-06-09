@@ -1,5 +1,5 @@
 #Workflows
-name: external_dns_on_prem
+name: bash_on_board
 on: 
   push:
     branches:    
@@ -7,7 +7,7 @@ on:
 jobs:
   build_and_deploy_docker:
     runs-on: ubuntu-latest
-    name: external_dns_onprem
+    name: bash_on_board
     steps:
     - name: Generate build number
       uses: einaregilsson/build-number@v2 

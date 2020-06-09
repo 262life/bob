@@ -24,6 +24,6 @@ jobs:
           docker_login: ${{ secrets.DOCKER_ID }}
           docker_token: ${{ secrets.DOCKER_TOKEN }}      
       run: |
-        bash -c "LATEST=false TAG=0.0.1.$BUILD_NUMBER DOCKERFILE=Dockerfile ./init.sh "
+        bash -c "chmod 755 ./init.sh; LATEST=false TAG=0.0.1.$BUILD_NUMBER DOCKERFILE=Dockerfile ./init.sh "
 
 

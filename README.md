@@ -10,3 +10,5 @@
 ```bash
 ./init.sh
 ```
+
+Some docs

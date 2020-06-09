@@ -6,5 +6,5 @@ source build_functions.sh
 
 ##################  Begin Script ############################################
 
-build_container
+build_container $1
 

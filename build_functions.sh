@@ -2,8 +2,9 @@
 
 build_container() { 
 
-  cd `dirname $0`
-  export CONTAINER=`basename $(pwd)`
+  #cd `dirname $0`
+  #export CONTAINER=`basename $(pwd)`
+  export CONTAINER=${1}
 
   if [ ${TAG:-none} == 'none' ]; then
     echo "========================================================="

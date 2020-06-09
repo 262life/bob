@@ -22,7 +22,7 @@ build_container() {
 
   docker rmi -f $CONTAINER:$TAG 2>/dev/null
   docker rmi -f docker-dev-local.logistics.corp/$CONTAINER:$TAG 2>/dev/null
-  echo  ${DOCKER_TOKEN} | docker --debug login --password-stdin --username ${DOCKER_ID} 
+  echo  ${docker_token} | docker --debug login --password-stdin --username ${docker_login} 
  
   if [ ${DOCKERFILE:-none} == 'none'  ]; then
     DOCKERFILE='Dockerfile'

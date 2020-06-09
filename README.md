@@ -10,3 +10,6 @@
 ```bash
 ./init.sh
 ```
+
+
+images from: https://partner-images.canonical.com/core/groovy/current/

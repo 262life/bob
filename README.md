@@ -48,7 +48,6 @@ If you find a vulnerability or a potential vulnerability in Rook please let us k
 report, and we'll send an additional email when we've identified the issues positively or
 negatively.
 
-For further details, please see the complete [security release process](SECURITY.md).
 
 ## Project Status
 

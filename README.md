@@ -22,7 +22,7 @@ We plan to continue adding support for many common functions required based on c
 
 ## Getting Started and Documentation
 
-For installation, deployment, and administration, see our [Documentation](https://rook.github.io/docs/rook/master).
+For installation, deployment, and administration, see our [Documentation](https://https://bobdotme.github.io/bob).
 
 ## Contributing
 

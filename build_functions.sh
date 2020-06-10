@@ -2,8 +2,9 @@
 
 build_container() { 
 
-  cd `dirname $0`
-  export CONTAINER=`basename $(pwd)`
+  #cd `dirname $0`
+  #export CONTAINER=`basename $(pwd)`
+  export CONTAINER=$1
 
   if [ ${TAG:-none} == 'none' ]; then
     echo "========================================================="
@@ -21,8 +22,8 @@ build_container() {
   fi
 
   docker rmi -f $CONTAINER:$TAG 2>/dev/null
-  docker rmi -f docker-dev-local.logistics.corp/$CONTAINER:$TAG 2>/dev/null
-  docker login docker-dev-local.logistics.corp
+  docker rmi -f bobdotme/$CONTAINER:$TAG 2>/dev/null
+  echo  ${docker_token} | docker --debug login --password-stdin --username ${docker_login} 
  
   if [ ${DOCKERFILE:-none} == 'none'  ]; then
     DOCKERFILE='Dockerfile'
@@ -33,15 +34,15 @@ build_container() {
 
   docker build -f ${DOCKERFILE} -t $CONTAINER:$TAG  .
   
-  docker tag  $CONTAINER:$TAG docker-dev-local.logistics.corp/$CONTAINER:$TAG
-  docker push docker-dev-local.logistics.corp/$CONTAINER:$TAG 
+  docker tag  $CONTAINER:$TAG bobdotme/$CONTAINER:$TAG
+  docker push bobdotme/$CONTAINER:$TAG 
   
   if [ ${LATEST:-false} == 'true' ]; then
     echo "###############################################"
     echo "Tagging this version latest"
     echo "###############################################"
-    docker tag $CONTAINER:$TAG docker-dev-local.logistics.corp/$CONTAINER:latest
-    docker push docker-dev-local.logistics.corp/$CONTAINER:latest
+    docker tag $CONTAINER:$TAG bobdotme/$CONTAINER:latest
+    docker push bobdotme/$CONTAINER:latest
   fi
 
 }

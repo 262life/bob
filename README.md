@@ -1,5 +1,6 @@
 <img alt="bob" src="bob.svg" width="50%" height="50%">
 
+![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 [![Build Status]xxx(https://jenkins.rook.io/buildStatus/icon?job=rook/rook/master)](https://jenkins.rook.io/blue/organizations/jenkins/rook%2Frook/activity)
 [![GitHub release](https://img.shields.io/github/release/BobDotMe/bob/all.svg?style=flat-square)](https://github.com/BobDotMe/bob/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/bob/bob.svg)](https://img.shields.io/docker/bobdotme/bob/bob.svg)

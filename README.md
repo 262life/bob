@@ -1,4 +1,4 @@
-<img alt="bob" src="bob.png" width="100%" height="100%">
+<img alt="bob" src="bob.png" width="100" height="100">
 
 ![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)

@@ -41,6 +41,7 @@ jobs:
         uses: docker://antonyurchenko/git-release:latest
         env:
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
+          CHANGELOG_FILE: "docs/changes.md"
         with:
           args: |
             testpv.yaml

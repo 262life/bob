@@ -42,6 +42,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           CHANGELOG_FILE: "docs/changes.md"
+          DRAFT_RELEASE: "false"
+          PRE_RELEASE: "false"
+          ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |

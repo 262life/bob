@@ -1,4 +1,3 @@
-
 ![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob?sort=semver)

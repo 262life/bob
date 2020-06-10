@@ -16,7 +16,7 @@ BOB integrates deeply into cloud native environments leveraging extension points
 For more details about the solutions currently supported by BOB, please refer to the [project status section](#project-status) below.
 We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](ROADMAP.md) for more details.
 
-## Getting Started and Documentation
+## Documentation
 
 For installation, deployment, and administration, see our [Documentation](https://rook.github.io/docs/rook/master).
 

@@ -2,8 +2,8 @@
 name: bash_on_board
 on: 
   push:
-    branches:    
-      - develop
+#    branches:    
+#      - develop
     tags:
     - 'v*'
  

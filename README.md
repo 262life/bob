@@ -37,17 +37,14 @@ For filing bugs, suggesting improvements, or requesting new features, please ope
 
 Please use the following to reach members of the community:
 
-- Slack: Join our [slack channel](https://slack.rook.io)
-- Forums: [rook-dev](https://groups.google.com/forum/#!forum/rook-dev)
-- Twitter: [@rook_io](https://twitter.com/rook_io)
-- Email: [cncf-rook-info@lists.cncf.io](mailto:cncf-rook-info@lists.cncf.io)
+- Email: [bob@bobdot.me](mailto:bob@bobdot.me)
 
 ## Security
 
 ### Reporting Security Vulnerabilities
 
 If you find a vulnerability or a potential vulnerability in Rook please let us know immediately at
-[cncf-rook-security@lists.cncf.io](mailto:cncf-rook-security@lists.cncf.io). We'll send a confirmation email to acknowledge your
+[bob@bobdot.me](mailto:bob@bobdot.me). We'll send a confirmation email to acknowledge your
 report, and we'll send an additional email when we've identified the issues positively or
 negatively.
 
@@ -61,15 +58,11 @@ The status of each utility provider supported by BOB can be found in the table b
 - **Beta:** Support for the overall features will not be dropped, though details may change. Support for upgrading or migrating between versions will be provided, either through automation or manual steps.
 - **Stable:** Features will appear in released software for many subsequent versions and support for upgrading between versions will be provided with software automation in the vast majority of scenarios.
 
-| Name           | Details                                                                                                                                                                                                                                                                                                                | API Group                    | Status |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------ |
-| Rook Framework | The framework for common storage specs and logic used to support other storage providers.                                                                                                                                                                                                                              | rook.io/v1alpha2             | Alpha  |
-| Ceph           | [Ceph](https://ceph.com/) is a distributed storage system that provides file, block and object storage and is deployed in large scale production clusters.                                                                                                                                                             | ceph.rook.io/v1              | Stable |
-| CockroachDB    | [CockroachDB](https://www.cockroachlabs.com/product/cockroachdb/) is a cloud-native SQL database for building global, scalable cloud services that survive disasters.                                                                                                                                                  | cockroachdb.rook.io/v1alpha1 | Alpha  |
-| Cassandra      | [Cassandra](http://cassandra.apache.org/) is a highly available NoSQL database featuring lightning fast performance, tunable consistency and massive scalability. [Scylla](https://www.scylladb.com) is a close-to-the-hardware rewrite of Cassandra in C++, which enables much lower latencies and higher throughput. | cassandra.rook.io/v1alpha1   | Alpha  |
-| EdgeFS         | [EdgeFS](http://edgefs.io) is high-performance and fault-tolerant decentralized data fabric with access to object, file, NoSQL and block.                                                                                                                                                                              | edgefs.rook.io/v1            | Stable |
-| NFS            | [Network File System (NFS)](https://github.com/nfs-ganesha/nfs-ganesha/wiki) allows remote hosts to mount file systems over a network and interact with those file systems as though they are mounted locally.                                                                                                         | nfs.rook.io/v1alpha1         | Alpha  |
-| YugabyteDB     | [YugabyteDB](https://docs.yugabyte.com/latest/introduction/) is a high-performance, cloud-native distributed SQL database which can tolerate disk, node, zone and region failures automatically.                                                                                                                       | yugabytedb.rook.io/v1alpha1  | Alpha  |
+| Name           | Details                                                                                                                                                                                                                                                                                                                | Status |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| BOB Framework  | The framework for the common utilities                                                                                                                                                                                                                                                                                 | Alpha  |
+| proxy          | Proxy Services                                                                                              | Stable |
+| container      | The micro container                                                                                         | Alpha  |
 
 ### Official Releases
 

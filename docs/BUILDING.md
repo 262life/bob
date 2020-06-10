@@ -1,3 +1,7 @@
+
+
+
+
 # Docker files for minikube-app-base
 
 ## Prerequirements

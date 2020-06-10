@@ -11,9 +11,9 @@
 
  Install
 
-```bash
+bash
 ./init.sh
-```
+
 
 Some docs
 Some more Docs

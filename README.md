@@ -3,10 +3,11 @@
 ![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob?sort=semver)
-[![Docker Pulls](https://img.shields.io/docker/pulls/bob/bob.svg)](https://img.shields.io/docker/bobdotme/bob/bob.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-proxy?label=docker%20pulls%20-%20proxy)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
-[![Slack](https://slack.rook.io/badge.svg)](https://slack.rook.io)
-[![Twitter Follow](https://img.shields.io/twitter/follow/bobdotme.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=bobdotme&user_id=788180534543339520)
+![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 
 # What is BOB?
 

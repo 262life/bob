@@ -139,6 +139,7 @@ sudo rm usr/lib/x86_64-linux-gnu/libanl-2.31.so
 sudo rm usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
 sudo rm usr/lib/x86_64-linux-gnu/coreutils/libstdbuf.so
 
+
 ##------
 sudo cp ../socat usr/bin/socat && sudo chown root:wheel usr/bin/socat && sudo chmod 755 usr/bin/socat
 sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:wheel usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*

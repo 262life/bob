@@ -19,7 +19,7 @@ BOB turns a simple container instanciation into a power support tool for general
 BOB integrates deeply into cloud native environments leveraging extension points and providing a seamless experience for scheduling, lifecycle management, resource management, security, monitoring, and user experience.
 
 For more details about the solutions currently supported by BOB, please refer to the [project status section](#project-status) below.
-We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!documentation.md) for more details.
+We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!roadmap.md) for more details.
 
 ## Getting Started and Documentation
 

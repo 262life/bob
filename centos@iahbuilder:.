@@ -1,0 +1,75 @@
+# kube functions
+
+#alias example='f() { echo Your arg was $1. };f'
+alias k='no_proxy="" https_proxy="" KUBECONFIG=`kubeconfig` http_proxy="" /usr/local/bin/kubectl'
+alias kubectl='no_proxy="" https_proxy="" KUBECONFIG=`kubeconfig` http_proxy="" /usr/local/bin/kubectl'
+alias helm='KUBECONFIG=`kubeconfig` /usr/local/bin/helm'
+alias helm3='KUBECONFIG=`kubeconfig` /usr/local/bin/helm3'
+alias storkctl='no_proxy="" https_proxy="" KUBECONFIG=`kubeconfig` http_proxy="" /usr/local/bin/storkctl'
+
+alias kg='k get'
+alias kgp='k get pods'
+alias kgs='k get service'
+alias kd='k describe'
+alias kdp='k describe pod'
+alias kds='k describe service'
+alias kl='k logs'
+alias ke='k edit'
+
+### ------------  BEGIN Functions
+
+function kubectl() { 
+  no_proxy="" https_proxy="" KUBECONFIG=`kubeconfig` http_proxy="" /usr/local/bin/kubectl $* 
+} 
+
+function helm() { 
+  KUBECONFIG=`kubeconfig` /usr/local/bin/helm $* 
+}
+
+function helm3() { 
+  KUBECONFIG=`kubeconfig` /usr/local/bin/helm3 $* 
+}
+
+function pxctl() {
+
+  no_proxy="" https_proxy="" KUBECONFIG=`kubeconfig` http_proxy="" x=`k -n kube-system get pods -lname=portworx -oname | tail -1`
+  if [ ! -z '$x' ]; then 
+    k -n kube-system exec -it $x -- /opt/pwx/bin/pxctl $*
+  else 
+    echo "Portworx not installed"
+  fi
+
+}
+
+function hs() { 
+  fc -lim "*$@*" 1 
+}
+
+function kubeconfig() {
+  KUBECONFIG="`(ls ~/.kube/*.cfg; ls ~/.kube/config) | xargs | sed -e "s/ /:/g"`" 
+  echo "$KUBECONFIG"
+}
+
+function kc() {
+  if [ -z "$1" ]; then
+    echo ""
+    k -n kube-system get configmap kubeadm-config -o json 2>/dev/null | jq '. | .data | .ClusterConfiguration ' | sed -e 's/.*clusterName/ClusterName/g' -e 's/\\n.*//g' 
+    k config get-contexts | grep '*' | awk '{print "Context    : " $2 "\n" "Namespace  : " $5}'
+    echo ""
+  else
+    k config set current-context $1
+    if [ -z "$2" ]; then
+      kc
+    else
+      kn $2
+    fi
+  fi
+}
+
+function kn() {
+  if [ ! -z "$1" ]; then
+    x=`k config current-context`
+    k config set-context $x --namespace=$1
+  fi
+  kc
+}

@@ -19,11 +19,11 @@ BOB turns a simple container instanciation into a power support tool for general
 BOB integrates deeply into cloud native environments leveraging extension points and providing a seamless experience for scheduling, lifecycle management, resource management, security, monitoring, and user experience.
 
 For more details about the solutions currently supported by BOB, please refer to the [project status section](#project-status) below.
-We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](ROADMAP.md) for more details.
+We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!documentation.md) for more details.
 
 ## Getting Started and Documentation
 
-For installation, deployment, and administration, see our [Documentation](https://https://bobdotme.github.io/bob).
+For installation, deployment, and administration, see our [Documentation](https://bobdotme.github.io/bob/#!documentation.md)
 
 ## Contributing
 
@@ -67,7 +67,7 @@ The status of each utility provider supported by BOB can be found in the table b
 ### Official Releases
 
 Official releases of BOB can be found on the [releases page](https://github.com/bobdotme/bob/releases).
-Please note that it is **strongly recommended** that you use [official releases](https://github.com/bobdotme/bob/releases) of BOB, as unreleased versions from the master branch are subject to changes and incompatibilities that will not be supported in the official releases.
+Please note that it is **strongly recommended** that you use [official releases](https://github.com/BobDotMe/bob/releases) of BOB, as unreleased versions from the master branch are subject to changes and incompatibilities that will not be supported in the official releases.
 Builds from the master branch can have functionality changed and even removed at any time without compatibility support and without prior notice.
 
 ## Licensing

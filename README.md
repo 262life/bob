@@ -5,6 +5,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/bob/bob.svg)](https://img.shields.io/docker/bobdotme/bob/bob.svg)
 [![Slack](https://slack.rook.io/badge.svg)](https://slack.rook.io)
 [![Twitter Follow](https://img.shields.io/twitter/follow/bobdotme.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=bobdotme&user_id=788180534543339520)
+![Hex.pm](https://img.shields.io/hexpm/l/apa)
 
 # What is BOB?
 

@@ -1,1 +1,1 @@
-[gimmick:theme](slate)
+[gimmick:themechooser](Choose theme)

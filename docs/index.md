@@ -8,7 +8,7 @@
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 
-<img alt="bob" src="bob.svg" width="100" height="100">
+<img alt="bob" src="bob.png" width="100" height="100">
 
 # What is BOB?
 

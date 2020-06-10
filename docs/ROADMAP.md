@@ -1,7 +1,4 @@
-
-
-
- Roadmap
+Roadmap
 
 This document defines a high level roadmap for BOB development and upcoming releases.
 The features and themes included in each milestone are optimistic in the sense that many do not have clear owners yet.

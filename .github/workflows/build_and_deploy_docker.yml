@@ -1,5 +1,4 @@
 #Workflows
-
 name: bash_on_board
 on: 
   push:

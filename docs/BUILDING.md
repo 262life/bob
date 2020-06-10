@@ -2,14 +2,14 @@
 
 
 
-# Docker files for minikube-app-base
+ Docker files for minikube-app-base
 
-## Prerequirements
+ Prerequirements
 
 - curl
 - docker
 
-## Install
+ Install
 
 ```bash
 ./init.sh

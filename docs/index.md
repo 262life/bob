@@ -1,4 +1,3 @@
-<img alt="bob" src="bob.svg" width="50%" height="50%">
 
 ![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)
@@ -8,6 +7,8 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-proxy?label=docker%20pulls%20-%20proxy)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
+
+<img alt="bob" src="bob.svg" width="100" height="100">
 
 # What is BOB?
 

@@ -1,4 +1,4 @@
-Roadmap
+# Roadmap
 
 This document defines a high level roadmap for BOB development and upcoming releases.
 The features and themes included in each milestone are optimistic in the sense that many do not have clear owners yet.
@@ -9,7 +9,7 @@ Any dates listed below and the specific issues that will ship in a given milesto
 We use the [milestone](https://github.com/bobdotme/bob/milestones) feature in Github so look there for the most up-to-date and issue plan.
 
 
-BOB 1.0
+## BOB 1.0
 
 The following high level features are targeted for Rook v1.4 (July 2020). For more detailed project tracking see the [v1.4 board](https://github.com/rook/rook/projects/18).
 
@@ -24,7 +24,7 @@ The following high level features are targeted for Rook v1.4 (July 2020). For mo
   * Uninstall options for sanitizing OSD devices
   * Enhancements to external cluster configuration
 
-Themes
+## Themes
 
 The general areas for improvements include the following, though may not be committed to a release.
 

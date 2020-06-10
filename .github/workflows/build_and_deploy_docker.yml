@@ -43,6 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PROJECT_TOKEN }}
           CHANGELOG_FILE: "docs/changes.md"
+          ALLOW_TAG_PREFIX: "true"
+          ALLOW_TAG_POSTFIX: "true"
         with:
           args: |
             testpv.yaml

@@ -25,5 +25,3 @@ jobs:
           docker_token: ${{ secrets.docker_token }}      
       run: |
         bash ./init.sh
-
-

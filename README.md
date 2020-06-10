@@ -2,7 +2,7 @@
 
 ![bash_on_board](https://github.com/BobDotMe/bob/workflows/bash_on_board/badge.svg?branch=develop)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)
-[![GitHub release](https://img.shields.io/github/release/BobDotMe/bob/all.svg?style=flat-square)](https://github.com/BobDotMe/bob/releases)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob?sort=semver)
 [![Docker Pulls](https://img.shields.io/docker/pulls/bob/bob.svg)](https://img.shields.io/docker/bobdotme/bob/bob.svg)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 [![Slack](https://slack.rook.io/badge.svg)](https://slack.rook.io)

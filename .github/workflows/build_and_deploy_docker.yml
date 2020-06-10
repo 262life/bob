@@ -39,6 +39,8 @@ jobs:
           export POSTFIX=" (Codename: 'Ragnarok')"
           echo "::set-env name=RELEASE_NAME_PREFIX::$PREFIX"
           echo "::set-env name=RELEASE_NAME_POSTFIX::$POSTFIX"
+      - name: Print GITHUB_REF
+        run: echo "Build number is $GITHUB_REF"
 
       - name: Release
         uses: docker://antonyurchenko/git-release:latest

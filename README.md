@@ -78,5 +78,4 @@ BOB is under the Apache 2.0 license.
 ./init.sh
 ```
 
-
 images from: https://partner-images.canonical.com/core/groovy/current/

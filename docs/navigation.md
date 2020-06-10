@@ -1,1 +1,1 @@
-[gimmick:theme](flatly)
+[gimmick:theme](slate)

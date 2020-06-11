@@ -2,7 +2,7 @@
 name: nightly_release
 on: 
   push:
-    branch:
+    branches:
       "develop"
 jobs:
   release:

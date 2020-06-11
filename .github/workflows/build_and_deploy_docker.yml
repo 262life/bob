@@ -25,7 +25,8 @@ jobs:
           echo "Release Version is $RELEASE_VERSION"
       - name: Create Bundle
         run: |
-          cd kubectl tar zcvf ../bob-plugins-$RELEASE_VERSION.tgz *
+          bash -c "cd kubectl tar zcvf ../bob-plugins-$RELEASE_VERSION.tgz *"
+
 
       - name: Release
         uses: docker://antonyurchenko/git-release:latest

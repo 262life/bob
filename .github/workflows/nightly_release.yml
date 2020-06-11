@@ -16,6 +16,7 @@ jobs:
       - name: Create Plugins
         run: |
           bash -c "cd kubectl;  tar zcvf ../bob-plugins.tgz *; cd .."
+          bash -c "ls -l *"
       - name: Build Action 
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}

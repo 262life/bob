@@ -24,7 +24,8 @@ jobs:
             docker_login: ${{ secrets.DOCKER_ID }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}      
         run: |
-           echo "test"
+          echo "::set-env name=GITHUB_REF::0"
+          echo "test"
 #          bash -c "chmod 755 ./init.sh; LATEST=false TAG=$RELEASE_NAME DOCKERFILE=dockerfiles/Dockerfile       ./init.sh bob-core"
 #          bash -c "chmod 755 ./init.sh; LATEST=false TAG=$RELEASE_NAME DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
 #          bash -c "chmod 755 ./init.sh; LATEST=false TAG=$RELEASE_NAME DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
@@ -36,7 +37,6 @@ jobs:
           CHANGELOG_FILE: "docs/changes.md"
           ALLOW_EMPTY_CHANGELOG: "true"
           ALLOW_TAG_PREFIX: "true"
-          GITHUB_REF: ""
         with:
           args: |
             examples/testpv.yaml

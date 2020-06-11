@@ -7,14 +7,12 @@ on:
     tags:
     - "v[0-9]+.[0-9]+"
     - 'v*'
- 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
           echo "::set-env name=RELEASE_NAME_POSTFIX::$POSTFIX"
@@ -26,8 +24,6 @@ jobs:
       - name: Create Bundle
         run: |
           bash -c "cd kubectl;  tar zcvf ../bob-plugins.tgz *; cd .."
-
-
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:
@@ -41,19 +37,19 @@ jobs:
           args: |
             testpv.yaml
             bob-plugins.tgz
-    - name: Generate build number
-      uses: einaregilsson/build-number@v2 
-      with:
-        token: ${{secrets.PROJECT_TOKEN}}        
-    - name: Print new build number
-      run: echo "Build number is $BUILD_NUMBER"
-      # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
-    - uses: actions/checkout@v2
-      with:
-        refs: develop
-    - name: Build Action 
-      env: # Or as an environment variable
-          docker_login: ${{ secrets.docker_login }}
-          docker_token: ${{ secrets.docker_token }}      
-      run: |
-        bash -c "LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core"
+      - name: Generate build number
+        uses: einaregilsson/build-number@v2 
+        with:
+          token: ${{secrets.PROJECT_TOKEN}}        
+      - name: Print new build number
+        run: echo "Build number is $BUILD_NUMBER"
+        # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
+      - uses: actions/checkout@v2
+        with:
+          refs: develop
+      - name: Build Action 
+        env: # Or as an environment variable
+            docker_login: ${{ secrets.docker_login }}
+            docker_token: ${{ secrets.docker_token }}      
+        run: |
+          bash -c "LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core"

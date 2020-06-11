@@ -2,11 +2,8 @@
 name: bash_on_board
 on: 
   push:
-#    branches:    
-#      - develop
     tags:
     - "v[0-9]+.[0-9]+"
-    - 'v*'
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -24,6 +21,14 @@ jobs:
       - name: Create Bundle
         run: |
           bash -c "cd kubectl;  tar zcvf ../bob-plugins.tgz *; cd .."
+      - name: Build Action 
+        env: # Or as an environment variable
+            docker_login: ${{ secrets.DOCKER_ID }}
+            docker_token: ${{ secrets.DOCKER_TOKEN }}      
+        run: |
+          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile       ./init.sh bob-core"
+          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
+          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:
@@ -37,21 +42,3 @@ jobs:
           args: |
             testpv.yaml
             bob-plugins.tgz
-      - name: Generate build number
-        uses: einaregilsson/build-number@v2 
-        with:
-          token: ${{secrets.PROJECT_TOKEN}}        
-      - name: Print new build number
-        run: echo "Build number is $BUILD_NUMBER"
-        # Or, if you're on Windows: echo "Build number is ${env:BUILD_NUMBER}"
-      - uses: actions/checkout@v2
-        with:
-          refs: develop
-      - name: Build Action 
-        env: # Or as an environment variable
-            docker_login: ${{ secrets.DOCKER_ID }}
-            docker_token: ${{ secrets.DOCKER_TOKEN }}      
-        run: |
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile       ./init.sh bob-core"
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=dockerfiles/Dockerfile.mini  ./init.sh bob"

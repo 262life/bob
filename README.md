@@ -9,7 +9,7 @@
 
 <img alt="bob" src="docs/bob.png" width="100" height="100">
 
-# What is BOB?
+# What is Bash on board! (going forward, we call it BOB)?
 
 BOB is an open source **general purpose container** for Kubernetes, providing the utilities, support tools and a framework, that allows a diverse set problems to be solved for pod initialization and support to natively integrate with cloud-native environments.
 

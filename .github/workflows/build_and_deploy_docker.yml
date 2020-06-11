@@ -41,7 +41,6 @@ jobs:
           args: |
             testpv.yaml
             bob-plugins.tgz
-
     - name: Generate build number
       uses: einaregilsson/build-number@v2 
       with:

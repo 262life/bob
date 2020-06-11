@@ -1,6 +1,11 @@
+## [0.8.6-rc.4] - 2020-06-11
+### Added
+- Feature - Added codename
+
 ## [0.8.6-rc.3] - 2020-06-11
 ### Added
 - Feature - Added codename
+
 
 ## [0.8.6-rc.2] - 2020-06-11
 ### Added

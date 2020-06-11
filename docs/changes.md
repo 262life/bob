@@ -1,7 +1,6 @@
 ## [0.8.6-rc.5] - 2020-06-11
 ### Added
-- Feature - Build with versions
-
+- Initial Release
 
 ## [0.8.6-rc.4] - 2020-06-11
 ### Added

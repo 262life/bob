@@ -5,7 +5,7 @@ on:
     branches:
       "develop"
 jobs:
-  nightly-release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Print Release Version

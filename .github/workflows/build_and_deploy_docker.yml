@@ -52,4 +52,4 @@ jobs:
             docker_login: ${{ secrets.docker_login }}
             docker_token: ${{ secrets.docker_token }}      
         run: |
-          bash -c "LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core"
+          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core"

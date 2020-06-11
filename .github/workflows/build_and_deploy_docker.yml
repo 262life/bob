@@ -25,7 +25,7 @@ jobs:
           echo "Release Version is $RELEASE_VERSION"
       - name: Create Bundle
         run: |
-          bash -c "cd kubectl;  tar zcvf ../bob-plugins-$RELEASE_VERSION.tgz *; cd .."
+          bash -c "cd kubectl;  tar zcvf ../bob-plugins.tgz *; cd .."
 
 
       - name: Release
@@ -40,7 +40,7 @@ jobs:
         with:
           args: |
             testpv.yaml
-            "bob-plugins-$RELEASE_VERSION.tgz"
+            "bob-plugins.tgz"
 
     - name: Generate build number
       uses: einaregilsson/build-number@v2 

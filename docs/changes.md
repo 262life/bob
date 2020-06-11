@@ -1,4 +1,8 @@
-## [nightly] - 2020-06-11
+## [v0.0.0] - 2020-06-11
+### Added
+- Features under development
+
+## [0.8.6] - 2020-06-11
 ### Added
 - Initial Release
 

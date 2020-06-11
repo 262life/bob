@@ -1,9 +1,9 @@
 #Workflows
-name: publish_release
+name: nightly_release
 on: 
   push:
     branch:
-      develop
+      "develop"
 jobs:
   release:
     runs-on: ubuntu-latest

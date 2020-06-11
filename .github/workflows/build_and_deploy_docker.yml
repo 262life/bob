@@ -40,11 +40,7 @@ jobs:
         with:
           args: |
             testpv.yaml
-            bob-plugins-$RELEASE_VERSION.tgz *
-  build_and_deploy_docker:
-    runs-on: ubuntu-latest
-    name: bash_on_board
-    steps:
+            bob-plugins-*.tgz 
     - name: Generate build number
       uses: einaregilsson/build-number@v2 
       with:
@@ -60,4 +56,4 @@ jobs:
           docker_login: ${{ secrets.docker_login }}
           docker_token: ${{ secrets.docker_token }}      
       run: |
-        bash -c "LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core
+        bash -c "LATEST=true TAG=$RELEASE_VERSION DOCKER_FILE=Dockerfile ./init.sh bob-core"

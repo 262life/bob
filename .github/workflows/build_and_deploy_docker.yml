@@ -49,7 +49,7 @@ jobs:
           CHANGELOG_FILE: "docs/changes.md"
           DRAFT_RELEASE: "false"
           PRE_RELEASE: "false"
-          ALLOW_EMPTY_CHANGELOG: "false"
+          ALLOW_EMPTY_CHANGELOG: "true"
           ALLOW_TAG_PREFIX: "true"
         with:
           args: |

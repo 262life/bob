@@ -2,7 +2,7 @@
 
 ##################  Do not modify anything here #############################
 
-source build_functions.sh
+source dockerfiles/build_functions.sh
 
 ##################  Begin Script ############################################
 

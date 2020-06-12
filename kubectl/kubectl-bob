@@ -4,73 +4,229 @@
 
 main() {
 
-DEBUG=1 ## for Options
-
 opts=$*
-optspec=":nhv-:"
+optspec=":onhv-:"
 while getopts "$optspec" optchar; do
     case "${optchar}" in
         -  )
             case "${OPTARG}" in
-                help        ) help                ;;
-                context     ) getArrayOpt   $opts ;;
-                context=*   ) getArrayOptEq $opts ;;
-                pvc         ) getArrayOpt   $opts ;;
-                pvc=*       ) getArrayOptEq $opts ;;
-                name        ) getTextOpt    $opts ;;
-                name=*      ) getTextOptEq  $opts ;;
-                namespace   ) getTextOpt    $opts ;;
-                namespace=* ) getTextOptEq  $opts ;;
-                *          ) badEgg               ;;
+                help        ) help                       ;;
+                context     ) getTextOpt    $opts        ;;
+                context=*   ) getTextOptEq  $opts        ;;
+                pvc         ) getArrayOpt   $opts        ;;
+                pvc=*       ) getArrayOptEq $opts        ;;
+                name        ) getTextOpt    $opts        ;;
+                name=*      ) getTextOptEq  $opts        ;;
+                namespace   ) getTextOpt    $opts        ;;
+                namespace=* ) getTextOptEq  $opts        ;;
+                output      ) getTextOpt    $opts        ;;
+                output=*    ) getTextOptEq  $opts        ;;
+                cert        ) getBoolOpt    $opts        ;;
+                pki         ) getBoolOpt    $opts        ;;
+                rsync       ) getBoolOpt    $opts        ;;
+                ssh         ) getBoolOpt    $opts        ;;
+                iperf       ) getBoolOpt    $opts        ;;
+                
+                *          ) badEgg                      ;;
             esac;;
-        h  ) help                                      ;;
-        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val")      ;;
-        n  ) OPTARG='namespace' getTextOpt $opts       ;;
-        *  ) badEgg                 ;;
+        h  ) help                                        ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB ;;
+        n  ) OPTARG='namespace' getTextOpt $opts         ;;
+        o  ) OPTARG='output' getTextOpt $opts            ;;
+        *  ) badEgg                                      ;;
     esac
 done
 
-
-VB=${#VERBOSITY[@]}
 [ $VB -gt 0 ] && echo
-[ $VB -gt 0 ] && echo Verbosity set to: ${#VERBOSITY[@]}
-[ $VB -gt 0 ] && echo Requested list of PVC
+[ $VB -gt 3 ] && echo Requested list of PVC
 
-for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
-do
-  [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
-done
+if [ $VB -gt 3 ];then
+  for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
+  do
+    [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
+  done
+fi
 
 POD_NAME=${OPT_NAME:-$(getDictWords)}
-[ $VB -gt  0 ] && echo POD Name: $POD_NAME
+[ $VB -gt 0 ] && echo POD Name: $POD_NAME
 
 [ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
-[ $VB -gt  0 ] && echo POD Namespace: $POD_NAMESPACE
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
+
+[ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
+[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -" 
+
+[ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
 
 
-exit
+if [ "$OPT_PKI" == 'true' ]; then 
+  read -r -d '' POD_PKI_M << "  END"
+    - name: pki-volume
+      mountPath: /etc/pki
+  END
+  read -r -d '' POD_PKI_V << "  END"
+  - name: pki-volume
+    hostPath:
+      path: "/etc/pki"
+      type: Directory
+  END
+fi
 
-#echo ---- set
-#set
-#echo ---- ENV
-#env
 
-
-#echo ""
-#echo "Command: $cmd"
-
-cat << END | kubectl $OPT_CONTEXT apply -f -
+cat << END | $CMD
 apiVersion: v1
 kind: Pod
 metadata:
   name: ${POD_NAME}
   ${POD_NAMESPACE}
   labels:
-    app: spar
+    app: bob
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: docker-dev-local.logistics.corp/spar:1.1mini
+  - image: bobdotme/bob:v0.8.6
+    imagePullPolicy: IfNotPresent
+    name: ${POD_NAME}
+    ports:
+    - containerPort: 80
+      name: dummy
+      protocol: TCP
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: "2"
+      requests:
+        memory: "1M"
+        cpu: "500m"
+    volumeMounts:
+    $POD_PKI_M
+    - name: bob-pv-claim
+      mountPath: /usr
+  restartPolicy: Always
+  volumes:
+  $POD_PKI_V
+  - name: bob-pv-claim
+    nfs:
+      server: localhost
+      path: /usr
+END
+
+}
+
+help() {
+            echo "usage: $0 [-v] [--pvc[=]<value>]" >&2
+            echo ; exit 2
+}
+
+
+###########
+
+declare -a OPT_PVC 
+
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
+
+main "$@"; exit
+
+
+
+#-----  Main
+
+main() {
+
+opts=$*
+optspec=":onhv-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help        ) help                       ;;
+                context     ) getTextOpt    $opts        ;;
+                context=*   ) getTextOptEq  $opts        ;;
+                pvc         ) getArrayOpt   $opts        ;;
+                pvc=*       ) getArrayOptEq $opts        ;;
+                name        ) getTextOpt    $opts        ;;
+                name=*      ) getTextOptEq  $opts        ;;
+                namespace   ) getTextOpt    $opts        ;;
+                namespace=* ) getTextOptEq  $opts        ;;
+                output      ) getTextOpt    $opts        ;;
+                output=*    ) getTextOptEq  $opts        ;;
+                cert        ) getBoolOpt    $opts        ;;
+                pki         ) getBoolOpt    $opts        ;;
+                rsync       ) getBoolOpt    $opts        ;;
+                ssh         ) getBoolOpt    $opts        ;;
+                iperf       ) getBoolOpt    $opts        ;;
+                
+                *          ) badEgg                      ;;
+            esac;;
+        h  ) help                                        ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB ;;
+        n  ) OPTARG='namespace' getTextOpt $opts         ;;
+        o  ) OPTARG='output' getTextOpt $opts            ;;
+        *  ) badEgg                                      ;;
+    esac
+done
+
+[ $VB -gt 0 ] && echo
+[ $VB -gt 3 ] && echo Requested list of PVC
+
+if [ $VB -gt 3 ];then
+  for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
+  do
+    [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
+  done
+fi
+
+POD_NAME=${OPT_NAME:-$(getDictWords)}
+[ $VB -gt 0 ] && echo POD Name: $POD_NAME
+
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
+
+[ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
+[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -" 
+
+[ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
+
+
+if [ "$OPT_PKI" == 'true' ]; then 
+  read -r -d '' POD_PKI = << "  END"
+    - name: cert-volume
+      mountPath: /etc/pki
+  END
+fi
+
+echo "PKI"
+echo "$POD_PKI"
+
+
+
+cat << END | $CMD
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${POD_NAME}
+  ${POD_NAMESPACE}
+  labels:
+    app: bob
+spec:
+  terminationGracePeriodSeconds: 20
+  containers:
+  - image: docker-dev-local.logistics.corp/bob:1.1mini
     imagePullPolicy: Always
     name: ${POD_NAME}
     ports:
@@ -87,7 +243,7 @@ spec:
     volumeMounts:
 #    - name: cert-volume
 #      mountPath: /etc/pki
-    - name: spar-pv-claim
+    - name: bob-pv-claim
       mountPath: /usr
   restartPolicy: Always
   volumes:
@@ -95,9 +251,7 @@ spec:
 #    hostPath:
 #      path: "/etc/pki"
 #      type: Directory
-  - name: spar-pv-claim
-#    persistentVolumeClaim:
-#      claimName: myapp-nfs
+  - name: bob-pv-claim
     nfs:
       server: localhost
       path: /usr
@@ -105,68 +259,18 @@ END
 
 }
 
-###########
-
 help() {
             echo "usage: $0 [-v] [--pvc[=]<value>]" >&2
             echo ; exit 2
 }
 
-getTextOpt() {
-
-  val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-  [ $DEBUG == 1 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
-  typeset X=${OPTARG}
-  eval OPT_$X="$val"
-
-}
-
-getTextOptEq() {
-
-  val=${OPTARG#*=}
-  opt=${OPTARG%=$val}
-  [ $DEBUG == 1 ] && echo "Parsing option: '--${opt}', value: '${val}'" >&2
-  typeset X=${opt}
-  eval OPT_$X="$val"
-}
-
-getArrayOpt() {
-
-  val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-  [ $DEBUG == 1 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
-  typeset X=${OPTARG} 
-  eval OPT_$X=\(\${"OPT_$X[@]}" "${val}"\)
-
-}
-
-getArrayOptEq() {
-
-  val=${OPTARG#*=}
-  opt=${OPTARG%=$val}
-  [ $DEBUG == 1 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
-  typeset X=${opt} 
-  eval OPT_$X=\(\${"OPT_$X[@]}" "${val}"\)
-
-}
-
-badEgg() {
-
-  echo
-  if [ "$OPTERR" = 1 ] && [ "${optchar}" = "-" ]; then
-    echo "Invalid parameter: --${OPTARG}" >&2
-  elif [ "$OPTERR" != 1 ] || [ "${optspec:0:1}" = ":" ]; then
-    echo "Invalid parameter: -${OPTARG}" >&2
-  fi
-
-  help; exit
-
-}
 
 ###########
 
-declare -a OPT_PVC VERBOSITY 
+declare -a OPT_PVC 
 
-. $(dirname $0)/bob-words
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
 
 main "$@"; exit
 

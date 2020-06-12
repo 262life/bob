@@ -2,6 +2,10 @@
 ### Added
 - Features under development
 
+## [0.8.7-rc.1] - 2020-06-11
+### Added
+- entrypoint fix on micro container
+
 ## [0.8.6] - 2020-06-11
 ### Added
 - Initial Release

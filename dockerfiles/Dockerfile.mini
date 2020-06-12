@@ -1,7 +1,7 @@
 FROM scratch
 ADD distro/squashed.tar.gz /
 ADD files/entrypoint-mini.sh /files/entrypoint.sh
-chmod 755 /files/entrypoint.sh
+RUN chmod 755 /files/entrypoint.sh
 ADD files/.bashrc /root/.bashrc
 
 

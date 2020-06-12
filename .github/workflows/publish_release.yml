@@ -26,6 +26,7 @@ jobs:
             docker_login: ${{ secrets.DOCKER_ID }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}      
         run: |
+          bash -c "chmod 755 files/entrypoint*.sh"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       ./init.sh bob-core"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"

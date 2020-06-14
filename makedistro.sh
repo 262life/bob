@@ -5,13 +5,13 @@ sudo mkdir distro/work
 cd distro/work
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 
-#-----  proxy distro
+#-----  proxy and mini distro
 sudo rm -f `find usr/bin \( -type f -o -type l \) | egrep -v '\[|dash'`
 sudo find . -empty -type d -delete
 sudo rm -rf `find etc/*   | egrep -v '\[|passwd|nsswitch'`
 sudo mv usr/bin/dash usr/bin/sh
 sudo rm -f `find usr/lib -type f  | egrep -v 'x86_64-linux-gnu'`
-sudo rm -rf var usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin
+sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin
 #--------
 
 sudo rm usr/lib/x86_64-linux-gnu/libprocps.so.8
@@ -140,15 +140,19 @@ sudo rm usr/lib/x86_64-linux-gnu/libgpg-error.so.0.28.0
 sudo rm usr/lib/x86_64-linux-gnu/coreutils/libstdbuf.so
 
 
+
+#----- Sidecar distro
+sudo rm -rf var/cache/debconf/templates.dat
+sudo tar --exclude usr -zcf ../squashed.tar.gz *
+
 ##------
 sudo cp ../socat usr/bin/socat && sudo chown root:wheel usr/bin/socat && sudo chmod 755 usr/bin/socat
 sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:wheel usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
 ls -lR usr/bin
-sudo tar zcf ../squashed-proxy.tar.gz *
+sudo tar --exclude var -zcf ../squashed-proxy.tar.gz *
 
-#----- Sidecar distro
-sudo rm -rf usr/*
-sudo tar zcf ../squashed.tar.gz *
+##-----
+
 cd ../..
 sudo rm -rf distro/work
 

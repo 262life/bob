@@ -17,7 +17,7 @@ done
 helm repo index --url https://BobDotMe.github.io/bob . 2>/dev/null
 
 mv index.yaml ../docs/.
-mv *.tgz ../docs/.
+mv /home/runner/work/bob/bob/helm/*.tgz ../docs/.
 
 cd ..
 

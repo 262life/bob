@@ -22,7 +22,7 @@ spec:
           hostPort: 2049
           name: dummy
           protocol: TCP
-        image: "BobDotMe/bob-proxy:{{ .Chart.Version }}"
+        image: "bobdotme/bob-proxy:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
@@ -72,7 +72,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - image: "BobDotMe/bob-core:{{ .Chart.Version }}"
+      - image: "bobdotme/bob-core:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: bob-core
         ports:

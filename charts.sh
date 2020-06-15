@@ -10,6 +10,7 @@ sed -i .bak  -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
 for chart in chart
 do
+  echo Helm Version: $(helm version)
   echo Processing: $chart
   helm lint $chart
   helm package $chart

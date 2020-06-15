@@ -1,4 +1,3 @@
-
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob?sort=semver)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)

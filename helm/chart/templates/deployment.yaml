@@ -22,8 +22,8 @@ spec:
           hostPort: 2049
           name: dummy
           protocol: TCP
-        image: docker-dev-local.logistics.corp/spar:1.1proxy
-        imagePullPolicy: Always
+        image: "BobDotMe/bob-proxy:{{ .Chart.Version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
             memory: 200Mi
@@ -72,8 +72,8 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - image: docker-dev-local.logistics.corp/spar:1.1small
-        imagePullPolicy: Always
+      - image: "BobDotMe/bob-core:{{ .Chart.Version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: spar-core
         ports:
         - containerPort: 80

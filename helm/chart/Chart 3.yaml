@@ -1,0 +1,8 @@
+apiVersion: v2
+name: bob
+description: Bash on Board! - General purpose container for Kubernetes
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: v0.8.7-rc.2

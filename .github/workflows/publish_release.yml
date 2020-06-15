@@ -19,16 +19,6 @@ jobs:
           echo "::set-env name=RELEASE_VERSION::$RELEASE_VERSION"
           echo "Release Version is $RELEASE_VERSION"
           echo "$RELEASE_VERSION" > VERSION
-      - name: push
-        uses: github-actions-x/commit@v2.6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
-          commit-message: 'publish'
-          force-add: 'true'
-          files: VERSION
-          name: rsliotta
-          email: bob@bobdot.me
       - name: Create Plugins
         run: |
           bash -c "cd kubectl;  tar zcvf ../bob-plugins.tgz *; cd .."
@@ -41,6 +31,17 @@ jobs:
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       ./init.sh bob-core"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
+          bash -c "chmod 755 ./charts.sh ./charts.sh"
+      - name: push
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'publish'
+          force-add: 'true'
+          files: VERSION docs/index.yaml docs/*.tgz
+          name: rsliotta
+          email: bob@bobdot.me
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:

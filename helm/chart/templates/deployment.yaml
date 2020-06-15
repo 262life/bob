@@ -2,21 +2,21 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: spar-services
-  namespace: spar
+  name: bob-proxy
+  namespace: bob
   labels:
-    k8s-app: spar-services
+    k8s-app: bob-proxy
 spec:
   selector:
     matchLabels:
-      name: spar-services
+      name: bob-proxy
   template:
     metadata:
       labels:
-        name: spar-services
+        name: bob-proxy
     spec:
       containers:
-      - name: spar-proxy
+      - name: bob-proxy
         ports:
         - containerPort: 2049
           hostPort: 2049
@@ -35,11 +35,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: spar
-  namespace: spar
+  name: bob
+  namespace: bob
 spec:
   selector:
-    app: spar-core
+    app: bob-core
   ports:
     - protocol: TCP
       port: 2049
@@ -57,24 +57,24 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: spar-core
-  namespace: spar
+  name: bob-core
+  namespace: bob
 spec:
   selector:
     matchLabels:
-      app: spar-core
-  serviceName: spar-core
+      app: bob-core
+  serviceName: bob-core
   replicas: 3
   template:
     metadata:
       labels:
-        app: spar-core
+        app: bob-core
     spec:
       terminationGracePeriodSeconds: 10
       containers:
       - image: "BobDotMe/bob-core:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: spar-core
+        name: bob-core
         ports:
         - containerPort: 80
           name: dummy

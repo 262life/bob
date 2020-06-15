@@ -5,6 +5,7 @@
 ## [0.8.7-rc.2] - 2020-06-14
 ### Added
 - fixed an ordering issue on makedistro
+- Added helm chart
 
 ### Changed
 - entrypoint fix on micro container

@@ -14,7 +14,7 @@ do
   helm package $chart
 done
 
-helm repo index --url https://bobdotme.github.io/bob . 2>/dev/null
+helm repo index --url https://BobDotMe.github.io/bob . 2>/dev/null
 
 mv index.yaml ../docs/.
 mv *.tgz ../docs/.

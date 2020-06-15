@@ -2,12 +2,12 @@ apiVersion: v1
 entries:
   bob:
   - apiVersion: v2
-    created: "2020-06-15T11:32:41.059880596Z"
+    created: "2020-06-15T11:58:16.911697854Z"
     description: Bash on Board! - General purpose container for Kubernetes
-    digest: 729fbec889db1ac764151acb15b640fce80a75a35ba745cba39d3bf297de9fcb
+    digest: f76034a8e791b3ff4df115f91743b1b0fee70155353a68ae070a878d86346198
     name: bob
     type: application
     urls:
-    - https://BobDotMe.github.io/bob/bob-v0.8.7-rc.2.tgz
+    - https://bobdotme.github.io/bob/bob-v0.8.7-rc.2.tgz
     version: v0.8.7-rc.2
-generated: "2020-06-15T11:32:41.059452192Z"
+generated: "2020-06-15T11:58:16.911257654Z"

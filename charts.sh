@@ -6,6 +6,7 @@ echo Version: $CV
 cd helm
 
 sed -i .bak  -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
+sed -i .bak  -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
 for chart in chart
 do

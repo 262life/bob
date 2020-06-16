@@ -39,4 +39,4 @@ jobs:
         with:
           args: |
             examples/testpv.yaml
-            bob-plugins.tgz
+            bob-plugins-${{ env.RELEASE_VERSION }}.tgz

@@ -21,7 +21,7 @@ jobs:
           echo "$RELEASE_VERSION" > VERSION
       - name: Create Plugins
         run: |
-          bash -c "cd kubectl;  tar zcvf ../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd .."
+          bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Build Action 
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
@@ -55,3 +55,4 @@ jobs:
           args: |
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
+            plugins/installer.sh

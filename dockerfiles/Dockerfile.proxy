@@ -20,6 +20,6 @@ EXPOSE 2049
 #	&& echo "Removing apk cache" \
 #	&& rm -rf /var/cache/apk/
 
-CMD /usr/bin/sh -c "while [ 1==1 ]; do sleep 120;done"
-#CMD /usr/bin/socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_PORT & pid=$! && \
-#	echo "Socat proxy started listening on $LOCAL_PORT: Redirecting traffic to $REMOTE_HOST:$REMOTE_PORT ($pid)" && wait $pid
+#CMD /usr/bin/sh -c "while [ 1==1 ]; do sleep 120;done"
+CMD /usr/bin/socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_PORT & pid=$! && \
+	echo "Socat proxy started listening on $LOCAL_PORT: Redirecting traffic to $REMOTE_HOST:$REMOTE_PORT ($pid)" && wait $pid

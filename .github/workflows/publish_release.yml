@@ -21,6 +21,7 @@ jobs:
           echo "$RELEASE_VERSION" > VERSION
       - name: Create Plugins
         run: |
+          bash -c "chmod 755 ./plugins.sh; ./plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Build Action 
         env: # Or as an environment variable
@@ -32,7 +33,6 @@ jobs:
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
           bash -c "chmod 755 ./charts.sh; ./charts.sh"
-          bash -c "chmod 755 ./plugins.sh; ./plugins.sh"
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

@@ -5,5 +5,5 @@ echo Version: $CV
 
 cd plugins/kubectl
 
-sed -i .bak  -e "s/^version.*$/version: $CV/g" kubectl-bob-version
+sed -i .bak  -e "s/^echo.*$/echo 'version: $CV'/g" kubectl-bob-version
 

@@ -32,6 +32,7 @@ jobs:
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
           bash -c "chmod 755 ./charts.sh; ./charts.sh"
+          bash -c "chmod 755 ./plugins.sh; ./plugins.sh"
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

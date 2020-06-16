@@ -7,8 +7,8 @@ if echo "$OSTYPE" | grep -q 'darwin' ; then sedopts='-i .bak'; else sedopts='-i'
 
 cd helm
 
-sed ${sedopts} .bak  -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
-sed ${sedopts} .bak  -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
+sed ${sedopts} -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
+sed ${sedopts} -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
 for chart in chart
 do

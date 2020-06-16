@@ -6,7 +6,7 @@ cd distro/work
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 
 #-----  proxy and mini distro
-sudo rm -f `find usr/bin \( -type f -o -type l \) | egrep -v '\[|dash'`
+sudo rm -f `find usr/bin \( -type f -o -type l \) | egrep -v '\[|dash|ls'`
 sudo find . -empty -type d -delete
 sudo rm -rf `find etc/*   | egrep -v '\[|passwd|nsswitch'`
 sudo mv usr/bin/dash usr/bin/sh

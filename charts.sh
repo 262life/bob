@@ -3,7 +3,7 @@
 CV=$(cat VERSION)
 echo Version: $CV
 
-if grep "darwin" <<< "$OSTYPE"; then sedopts='-i .bak'; else sedopts='-i'; fi
+if echo "$OSTYPE" | grep -q 'darwin' ; then sedopts='-i .bak'; else sedopts='-i'; fi
 
 cd helm
 

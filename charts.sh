@@ -3,10 +3,12 @@
 CV=$(cat VERSION)
 echo Version: $CV
 
+if grep "darwin" <<< "$OSTYPE"; then sedopts='-i .bak'; else sedopts='-i'; fi
+
 cd helm
 
-sed -i .bak  -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
-sed -i .bak  -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
+sed ${sedopts} .bak  -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
+sed ${sedopts} .bak  -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
 for chart in chart
 do

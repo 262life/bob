@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash -x
+
 
 CV=$(cat VERSION)
 echo Version: $CV
+pwd
 
 cd plugins/kubectl
 

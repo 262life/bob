@@ -1,7 +1,9 @@
-                                 Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+# License
 
+   Apache License
+   Version 2.0, January 2004
+   http://www.apache.org/licenses/
+<pre>
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
@@ -91,11 +93,10 @@
       modifications, and in Source or Object form, provided that You
       meet the following conditions:
 
-      (a) You must give any other recipients of the Work or
+      (a) You must give any other recipients of the Work or 
           Derivative Works a copy of this License; and
 
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
+      (b) You must cause any modified files to carry prominent notices stating that You changed the files; and
 
       (c) You must retain, in the Source form of any Derivative Works
           that You distribute, all copyright, patent, trademark, and
@@ -199,3 +200,4 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+</pre>

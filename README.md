@@ -1,6 +1,5 @@
 ![publish_release](https://github.com/BobDotMe/bob/workflows/publish_release/badge.svg)
-![publish_release](https://github.com/BobDotMe/bob/workflows/.github/workflows/publish_release.yaml/badge.svg)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/bash_on_board)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)

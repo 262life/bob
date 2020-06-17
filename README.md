@@ -7,7 +7,7 @@
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 
-<img alt="bob" src="docs/bob.png" width="100" height="100">
+<img alt="bob" src="docs/bob.png" width="100%" height="100%">
 
 # What is Bash on board! (going forward, we call it BOB)?
 

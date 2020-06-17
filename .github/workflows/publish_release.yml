@@ -57,11 +57,6 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-      - name: 'Wait for status checks'
-        id: waitforstatuschecks
-        uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
-        with:
-          ignoreActions: automerge
-          checkInterval: 13
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Build Complete
+        run: |
+          bash -c "echo 'Build Complete';exit 0"

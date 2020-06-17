@@ -16,7 +16,7 @@ BOB turns a simple container instanciation into a power support tool for general
 BOB integrates deeply into cloud native environments leveraging extension points and providing a seamless experience for scheduling, lifecycle management, resource management, security, monitoring, and user experience.
 
 For more details about the solutions currently supported by BOB, please refer to the [project status section](#project-status) below.
-We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!roadmap.md) for more details.
+We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!road.md) for more details.
 
 ## Getting Started and Documentation
 
@@ -57,9 +57,9 @@ The status of each utility provider supported by BOB can be found in the table b
 
 | Name           | Details                                                                                                                                                                                                                                                                                                                | Status |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| BOB Framework  | The framework for the common utilities                                                                                                                                                                                                                                                                                 | Alpha  |
-| proxy          | Proxy Services                                                                                              | Stable |
-| container      | The micro container                                                                                         | Alpha  |
+| BOB Framework  | The framework for the common utilities                                                                                                                                                                                                                                                                                 | Beta   |
+| proxy          | Proxy Services                                                                                              | Beta   |
+| container      | The micro container                                                                                         | Beta   |
 
 ### Official Releases
 
@@ -69,10 +69,5 @@ Builds from the master branch can have functionality changed and even removed at
 
 ## Licensing
 
-BOB is under the Apache 2.0 license.
+BOB is under the Apache 2.0 [License.](https://bobdotme.github.io/bob/#!license.md)
 
-```bash
-./init.sh
-```
-
-images from: https://partner-images.canonical.com/core/groovy/current/

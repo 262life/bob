@@ -1,4 +1,4 @@
-# BOB
+# BOB <img alt="bob" align="left" src="bob.png" width="30%" height="30%">
 
 [About](index.md)
 [Docs](documentation.md)

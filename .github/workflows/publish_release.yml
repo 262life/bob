@@ -57,7 +57,11 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-      - name: Status
-        uses: ouzi-dev/commit-status-updater@v1.0.4
+      - name: 'Wait for status checks'
+        id: waitforstatuschecks
+        uses: "WyriHaximus/github-action-wait-for-status@f8bbe3bb321919ec6a009bc98121f39874dc8ee0"
         with:
-          status: "success"
+          ignoreActions: automerge
+          checkInterval: 13
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

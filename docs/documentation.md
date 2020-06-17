@@ -20,7 +20,7 @@ In order to configure the Ceph storage cluster, at least one of these local stor
 
 You can confirm whether your partitions or devices are formatted filesystems with the following command.
 
-```console
+<pre>console
 lsblk -f
 NAME                  FSTYPE      LABEL UUID                                   MOUNTPOINT
 vda
@@ -28,7 +28,7 @@ vda
   ├─ubuntu--vg-root   ext4              c2366f76-6e21-4f10-a8f3-6776212e2fe4   /
   └─ubuntu--vg-swap_1 swap              9492a3dc-ad75-47cd-9596-678e8cf17ff9   [SWAP]
 vdb
-```
+</pre>
 
 If the `FSTYPE` field is not empty, there is a filesystem on top of the corresponding device. In this case, you can use vdb for Ceph and can't use vda and its partitions.
 
@@ -36,13 +36,13 @@ If the `FSTYPE` field is not empty, there is a filesystem on top of the correspo
 
 If you're feeling lucky, a simple Rook cluster can be created with the following kubectl commands and [example yaml files](https://github.com/rook/rook/blob/{{ branchName }}/cluster/examples/kubernetes/ceph). For the more detailed install, skip to the next section to [deploy the Rook operator](#deploy-the-rook-operator).
 
-```console
+<pre>console
 git clone --single-branch --branch {{ branchName }} https://github.com/rook/rook.git
 cd rook/cluster/examples/kubernetes/ceph
 kubectl create -f common.yaml
 kubectl create -f operator.yaml
 kubectl create -f cluster.yaml
-```
+</pre>
 
 After the cluster is running, you can create [block, object, or file](#storage) storage to be consumed by other applications in your cluster.
 
@@ -60,14 +60,14 @@ See the [Ceph examples](ceph-examples.md) for more details.
 
 The first step is to deploy the Rook operator. Check that you are using the [example yaml files](https://github.com/rook/rook/blob/{{ branchName }}/cluster/examples/kubernetes/ceph) that correspond to your release of Rook. For more options, see the [examples documentation](ceph-examples.md).
 
-```console
+<pre>console
 cd cluster/examples/kubernetes/ceph
 kubectl create -f common.yaml
 kubectl create -f operator.yaml
 
 ## verify the rook-ceph-operator is in the `Running` state before proceeding
 kubectl -n rook-ceph get pod
-```
+</pre>
 
 You can also deploy the operator with the [Rook Helm Chart](helm-operator.md).
 
@@ -78,19 +78,19 @@ make sure you set the `dataDirHostPath` property that is valid for your hosts. F
 
 Create the cluster:
 
-```console
+<pre>console
 kubectl create -f cluster.yaml
-```
+</pre>
 
-Use `kubectl` to list pods in the `rook-ceph` namespace. You should be able to see the following pods once they are all running.
+Use 'kubectl; to list pods in the 'rook-ceph' namespace. You should be able to see the following pods once they are all running.
 The number of osd pods will depend on the number of nodes in the cluster and the number of devices configured.
-If you did not modify the `cluster.yaml` above, it is expected that one OSD will be created per node.
+If you did not modify the 'cluster.yaml' above, it is expected that one OSD will be created per node.
 The CSI, `rook-ceph-agent`, and `rook-discover` pods are also optional depending on your settings.
 
 > If the `rook-ceph-mon`, `rook-ceph-mgr`, or `rook-ceph-osd` pods are not created, please refer to the
 > [Ceph common issues](ceph-common-issues.md) for more details and potential solutions.
 
-```console
+<pre>console
 $ kubectl -n rook-ceph get pod
 NAME                                                 READY   STATUS      RESTARTS   AGE
 csi-cephfsplugin-provisioner-d77bb49c6-n5tgs         5/5     Running     0          140s
@@ -113,7 +113,7 @@ rook-ceph-osd-prepare-node1-vx2rz                    0/2     Completed   0      
 rook-ceph-osd-prepare-node2-ab3fd                    0/2     Completed   0          60s
 rook-ceph-osd-prepare-node3-w4xyz                    0/2     Completed   0          60s
 rook-discover-dhkb8                                  1/1     Running     0          140s
-```
+</pre>
 
 To verify that the cluster is in a healthy state, connect to the [Rook toolbox](ceph-toolbox.md) and run the
 `ceph status` command.
@@ -123,7 +123,7 @@ To verify that the cluster is in a healthy state, connect to the [Rook toolbox](
 * At least one OSD should be active
 * If the health is not `HEALTH_OK`, the warnings or errors should be investigated
 
-```console
+<pre>console
 $ ceph status
   cluster:
     id:     a0452c76-30d9-4c1a-a948-5d8405f19a7c
@@ -134,7 +134,7 @@ $ ceph status
     mgr: a(active, since 2m)
     osd: 3 osds: 3 up (since 1m), 3 in (since 1m)
 ...
-```
+</pre>
 
 If the cluster is not healthy, please refer to the [Ceph common issues](ceph-common-issues.md) for more details and potential solutions.
 

@@ -1,6 +1,5 @@
-![publish_release](https://github.com/BobDotMe/bob/workflows/publish_release/badge.sv0.8.7-rc.5)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release/v0.8.7-rc.5)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v0.8.7-rc.5)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-proxy?label=docker%20pulls%20-%20proxy)

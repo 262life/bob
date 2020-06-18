@@ -29,6 +29,7 @@ If you're feeling lucky, a simple Bob cluster can be created with the following 
 
 #Set the version to a production semantic version
 helm3 report add bob https://BobDotMe.github.io/bob    
+kubectl create namespace bob
 helm3 install bob bob/bob --version 0.8-7-rc.3 
 
 </pre>
@@ -56,8 +57,24 @@ helm3 install bob bob/bob --version 0.8-var7-rc.3 --set  "image.pullPolicy=Alway
 
 ## Upgrading
 
+To upgrade the BOB cluster, simply upgrade the helm chart.
+
+<pre>console
+
+helm3 upgrade bob bob/bob --version 0.8-var7-rc.3
+
+</pre>
+
+
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 
 ## Teardown
 
+To teardown the BOB cluster, simply uninstall the helm chart.
+
+<pre>console
+
+helm3 delete  bob 
+
+</pre>
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.

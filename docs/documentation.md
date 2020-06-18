@@ -44,10 +44,10 @@ curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/
 </pre>
 
 
-## Deploy the BOB Operator
+## Deploy the BOB Cluster
 
 
-The first step is to deploy the Rook operator. Check that you are using the [example yaml files](https://github.com/rook/rook/blob/{{ branchName }}/cluster/examples/kubernetes/ceph) that correspond to your release of Rook. For more options, see the [examples documentation](ceph-examples.md).
+The first step is to deploy the BOB cluster. Check that you are using ...
 
 <pre>console
 

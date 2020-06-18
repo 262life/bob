@@ -1,4 +1,4 @@
-![publish_release](https://github.com/BobDotMe/bob/workflows/publish_release/badge.svg?event=release)
+![publish_release](https://github.com/BobDotMe/bob/workflows/publish_release/badge.sv0.8.7-rc.5)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)

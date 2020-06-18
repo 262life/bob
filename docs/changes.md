@@ -2,7 +2,7 @@
 ### Added
 - Features under development
 
-## [0.8.7-rc.4] - 2020-06-16
+## [0.8.7-rc.5] - 2020-06-18
 ### Added
 - fixed an ordering issue on makedistro
 - Added helm chart

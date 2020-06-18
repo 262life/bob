@@ -1,6 +1,6 @@
 # Documentation
 
-# Bob  Quickstart
+# BOB  Quickstart
 
 This guide will walk you through the basic setup of Bob enable the backend services
 
@@ -11,7 +11,7 @@ Helm version **3.x** or higher is supported by Bob.
 
 ## Prerequisites
 
-To make sure you have a Kubernetes cluster that is ready for `Bob`, you can [follow these instructions](k8s-pre-reqs.md).
+To make sure you have a Kubernetes cluster that is ready for `BOB`, you can [follow these instructions](k8s-pre-reqs.md).
 
 In order to configure the Bob services, at least one of these local storage options are required:
 **TBD**
@@ -28,7 +28,8 @@ If you're feeling lucky, a simple Bob cluster can be created with the following 
 <pre>console
 
 #Set the version to a production semantic version
-helm3 install bob bob/bob --version 0.8-var7-rc.3 
+helm3 report add bob https://BobDotMe.github.io/bob    
+helm3 install bob bob/bob --version 0.8-7-rc.3 
 
 </pre>
 

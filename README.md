@@ -5,6 +5,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-proxy?label=docker%20pulls%20-%20proxy)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
+[![CodeFactor](https://www.codefactor.io/repository/github/bobdotme/bob/badge)](https://www.codefactor.io/repository/github/bobdotme/bob)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 <img alt="bob" align="left" src="docs/bob.png" width="20%" height="20%">
 # What is Bash on board! (we like to call it BOB)?

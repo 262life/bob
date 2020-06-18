@@ -33,6 +33,7 @@ jobs:
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
           bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
           bash -c "chmod 755 ./charts.sh; ./charts.sh"
+          bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
       - name: push
         uses: github-actions-x/commit@v2.6
         with:
@@ -40,7 +41,7 @@ jobs:
           push-branch: 'master'
           commit-message: 'publish'
           force-add: 'true'
-          files: VERSION docs/index.yaml docs/*.tgz
+          files: README VERSION docs/index.yaml docs/*.tgz
           name: rsliotta
           email: bob@bobdot.me
       - name: Release
@@ -57,7 +58,3 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-      - name: Test
-        uses: skx/github-action-tester@master
-        with:
-          script: .github/workflows/fast-tests.sh

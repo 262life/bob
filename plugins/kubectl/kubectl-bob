@@ -59,7 +59,8 @@ POD_NAME=${OPT_NAME:-$(getDictWords)}
 [ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
 
 [ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
-[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -" 
+[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -"
+
 
 [ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
 
@@ -135,6 +136,12 @@ spec:
       server: localhost
       path: /usr
 END
+
+if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
+  echo -n 'waiting '
+  while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
+  kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
+fi
 
 }
 

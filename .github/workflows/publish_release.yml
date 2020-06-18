@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        uses: ./github-action-markdownlint
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
           echo "::set-env name=RELEASE_NAME_POSTFIX::$POSTFIX"
@@ -57,7 +58,4 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-      - name: Build Complete
-        run: |
-          bash -c "echo 'Build Complete';exit 0"
 

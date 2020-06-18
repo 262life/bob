@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: MarkdownLint
-        uses: ./github-action-markdownlint
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
           echo "::set-env name=RELEASE_NAME_POSTFIX::$POSTFIX"

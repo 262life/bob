@@ -44,9 +44,9 @@ done
 
 if [ $VB -gt 3 ];then
   for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
-  do
-    [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
-  done
+    do
+      [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
+    done
 fi
 
 POD_NAME=${OPT_NAME:-$(getDictWords)}
@@ -65,7 +65,6 @@ POD_NAME=${OPT_NAME:-$(getDictWords)}
 
 [ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
 
-
 if [ "$OPT_PKI" == 'true' ]; then 
   read -r -d '' POD_PKI_M << "  END"
     - name: pki-volume
@@ -79,6 +78,23 @@ if [ "$OPT_PKI" == 'true' ]; then
   END
 fi
 
+POD_PV_M=""
+POD_PV_V=""
+for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
+  do
+    PVC=${OPT_PVC[$i]}
+    M="
+    - name: bv-${OPT_PVC[$i]}
+      mountPath: /vols/${OPT_PVC[$i]}
+  "
+  V="
+  - name: bv-${OPT_PVC[$i]}
+    persistentVolumeClaim:
+       claimName: ${OPT_PVC[$i]}
+  "
+  POD_PV_M="$POD_PV_M$M"
+  POD_PV_V="$POD_PV_V$V"
+  done
 
 cat << END | $CMD
 apiVersion: v1
@@ -107,150 +123,13 @@ spec:
         cpu: "500m"
     volumeMounts:
     $POD_PKI_M
+    $POD_PV_M
     - name: bob-pv-claim
       mountPath: /usr
   restartPolicy: Always
   volumes:
   $POD_PKI_V
-  - name: bob-pv-claim
-    nfs:
-      server: localhost
-      path: /usr
-END
-
-}
-
-help() {
-            echo "usage: $0 [-v] [--pvc[=]<value>]" >&2
-            echo ; exit 2
-}
-
-
-###########
-
-declare -a OPT_PVC 
-
-. $(dirname $0)/kb-bob-words
-. $(dirname $0)/kb-bob-functions
-
-main "$@"; exit
-
-
-
-#-----  Main
-
-main() {
-
-opts=$*
-optspec=":onhv-:"
-while getopts "$optspec" optchar; do
-    case "${optchar}" in
-        -  )
-            case "${OPTARG}" in
-                help        ) help                       ;;
-                context     ) getTextOpt    $opts        ;;
-                context=*   ) getTextOptEq  $opts        ;;
-                pvc         ) getArrayOpt   $opts        ;;
-                pvc=*       ) getArrayOptEq $opts        ;;
-                name        ) getTextOpt    $opts        ;;
-                name=*      ) getTextOptEq  $opts        ;;
-                namespace   ) getTextOpt    $opts        ;;
-                namespace=* ) getTextOptEq  $opts        ;;
-                output      ) getTextOpt    $opts        ;;
-                output=*    ) getTextOptEq  $opts        ;;
-                cert        ) getBoolOpt    $opts        ;;
-                pki         ) getBoolOpt    $opts        ;;
-                rsync       ) getBoolOpt    $opts        ;;
-                ssh         ) getBoolOpt    $opts        ;;
-                iperf       ) getBoolOpt    $opts        ;;
-                
-                *          ) badEgg                      ;;
-            esac;;
-        h  ) help                                        ;;
-        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
-             VB=${#VERBOSITY[@]}                       
-             [ $VB -gt 0 ] && echo Verbosity set to: $VB ;;
-        n  ) OPTARG='namespace' getTextOpt $opts         ;;
-        o  ) OPTARG='output' getTextOpt $opts            ;;
-        *  ) badEgg                                      ;;
-    esac
-done
-
-[ $VB -gt 0 ] && echo
-[ $VB -gt 3 ] && echo Requested list of PVC
-
-if [ $VB -gt 3 ];then
-  for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
-  do
-    [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
-  done
-fi
-
-POD_NAME=${OPT_NAME:-$(getDictWords)}
-[ $VB -gt 0 ] && echo POD Name: $POD_NAME
-
-[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
-[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
-
-[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_NAMESPACE"
-[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
-
-[ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
-[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -" 
-
-[ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
-
-[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
-
-
-if [ "$OPT_PKI" == 'true' ]; then 
-  read -r -d '' POD_PKI = << "  END"
-    - name: cert-volume
-      mountPath: /etc/pki
-  END
-fi
-
-echo "PKI"
-echo "$POD_PKI"
-
-
-
-cat << END | $CMD
-apiVersion: v1
-kind: Pod
-metadata:
-  name: ${POD_NAME}
-  ${POD_NAMESPACE}
-  labels:
-    app: bob
-spec:
-  terminationGracePeriodSeconds: 20
-  containers:
-  - image: docker-dev-local.logistics.corp/bob:1.1mini
-    imagePullPolicy: Always
-    name: ${POD_NAME}
-    ports:
-    - containerPort: 80
-      name: dummy
-      protocol: TCP
-    resources:
-      limits:
-        memory: "2Gi"
-        cpu: "2"
-      requests:
-        memory: "2Gi"
-        cpu: "2"
-    volumeMounts:
-#    - name: cert-volume
-#      mountPath: /etc/pki
-    - name: bob-pv-claim
-      mountPath: /usr
-  restartPolicy: Always
-  volumes:
-#  - name: cert-volume
-#    hostPath:
-#      path: "/etc/pki"
-#      type: Directory
+  $POD_PV_V
   - name: bob-pv-claim
     nfs:
       server: localhost

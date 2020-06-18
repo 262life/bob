@@ -1,6 +1,6 @@
 
-<img alt="bob" src="bob.png" width="20%" height="20%"> 
-<img alt="bob" src="blank.jpg" width="200" height="2"> 
+<img alt="bob" src="bob.png" width="78" height="45"> 
+<img alt="bob" src="blank.jpg" width="500" height="1"> 
 [About](index.md)
 [Docs](documentation.md)
 [Roadmap](road.md)

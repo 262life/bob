@@ -3,7 +3,7 @@
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 
-
+![enter image description here](/docs/bob.png)
 <img alt="bob" align="left" src="bob.png" width="40%" height="40%">
 # What is Bash on board! (we like to call it BOB)?
 
@@ -13,3 +13,6 @@ BOB turns a simple container instanciation into a power support tool for general
 
 BOB integrates deeply into cloud native environments leveraging extension points and providing a seamless experience for scheduling, lifecycle management, resource management, security, monitoring, and user experience.
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTY2Mzk1MTAwNl19
+-->

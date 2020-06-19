@@ -55,7 +55,7 @@ The status of each utility provider supported by BOB can be found in the table b
 - **Beta:** Support for the overall features will not be dropped, though details may change. Support for upgrading or migrating between versions will be provided, either through automation or manual steps.
 - **Stable:** Features will appear in released software for many subsequent versions and support for upgrading between versions will be provided with software automation in the vast majority of scenarios.
 
-| Name| Details  | Status                                                                                                                                                                                                                                                                                                        
+|Name|Details|Status                                                                                                                                                                                                                                                                                                        
 | -  | - | - |
 |core|The framework for the common utilities|Beta|                                                                                                                                                                                                                                                                              
 |proxy|Proxy Services|Beta|                                                                                             
@@ -72,5 +72,5 @@ Builds from the master branch can have functionality changed and even removed at
 BOB is under the Apache 2.0 [License.](https://bobdotme.github.io/bob/#!license.md)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTM2NTgyMTU1XX0=
+eyJoaXN0b3J5IjpbNzkzNjg2MDA3XX0=
 -->

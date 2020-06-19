@@ -56,10 +56,10 @@ The status of each utility provider supported by BOB can be found in the table b
 - **Stable:** Features will appear in released software for many subsequent versions and support for upgrading between versions will be provided with software automation in the vast majority of scenarios.
 
 | Name| Details  | Status                                                                                                                                                                                                                                                                                                        
-| -  | - | -
-| BOB Framework| The framework for the common utilities                                                                                                                                                                                                                                                                                | Beta|
-| proxy| Proxy Services| Beta|                                                                                             
-| container      | The micro container                                                                                         | Beta   |
+| -  | - | - |
+|core|The framework for the common utilities|Beta|                                                                                                                                                                                                                                                                              
+|proxy|Proxy Services|Beta|                                                                                             
+|container|The micro container|Beta                                                                                        
 
 ### Official Releases
 
@@ -72,5 +72,5 @@ Builds from the master branch can have functionality changed and even removed at
 BOB is under the Apache 2.0 [License.](https://bobdotme.github.io/bob/#!license.md)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI2NTg0NjUzMV19
+eyJoaXN0b3J5IjpbOTM2NTgyMTU1XX0=
 -->

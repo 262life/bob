@@ -72,9 +72,11 @@ When you are done with the test cluster, see [these instructions](ceph-teardown.
 
 To teardown the BOB cluster, simply uninstall the helm chart.
 
-<pre>console
-
+***terminial window*** 
+```
 helm3 delete  bob 
-
-</pre>
+```
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjA5MDUyNDQwMV19
+-->

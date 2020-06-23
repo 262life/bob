@@ -10,3 +10,6 @@ cd plugins/kubectl
 
 sed ${sedopts} -e "s/^echo.*$/echo 'version: $CV'/g" kubectl-bob-version
 
+echo result:
+cat kubectl-bob-version
+

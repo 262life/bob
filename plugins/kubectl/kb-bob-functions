@@ -11,7 +11,7 @@ getBoolOpt() {
 
   val="true"
   [ $VB -gt 2 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
-  X=$(echo "OPT_${OPTARG}" | tr '[:lower:]' '[:upper:]')
+  X=$(echo "OPT_${OPTARG}" | tr '[:lower:]' '[:upper:]' | sed -e "s/-//g")
   eval $X="$val"
 
 }

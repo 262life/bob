@@ -86,14 +86,14 @@ for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
     M="
     - name: bv-${OPT_PVC[$i]}
       mountPath: /vols/${OPT_PVC[$i]}
-  "
+    "
   V="
   - name: bv-${OPT_PVC[$i]}
     persistentVolumeClaim:
        claimName: ${OPT_PVC[$i]}
   "
-  POD_PV_M="$POD_PV_M$M"
-  POD_PV_V="$POD_PV_V$V"
+    POD_PV_M="$POD_PV_M$M"
+    POD_PV_V="$POD_PV_V$V"
   done
 
 cat << END | $CMD
@@ -147,10 +147,34 @@ fi
 }
 
 help() {
-            echo "usage: $0 [-v] [--pvc[=]<value>]" >&2
-            echo ; exit 2
-}
 
+  echo ""
+  cat  >&2 << "EOD"
+Creates a BOB pod
+
+This command in its basic form will create a new BOB pod in the current namespace 
+and execute an interactive BASH shell.
+
+Examples:
+  # Create a pod in the current namespace
+  kubectl bob 
+
+  # Create a pod in the supplied  namespace
+  kubectl bob -n namespace
+
+Options:
+    --context='': The name of the kubeconfig context to use
+-h, --help: If present, print this help message
+-n, --namespace='': If present, the namespace scope for this CLI request
+-v, --verbose: If present, will increase the verbosity by one each time it's passed
+
+usage:
+  #  kubectl bob  [-v] [--context[=]<value>] [--namespace[=]<value> 
+EOD
+
+  echo ; exit 2
+
+}
 
 ###########
 

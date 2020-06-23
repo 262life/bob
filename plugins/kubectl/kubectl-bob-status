@@ -1,3 +1,63 @@
-#!/bin/bash
+#!/usr/bin/env bash 
 
-kubectl get pods -lapp=spar --all-namespaces
+#-----  Main
+
+main() {
+
+opts=$*
+optspec=":nvh-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help            ) help                       ;;
+                context         ) getTextOpt    $opts        ;;
+                context=*       ) getTextOptEq  $opts        ;;
+                namespace       ) getTextOpt    $opts        ;;
+                namespace=*     ) getTextOptEq  $opts        ;;
+                all-namespaces  ) getBoolOpt    $opts        ;;
+                
+                *              ) badEgg                      ;;
+            esac;;
+        h  ) help                                            ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB     ;;
+        n  ) OPTARG='namespace' getTextOpt $opts             ;;
+        *  ) badEgg                                          ;;
+    esac
+done
+
+[ $VB -gt 0 ] && echo
+
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="-n $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_ALLNAMESPACES:-none} == 'true' ] && POD_NAMESPACE="--all-namespaces"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_CONTEXT" 
+
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT 
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
+
+kubectl $POD_CONTEXT get pods -lapp=bob $POD_NAMESPACE 
+}
+
+help() {
+            echo "usage: $0 [-v] [--context[=]<value>] [--namespace[=]<value> [--all-namespaces]" >&2
+            echo ; exit 2
+}
+
+
+###########
+
+declare -a OPT_PVC 
+
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
+
+main "$@"; exit
+
+

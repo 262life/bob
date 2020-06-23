@@ -61,7 +61,6 @@ POD_NAME=${OPT_NAME:-$(getDictWords)}
 [ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
 [ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -"
 
-
 [ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
 
 [ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
@@ -137,10 +136,12 @@ spec:
       path: /usr
 END
 
-if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
-  echo -n 'waiting '
-  while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
-  kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
+if [ $? = 0 ]; then
+  if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
+    echo -n 'waiting '
+    while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
+    kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
+  fi
 fi
 
 }

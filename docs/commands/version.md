@@ -1,4 +1,3 @@
-# No help Available
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMzNDEyODAzNl19
--->
+# Displays the plugin version
+
+    #  No other details provided

@@ -17,9 +17,3 @@ Find more information at: https://BobDotMe.github.io/bob
     kubectl bob [flags] [options]
         
     Use "kubectl bob <command> --help" for more information about a given command.
-
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4Mjc5MjcyMDJdfQ==
--->

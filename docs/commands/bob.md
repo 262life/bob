@@ -4,11 +4,12 @@ This command in its basic form will create a new BOB pod in the current namespac
 and execute an interactive BASH shell.
 
 ## Examples:
-  #Create a pod in the current namespace
-  kubectl bob 
 
-  #Create a pod in the supplied  namespace
-  kubectl bob -n namespace
+      #Create a pod in the current namespace
+      kubectl bob 
+    
+      #Create a pod in the supplied  namespace
+      kubectl bob -n namespace
 
 ## Options:
         --context='': The name of the kubeconfig context to use
@@ -29,5 +30,5 @@ and execute an interactive BASH shell.
     # kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [--cert] [-h|--help] [--iperf] [--name[=]<value>] [-o|--output[=]<value>] [--pki] [--pvc[=]<value>] [--rsync] [--ssh]
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU2NjQwNjE1XX0=
+eyJoaXN0b3J5IjpbLTE1MTA5MjY1OTldfQ==
 -->

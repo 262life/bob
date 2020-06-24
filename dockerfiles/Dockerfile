@@ -6,7 +6,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selecti
     apt-get --quiet --yes updatee && \
     apt-get --quiet --yes clean all && \
     apt-get --quiet --yes autoremove && \
-    wget --quiet --no-check-certificate https://storage.googleapis.com/kubernetes-release/release/$(curl -k -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  && \
+    wget --quiet --no-check-certificate https://storage.googleapis.com/kubernetes-release/release/$(wget --quiet --no-check-certificate https://storage.googleapis.com/kubernetes-release/release/stable.txt --output-document -)/bin/linux/amd64/kubectl  && \
     mv kubectl /usr/local/bin/kubectl && \
     chmod 775 /usr/local/bin/kubectl && \
     mkdir work && \

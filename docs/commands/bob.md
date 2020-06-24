@@ -1,16 +1,16 @@
-Creates a BOB pod
+# Creates a BOB pod
 
 This command in its basic form will create a new BOB pod in the current namespace 
 and execute an interactive BASH shell.
 
-Examples:
-  # Create a pod in the current namespace
+## Examples:
+  #Create a pod in the current namespace
   kubectl bob 
 
-  # Create a pod in the supplied  namespace
+  #Create a pod in the supplied  namespace
   kubectl bob -n namespace
 
-Options:
+## Options:
     --context='': The name of the kubeconfig context to use
     --cert: Mount /etc/certs from host
 -h, --help: If present, print this help message
@@ -26,3 +26,6 @@ Options:
 
 usage:
   #  kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [--cert] [-h|--help] [--iperf] [--name[=]<value>] [-o|--output[=]<value>] [--pki] [--pvc[=]<value>] [--rsync] [--ssh]
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTM2ODM0MzQyXX0=
+-->

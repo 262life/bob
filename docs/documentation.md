@@ -24,47 +24,36 @@ You can confirm whether your partitions or devices are formatted filesystems wit
 ## TL;DR
 
 If you're feeling lucky, a simple Bob cluster can be created with the following `helm 3` command.  No `values.yaml` is necessary. For the more detailed install, skip to the next section to [deploy the BOB cluster](#deploy-the-bob-cluster).
+    console
+    
+    #Set the version to a production semantic version
+    helm3 report add bob https://BobDotMe.github.io/bob    
+    kubectl create namespace bob
+    helm3 install bob bob/bob --version 0.8-7-rc.3 
 
-<pre>console
-
-#Set the version to a production semantic version
-helm3 report add bob https://BobDotMe.github.io/bob    
-kubectl create namespace bob
-helm3 install bob bob/bob --version 0.8-7-rc.3 
-
-</pre>
 
 After the cluster is running, you must now install the BOB plugins.  You WILL require administrator proviledges on your workstation or server to do so.  This is NOT intended to be installed on the K8s hosts.
 
-<pre>console
-
-#Set the version to a production semantic version
-curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.4/installer.sh | bash -s -- v0.8.7-rc.4
-
-</pre>
-
+    console
+    
+    #Set the version to a production semantic version
+    curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.4/installer.sh | bash -s -- v0.8.7-rc.4
 
 ## Deploy the BOB Cluster
 
 
 The first step is to deploy the BOB cluster. Check that you are using ...
-
-<pre>console
-
-helm3 install bob bob/bob --version 0.8-var7-rc.3 --set  "image.pullPolicy=Always"
-
-</pre>
+    console
+    
+    helm3 install bob bob/bob --version 0.8-var7-rc.3 --set  "image.pullPolicy=Always"
 
 ## Upgrading
 
 To upgrade the BOB cluster, simply upgrade the helm chart.
 
-<pre>console
-
-helm3 upgrade bob bob/bob --version 0.8-var7-rc.3
-
-</pre>
-
+    console
+    
+    helm3 upgrade bob bob/bob --version 0.8-var7-rc.3
 
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 
@@ -78,5 +67,5 @@ To teardown the BOB cluster, simply uninstall the helm chart.
 ```
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzI4NzUwOF19
+eyJoaXN0b3J5IjpbLTE5MjM0MDExNTAsLTExMzI4NzUwOF19
 -->

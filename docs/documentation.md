@@ -2,15 +2,13 @@
 
 # BOB  Quickstart
 
-This guide will walk you through the basic setup of Bob enable the backend services
+This guide will walk you through the basic setup of Bob enable the backend services.
 
 ## Minimum Version
 
 Kubernetes **v1.15** or higher is supported by Bob.
 Helm version **3.x** or higher is supported by Bob.
-
 ## Prerequisites
-
 To make sure you have a Kubernetes cluster that is ready for `BOB`, you can [follow these instructions](k8s-pre-reqs.md).
 
 In order to configure the Bob services, at least one of these local storage options are required:
@@ -20,9 +18,7 @@ In order to configure the Bob services, at least one of these local storage opti
 - PVs available from a storage class in `block` mode
 
 You can confirm whether your partitions or devices are formatted filesystems with the following command.
-
 ## TL;DR
-
 If you're feeling lucky, a simple Bob cluster can be created with the following `helm 3` command.  No `values.yaml` is necessary. For the more detailed install, skip to the next section to [deploy the BOB cluster](#deploy-the-bob-cluster).
     console
     
@@ -39,6 +35,7 @@ After the cluster is running, you must now install the BOB plugins.  You WILL re
     #Set the version to a production semantic version
     curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.4/installer.sh | bash -s -- v0.8.7-rc.4
 
+## kubectl plugin
 Details on the plugin can be found [here](commands.md).
 ## Deploy the BOB Cluster
 
@@ -67,5 +64,6 @@ To teardown the BOB cluster, simply uninstall the helm chart.
 
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwNjM5MDEyNiwtMTEzMjg3NTA4XX0=
+eyJoaXN0b3J5IjpbMTM0NDA2MDc5LDIwMDYzOTAxMjYsLTExMz
+I4NzUwOF19
 -->

@@ -1,11 +1,7 @@
 # Documentation
-
 # BOB  Quickstart
-
 This guide will walk you through the basic setup of Bob enable the backend services.
-
 ## Minimum Version
-
 Kubernetes **v1.15** or higher is supported by Bob.
 Helm version **3.x** or higher is supported by Bob.
 ## Prerequisites
@@ -64,6 +60,6 @@ To teardown the BOB cluster, simply uninstall the helm chart.
 
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0NDA2MDc5LDIwMDYzOTAxMjYsLTExMz
-I4NzUwOF19
+eyJoaXN0b3J5IjpbLTEyODkzOTc5MTcsMTM0NDA2MDc5LDIwMD
+YzOTAxMjYsLTExMzI4NzUwOF19
 -->

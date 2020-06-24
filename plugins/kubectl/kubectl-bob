@@ -136,7 +136,8 @@ spec:
       path: /usr
 END
 
-if [ $? = 0 ]; then
+STAT=$?
+if [ $STAT = 0 ]; then
   if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
     echo -n 'waiting '
     while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo

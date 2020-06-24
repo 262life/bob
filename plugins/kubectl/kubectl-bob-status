@@ -70,7 +70,7 @@ Options:
 -v, --verbose: If present, will increase the verbosity by one each time it's passed
   
 usage:
-  #  kubectl bob status  [-v] [--context[=]<value>] [--namespace[=]<value> [--all-namespaces]
+  #  kubectl bob status  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value> [--all-namespaces] [-h|--help]
 EOD
 
   echo ; exit 2

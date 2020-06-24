@@ -1,0 +1,90 @@
+#!/usr/bin/env bash 
+
+#-----  Main
+
+main() {
+
+opts=$*
+optspec=":nhv-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help        ) help                       ;;
+                context     ) getTextOpt    $opts        ;;
+                context=*   ) getTextOptEq  $opts        ;;
+                name        ) getTextOpt    $opts        ;;
+                name=*      ) getTextOptEq  $opts        ;;
+                namespace   ) getTextOpt    $opts        ;;
+                namespace=* ) getTextOptEq  $opts        ;;
+                
+                *          ) badEgg                      ;;
+            esac;;
+        h  ) help                                        ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB ;;
+        n  ) OPTARG='namespace' getTextOpt $opts         ;;
+        *  ) badEgg                                      ;;
+    esac
+done
+
+
+POD_NAME=${OPT_NAME:-$(getDictWords)}
+[ $VB -gt 0 ] && echo POD Name: $POD_NAME
+
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
+
+[ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
+
+echo kubectl $POD_CONTEXT exec $POD_NAME  $POD_NAMESPACE --
+
+}
+
+help() {
+
+  echo ""
+  cat  >&2 << "EOD"
+Executes a BOB pod
+
+This command in its basic form will attach to a new BOB pod in the current namespace 
+and execute an interactive BASH shell.
+
+Examples:
+  # Attach to a pod in the current namespace
+  kubectl bob exec --name xxx
+
+  # Attach to a pod in the supplied  namespace
+  kubectl bob --name xxx -n namespace
+
+Options:
+    --context='': The name of the kubeconfig context to use
+-h, --help: If present, print this help message
+    --name='': If present this will be the name of the POD
+-n, --namespace='': If present, the namespace scope for this CLI request
+-v, --verbose: If present, will increase the verbosity by one each time it's passed
+
+usage:
+  #  kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [-h|--help] [--name[=]<value]
+EOD
+
+  echo ; exit 2
+
+}
+
+###########
+
+declare -a OPT_PVC 
+
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
+
+main "$@"; exit
+
+

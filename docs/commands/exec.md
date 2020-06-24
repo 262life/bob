@@ -19,8 +19,3 @@ This command in its basic form will attach to a new BOB pod in the current names
 
 ## Usage:
     #  kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [-h|--help] [--name[=]<value]
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNTgyMjQ5NzM0XX0=
--->

@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-
-cat >&2 <<"EOD"
 
 kubectl bob controls the BOB pods.
 
@@ -17,4 +14,3 @@ Usage:
 
 Use "kubectl bob <command> --help" for more information about a given command.
 
-EOD

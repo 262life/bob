@@ -8,9 +8,9 @@ build_container() {
     echo "========================================================="
     echo "Help:"
     echo ""
-    echo "You must pass a value for the tag like this:
+    echo "You must pass a value for the tag like this:"
     echo "$ TAG=version ./init.sh"
-    echo "You can also tag this version as the lastest like this:
+    echo "You can also tag this version as the lastest like this:"
     echo "$ LATEST=true TAG=version ./init.sh"
     echo "You can also choose add a Different Dockerfile:"
     echo "$ LATEST=true TAG=version DOCKERFILE=filename ./init.sh"

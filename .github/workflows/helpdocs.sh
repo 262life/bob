@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "# BOB plugins" > docs/commands.md
-echo ""              > docs/commands.md
+echo ""             >> docs/commands.md
 
 P="plugins/kubectl"
 for doc in $P/kubectl-bob*

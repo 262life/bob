@@ -2,7 +2,7 @@
 
 ##################  Do not modify anything here #############################
 
-source dockerfiles/build_functions.sh
+source .github/workflows/build_functions.sh
 
 ##################  Begin Script ############################################
 

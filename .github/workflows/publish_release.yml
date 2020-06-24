@@ -1,5 +1,3 @@
-#Workflows
-name: publish_release
 on: 
   push:
     tags:
@@ -21,7 +19,7 @@ jobs:
           echo "$RELEASE_VERSION" > VERSION
       - name: Create Plugins
         run: |
-          bash -c "chmod 755 ./plugins.sh; ./plugins.sh"
+          bash -c "chmod 755 .github/workflows/plugins.sh; .github/workflows/plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Build Action 
         env: # Or as an environment variable
@@ -29,11 +27,13 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}      
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       ./init.sh bob-core"
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy ./init.sh bob-proxy"
-          bash -c "chmod 755 ./init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  ./init.sh bob"
-          bash -c "chmod 755 ./charts.sh; ./charts.sh"
+          bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"
+          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/workflows/init.sh bob-core"
+          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy .github/workflows/init.sh bob-proxy"
+          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  .github/workflows/init.sh bob"
+          bash -c "chmod 755 .github/workflows/charts.sh; .github/workflows/charts.sh"
           bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
+          bash -c "chmod 755 .github/workflows/helpdocs.sh; .github/workflows/helpdocs.sh"
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

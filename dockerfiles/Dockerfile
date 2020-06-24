@@ -3,7 +3,7 @@ FROM ubuntu:focal-20200319
 RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selections && \
     apt-get --quiet --yes update  && \
     apt-get --quiet --yes install --no-install-recommends fio iperf3 openssh-client openssh-server rsync curl wget iputils-ping dnsutils vim-tiny apt-utils pciutils nfs-ganesha nfs-ganesha-vfs systemctl&& \
-    apt-get --quiet --yes upgrade && \
+    apt-get --quiet --yes updatee && \
     apt-get --quiet --yes clean all && \
     apt-get --quiet --yes autoremove && \
     wget --quiet --no-check-certificate https://storage.googleapis.com/kubernetes-release/release/$(curl -k -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl  && \

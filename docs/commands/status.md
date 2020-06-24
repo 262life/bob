@@ -1,4 +1,4 @@
-Displays the status of all running BOB pods
+# Displays status of all running BOB pods
 
 This command will display the status of all running BOB pods in the current namespace.
 
@@ -18,3 +18,6 @@ Options:
   
 usage:
   #  kubectl bob status  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value> [--all-namespaces] [-h|--help]
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjAyMDc4OTgyOV19
+-->

@@ -39,6 +39,7 @@ After the cluster is running, you must now install the BOB plugins.  You WILL re
     #Set the version to a production semantic version
     curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.4/installer.sh | bash -s -- v0.8.7-rc.4
 
+Details on the plugin can be found 
 ## Deploy the BOB Cluster
 
 
@@ -61,11 +62,10 @@ When you are done with the test cluster, see [these instructions](ceph-teardown.
 
 To teardown the BOB cluster, simply uninstall the helm chart.
 
-***terminial window*** 
-```
-#helm3 delete  bob 
-```
+    terminial window
+    #helm3 delete  bob 
+
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MjM0MDExNTAsLTExMzI4NzUwOF19
+eyJoaXN0b3J5IjpbMTcwMzc5MDkzOCwtMTEzMjg3NTA4XX0=
 -->

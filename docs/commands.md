@@ -1,3 +1,4 @@
+# BOB plugins
 
 [bob](commands/bob.md)
 [exec](commands/exec.md)

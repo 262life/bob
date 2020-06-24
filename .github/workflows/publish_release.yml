@@ -27,7 +27,7 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}      
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"
+          # bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"
           bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/workflows/init.sh bob-core"
           bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy .github/workflows/init.sh bob-proxy"
           bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  .github/workflows/init.sh bob"

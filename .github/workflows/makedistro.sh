@@ -2,15 +2,15 @@
 
 sudo rm -rf distro/work 2>/dev/null
 sudo mkdir distro/work
-cd distro/work
+cd distro/work || exit
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 
 #-----  proxy and mini distro
-sudo rm -f `find usr/bin \( -type f -o -type l \) | grep -E -v '\[|dash|ls'`
+sudo rm -f "$(find usr/bin \( -type f -o -type l \) | grep -E -v '\[|dash|ls')"
 sudo find . -empty -type d -delete
-sudo rm -rf `find etc/*   | egrep -v '\[|passwd|nsswitch'`
+sudo rm -rf "$(find etc/*   | grep -E -v '\[|passwd|nsswitch')"
 sudo mv usr/bin/dash usr/bin/sh
-sudo rm -f `find usr/lib -type f  | grep -E -v 'x86_64-linux-gnu'`
+sudo rm -f "$(find usr/lib -type f  | grep -E -v 'x86_64-linux-gnu')"
 sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin
 #--------
 

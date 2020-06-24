@@ -1,4 +1,4 @@
-on: 
+on:
   push:
     tags:
     - "v[0-9]+.[1-9]+.[0-9]*"
@@ -21,10 +21,10 @@ jobs:
         run: |
           bash -c "chmod 755 .github/workflows/plugins.sh; .github/workflows/plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
-      - name: Build Action 
+      - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
-            docker_token: ${{ secrets.DOCKER_TOKEN }}      
+            docker_token: ${{ secrets.DOCKER_TOKEN }}
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
           # bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"

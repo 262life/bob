@@ -88,97 +88,6 @@ display_logo="no"
 # textcolor="\e[0m"
 # labelcolor="\e[1;34m"
 
-# Array: WM Process Names
-# Order matters!
-# Removed WM's: compiz
-wmnames=(
-		'fluxbox'
-		'openbox'
-		'blackbox'
-		'xfwm4'
-		'metacity'
-		'kwin'
-		'twin'
-		'icewm'
-		'pekwm'
-		'flwm'
-		'flwm_topside'
-		'fvwm'
-		'dwm'
-		'awesome'
-		'wmaker'
-		'stumpwm'
-		'musca'
-		'xmonad.*'
-		'i3'
-		'ratpoison'
-		'scrotwm'
-		'spectrwm'
-		'wmfs'
-		'wmii'
-		'beryl'
-		'subtle'
-		'e16'
-		'enlightenment'
-		'sawfish'
-		'emerald'
-		'monsterwm'
-		'dminiwm'
-		'compiz'
-		'Finder'
-		'herbstluftwm'
-		'howm'
-		'notion'
-		'bspwm'
-		'cinnamon'
-		'2bwm'
-		'echinus'
-		'swm'
-		'budgie-wm'
-		'dtwm'
-		'9wm'
-		'chromeos-wm'
-		'deepin-wm'
-		'sway'
-		'mwm'
-)
-
-# Array with full Ubuntu release codenames, used so that the script will display
-# i.e. "Ubuntu 18.04 LTS (Bionic Beaver)" instead of "Ubuntu 18.04 bionic"
-ubuntu_codenames=(
-		'(Warty Warthog)'		#  4.10
-		'(Hoary Hedgehog)'		#  5.04
-		'(Breezy Badger)'		#  5.10
-		'LTS (Dapper Drake)'	#  6.06
-		'(Edgy Eft)'			#  6.10
-		'(Feisty Fawn)'			#  7.04
-		'(Gutsy Gibbon)'		#  7.10
-		'LTS (Hardy Heron)'		#  8.04
-		'(Intrepid Ibex)'		#  8.10
-		'(Jaunty Jackalope)'	#  9.04
-		'(Karmic Koala)'		#  9.10
-		'LTS (Lucid Lynx)'		# 10.04
-		'(Maverick Meerkat)'	# 10.10
-		'(Natty Narwhal)'		# 11.04
-		'(Oneiric Ocelot)'		# 11.10
-		'LTS (Precise Pangolin)'# 12.04
-		'(Quantal Quetzal)'		# 12.10
-		'(Raring Ringtail)'		# 13.04
-		'(Saucy Salamander)'	# 13.10
-		'LTS (Trusty Tahr)'		# 14.04
-		'(Utopic Unicorn)'		# 14.10
-		'(Vivid Vervet)'		# 15.04
-		'(Wily Werewolf)'		# 15.10
-		'LTS (Xenial Xerus)'	# 16.04
-		'(Yakkety Yak)'			# 16.10
-		'(Zesty Zapus)'			# 17.04
-		'(Artful Aardvark)'		# 17.10
-		'LTS (Bionic Beaver)'	# 18.04
-		'(Cosmic Cuttlefish)'	# 18.10
-		'(Disco Dingo)'	# 19.04
-		'(Eoan Ermine)'	# 19.10
-		'(Focal Fossa)'	# 20.04
-)
 
 # Screenshot Settings
 # This setting lets the script know if you want to take a screenshot or not. 1=Yes 0=No
@@ -190,8 +99,6 @@ upload=
 uploadLoc=
 # You can specify a custom screenshot command here. Just uncomment and edit.
 # Otherwise, we'll be using the default command: scrot -cd3.
-# screenCommand="scrot -cd5"
-shotfile=$(printf "screenFetch-%s.png" "$(date +'%Y-%m-%d_%H-%M-%S')")
 
 # Verbose Setting - Set to 1 for verbose output.
 verbosity=
@@ -359,7 +266,7 @@ detectColors () {
 	my_hcolor=$(colorNumberToCode "${my_hcolor}")
 }
 
-supported_distros="SPAR" 
+supported_distros="BOB" 
 
 supported_other=""
 
@@ -503,7 +410,7 @@ fi
 # Distro Detection - Begin
 detectdistro () {
 
-  distro="SPAR"
+  distro="BOB"
 
 }
 # Distro Detection - End
@@ -972,9 +879,9 @@ detectgtk () {
 	verboseOut "Finding GTK3 theme...found as '$gtk3Theme'"
 	verboseOut "Finding icon theme...found as '$gtkIcons'"
 	verboseOut "Finding user font...found as '$gtkFont'"
-	if [[ -n "$gtkBackground" ]]; then
-		verboseOut "Finding background...found as '$gtkBackground'"
-	fi
+	#if [[ -n "$gtkBackground" ]]; then
+	#	verboseOut "Finding background...found as '$gtkBackground'"
+	#fi
 }
 # GTK Theme\Icon\Font Detection - END
 
@@ -1004,8 +911,8 @@ asciiText () {
 		myascii="${asc_distro}"
 	elif [[ "$art" ]]; then
 		myascii="custom"
-	elif [[ "$fake_distro" ]]; then
-		myascii="${fake_distro}"
+	#elif [[ "$fake_distro" ]]; then
+	#	myascii="${fake_distro}"
 	else
 		myascii="${distro}"
 	fi
@@ -1013,7 +920,7 @@ asciiText () {
 		"custom")
 			source "$art"
 		;;
-		"SPAR")
+		"BOB")
 			if [[ "$no_color" != "1" ]]; then
 				c1=$(getColor 'white') # White
 				c2=$(getColor 'cyan') # Cyan
@@ -1060,11 +967,11 @@ asciiText () {
 			my_out=$(printf "${fulloutput[i]}$c0\n" "${out_array}")
 			my_out_full=$(echo "$my_out" | cat -v)
 			termWidth=$(tput cols)
-			SHOPT_EXTGLOB_STATE=$(shopt -p extglob)
-			read SHOPT_CMD SHOPT_STATE SHOPT_OPT <<< "${SHOPT_EXTGLOB_STATE}"
-			if [[ ${SHOPT_STATE} == "-u" ]]; then
-				shopt -s extglob
-			fi
+			#SHOPT_EXTGLOB_STATE=$(shopt -p extglob)
+			#read SHOPT_CMD SHOPT_STATE SHOPT_OPT <<< "${SHOPT_EXTGLOB_STATE}"
+			#if [[ ${SHOPT_STATE} == "-u" ]]; then
+			#	shopt -s extglob
+			#fi
 
 			stringReal="${my_out_full//\^\[\[@([0-9]|[0-9];[0-9][0-9])m}"
 
@@ -1183,7 +1090,7 @@ infoDisplay () {
 		"Alpine Linux"|"Arch Linux - Old"|"ArcoLinux"|"blackPanther OS"|"Fedora"|"Korora"|"Chapeau"|"Mandriva"|"Mandrake"| \
 		"Chakra"|"ChromeOS"|"Sabayon"|"Slackware"|"Mac OS X"|"Trisquel"|"Kali Linux"|"Jiyuu Linux"|"Antergos"| \
 		"KaOS"|"Logos"|"gNewSense"|"Netrunner"|"NixOS"|"SailfishOS"|"Qubes OS"|"Kogaion"|"PCLinuxOS"| \
-		"Obarun"|"Siduction"|"SPAR"|"SwagArch"|"Parrot Security"|"Zorin OS")
+		"Obarun"|"Siduction"|"BOB"|"SwagArch"|"Parrot Security"|"Zorin OS")
 			labelcolor=$(getColor 'light blue')
 		;;
 		"Arch Linux"|"Artix Linux"|"Frugalware"|"Mageia"|"Deepin"|"CRUX"|"OS Elbrus"|"EndeavourOS")
@@ -1248,23 +1155,28 @@ infoDisplay () {
 		mygpu=$(echo -e "$labelcolor GPU:$textcolor $cpu"); out_array=( "${out_array[@]}" "$mygpu" )
 		mymem=$(echo -e "$labelcolor RAM:$textcolor $mem"); out_array=( "${out_array[@]}" "$mymem" )
 	else
-		if [[ "${display[@]}" =~ "host" ]]; then
+	    display_list=""
+		for (( i = 0; i < ${#display[@]}; i++ ))
+        do
+          display_list="$display_list ${display[$i]}"
+        done
+		if [[ "${display_list}" =~ "host" ]]; then
 			myinfo=$(echo -e "${labelcolor} ${myUser}$textcolor${bold}@${c0}${labelcolor}${myHost}")
 			out_array=( "${out_array[@]}" "$myinfo" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "distro" ]]; then
+		if [[ "${display_list}" =~ "distro" ]]; then
 			if [ "$distro" == "Mac OS X" ]; then
 				sysArch="$(getconf LONG_BIT)bit"
 				prodVers=$(sw_vers | grep 'ProductVersion')
 				prodVers=${prodVers:16}
 				buildVers=$(sw_vers |grep 'BuildVersion')
 				buildVers=${buildVers:14}
-				if [ -n "$distro_more" ]; then
-					mydistro=$(echo -e "$labelcolor OS:$textcolor $distro_more $sysArch")
-				else
+				#if [ -n "$distro_more" ]; then
+				#	mydistro=$(echo -e "$labelcolor OS:$textcolor $distro_more $sysArch")
+				#else
 					mydistro=$(echo -e "$labelcolor OS:$textcolor $sysArch $distro $prodVers $buildVers")
-				fi
+				#fi
 			elif [[ "$distro" == "Cygwin" || "$distro" == "Msys" ]]; then
 				distro="$(wmic os get caption | sed 's/\r//g; s/[ \t]*$//g; 2!d')"
 				if [[ "$(wmic os get version | grep -o '^10\.')" == "10." ]]; then
@@ -1273,58 +1185,58 @@ infoDisplay () {
 				sysArch=$(wmic os get OSArchitecture | sed 's/\r//g; s/[ \t]*$//g; 2!d')
 				mydistro=$(echo -e "$labelcolor OS:$textcolor $distro $sysArch")
 			else
-				if [ -n "$distro_more" ]; then
-					mydistro=$(echo -e "$labelcolor OS:$textcolor $distro_more")
-				else
+				#if [ -n "$distro_more" ]; then
+				#	mydistro=$(echo -e "$labelcolor OS:$textcolor $distro_more")
+				#else
 					mydistro=$(echo -e "$labelcolor OS:$textcolor $distro $sysArch")
-				fi
+				#fi
 			fi
 			out_array=( "${out_array[@]}" "$mydistro$wsl" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "kernel" ]]; then
+		if [[ "${display_list}" =~ "kernel" ]]; then
 			mykernel=$(echo -e "$labelcolor Kernel:$textcolor $kernel")
 			out_array=( "${out_array[@]}" "$mykernel" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "uptime" ]]; then
+		if [[ "${display_list}" =~ "uptime" ]]; then
 			myuptime=$(echo -e "$labelcolor Uptime:$textcolor $uptime")
 			out_array=( "${out_array[@]}" "$myuptime" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "shell" ]]; then
+		if [[ "${display_list}" =~ "shell" ]]; then
 			myshell=$(echo -e "$labelcolor Shell:$textcolor $myShell")
 			out_array=( "${out_array[@]}" "$myshell" )
 			((display_index++))
 		fi
 		if [[ -n "$DISPLAY" || "$distro" == "Mac OS X" ]]; then
 			if [ -n "${xResolution}" ]; then
-				if [[ "${display[@]}" =~ "res" ]]; then
+				if [[ "${display_list}" =~ "res" ]]; then
 					myres=$(echo -e "$labelcolor Resolution:${textcolor} $xResolution")
 					out_array=( "${out_array[@]}" "$myres" )
 					((display_index++))
 				fi
 			fi
-			if [[ "${display[@]}" =~ "de" ]]; then
+			if [[ "${display_list}" =~ "de" ]]; then
 				if [[ "${DE}" != "Not Present" ]]; then
 					myde=$(echo -e "$labelcolor DE:$textcolor $DE")
 					out_array=( "${out_array[@]}" "$myde" )
 					((display_index++))
 				fi
 			fi
-			if [[ "${display[@]}" =~ "wm" ]]; then
+			if [[ "${display_list}" =~ "wm" ]]; then
 				mywm=$(echo -e "$labelcolor WM:$textcolor $WM")
 				out_array=( "${out_array[@]}" "$mywm" )
 				((display_index++))
 			fi
-			if [[ "${display[@]}" =~ "wmtheme" ]]; then
+			if [[ "${display_list}" =~ "wmtheme" ]]; then
 				if [[ "${Win_theme}" != "Not Applicable" && "${Win_theme}" != "Not Found" ]]; then
 					mywmtheme=$(echo -e "$labelcolor WM Theme:$textcolor $Win_theme")
 					out_array=( "${out_array[@]}" "$mywmtheme" )
 					((display_index++))
 				fi
 			fi
-			if [[ "${display[@]}" =~ "gtk" ]]; then
+			if [[ "${display_list}" =~ "gtk" ]]; then
 				if [ "$distro" == "Mac OS X" ]; then
 					if [[ "$gtkFont" != "Not Applicable" && "$gtkFont" != "Not Found" ]]; then
 						if [ -n "$gtkFont" ]; then
@@ -1382,62 +1294,37 @@ infoDisplay () {
 					fi
 				fi
 			fi
-		elif [[ "$fake_distro" == "Cygwin" || "$fake_distro" == "Msys" || "$fake_distro" == "Windows - Modern" ]]; then
-			if [[ "${display[@]}" =~ "res" && -n "$xResolution" ]]; then
-				myres=$(echo -e "$labelcolor Resolution:${textcolor} $xResolution")
-				out_array=( "${out_array[@]}" "$myres" )
-				((display_index++))
-			fi
-			if [[ "${display[@]}" =~ "de" ]]; then
-				if [[ "${DE}" != "Not Present" ]]; then
-					myde=$(echo -e "$labelcolor DE:$textcolor $DE")
-					out_array=( "${out_array[@]}" "$myde" )
-					((display_index++))
-				fi
-			fi
-			if [[ "${display[@]}" =~ "wm" ]]; then
-				mywm=$(echo -e "$labelcolor WM:$textcolor $WM")
-				out_array=( "${out_array[@]}" "$mywm" )
-				((display_index++))
-			fi
-			if [[ "${display[@]}" =~ "wmtheme" ]]; then
-				if [[ "${Win_theme}" != "Not Applicable" && "${Win_theme}" != "Not Found" ]]; then
-					mywmtheme=$(echo -e "$labelcolor WM Theme:$textcolor $Win_theme")
-					out_array=( "${out_array[@]}" "$mywmtheme" )
-					((display_index++))
-				fi
-			fi
-		elif [[ "$distro" == "Haiku" && -n "${xResolution}" && "${display[@]}" =~ "res" ]]; then
+		elif [[ "$distro" == "Haiku" && -n "${xResolution}" && "${display_list}" =~ "res" ]]; then
 			myres=$(echo -e "$labelcolor Resolution:${textcolor} $xResolution")
 			out_array=( "${out_array[@]}" "$myres" )
 			((display_index++))
 		fi
-		if [[ "${fake_distro}" != "Cygwin" && "${fake_distro}" != "Msys" && "${fake_distro}" != "Windows - Modern" && "${display[@]}" =~ "disk" ]]; then
+		if [[ "${fake_distro}" != "Cygwin" && "${fake_distro}" != "Msys" && "${fake_distro}" != "Windows - Modern" && "${display_list}" =~ "disk" ]]; then
 			mydisk=$(echo -e "$labelcolor Disk:$textcolor $diskusage")
-			out_array=( "${out_array[@]}" "$mydisk" )
-			((display_index++))
+		 	out_array=( "${out_array[@]}" "$mydisk" )
+		 	((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "cpu" ]]; then
+		if [[ "${display_list}" =~ "cpu" ]]; then
 			mycpu=$(echo -e "$labelcolor CPU:$textcolor $cpu")
 			out_array=( "${out_array[@]}" "$mycpu" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "gpu" ]] && [[ "$gpu" != "Not Found" ]]; then
+		if [[ "${display_list}" =~ "gpu" ]] && [[ "$gpu" != "Not Found" ]]; then
 			mygpu=$(echo -e "$labelcolor GPU:$textcolor $gpu")
 			out_array=( "${out_array[@]}" "$mygpu" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "mem" ]]; then
+		if [[ "${display_list}" =~ "mem" ]]; then
 			mymem=$(echo -e "$labelcolor RAM:$textcolor $mem")
 			out_array=( "${out_array[@]}" "$mymem" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "node" ]]; then
+		if [[ "${display_list}" =~ "node" ]]; then
 			mynode=$(echo -e "$labelcolor K8s NODE:$textcolor $node")
 			out_array=( "${out_array[@]}" "$mynode" )
 			((display_index++))
 		fi
-		if [[ "${display[@]}" =~ "ip" ]]; then
+		if [[ "${display_list}" =~ "ip" ]]; then
 			myip=$(echo -e "$labelcolor K8s IP:$textcolor $ip")
 			out_array=( "${out_array[@]}" "$myip" )
 			((display_index++))
@@ -1449,9 +1336,9 @@ infoDisplay () {
 	if [[ "$display_type" == "ASCII" ]]; then
 		asciiText
 	else
-		if [[ "${display[@]}" =~ "host" ]]; then echo -e "$myinfo"; fi
-		if [[ "${display[@]}" =~ "distro" ]]; then echo -e "$mydistro"; fi
-		if [[ "${display[@]}" =~ "kernel" ]]; then echo -e "$mykernel"; fi
+		if [[ "${display_list}" =~ "host" ]]; then echo -e "$myinfo"; fi
+		if [[ "${display_list}" =~ "distro" ]]; then echo -e "$mydistro"; fi
+		if [[ "${display_list}" =~ "kernel" ]]; then echo -e "$mykernel"; fi
 		if [[ "${distro}" == "Android" ]]; then
 			echo -e "$mydevice"
 			echo -e "$myrom"
@@ -1461,22 +1348,22 @@ infoDisplay () {
 			echo -e "$mycpu"
 			echo -e "$mymem"
 		else
-			if [[ "${display[@]}" =~ "uptime" ]]; then echo -e "$myuptime"; fi
-			if [[ "${display[@]}" =~ "pkgs" && "$mypkgs" != "Unknown" ]]; then echo -e "$mypkgs"; fi
-			if [[ "${display[@]}" =~ "shell" ]]; then echo -e "$myshell"; fi
-			if [[ "${display[@]}" =~ "res" ]]; then
+			if [[ "${display_list}" =~ "uptime" ]]; then echo -e "$myuptime"; fi
+			if [[ "${display_list}" =~ "pkgs" && "$mypkgs" != "Unknown" ]]; then echo -e "$mypkgs"; fi
+			if [[ "${display_list}" =~ "shell" ]]; then echo -e "$myshell"; fi
+			if [[ "${display_list}" =~ "res" ]]; then
 				test -z "$myres" || echo -e "$myres"
 			fi
-			if [[ "${display[@]}" =~ "de" ]]; then
+			if [[ "${display_list}" =~ "de" ]]; then
 				if [[ "${DE}" != "Not Present" ]]; then echo -e "$myde"; fi
 			fi
-			if [[ "${display[@]}" =~ "wm" ]]; then
+			if [[ "${display_list}" =~ "wm" ]]; then
 				test -z "$mywm" || echo -e "$mywm"
 				if [[ "${Win_theme}" != "Not Applicable" && "${Win_theme}" != "Not Found" ]]; then
 					test -z "$mywmtheme" || echo -e "$mywmtheme"
 				fi
 			fi
-			if [[ "${display[@]}" =~ "gtk" ]]; then
+			if [[ "${display_list}" =~ "gtk" ]]; then
 				if [[ "$gtk_2line" == "yes" ]]; then
 					test -z "$mygtk2" || echo -e "$mygtk2"
 					test -z "$mygtk3" || echo -e "$mygtk3"
@@ -1486,10 +1373,10 @@ infoDisplay () {
 				test -z "$myicons" || echo -e "$myicons"
 				test -z "$myfont" || echo -e "$myfont"
 			fi
-			if [[ "${display[@]}" =~ "disk" ]]; then echo -e "$mydisk"; fi
-			if [[ "${display[@]}" =~ "cpu" ]]; then echo -e "$mycpu"; fi
-			if [[ "${display[@]}" =~ "gpu" ]]; then echo -e "$mygpu"; fi
-			if [[ "${display[@]}" =~ "mem" ]]; then echo -e "$mymem"; fi
+			if [[ "${display_list}" =~ "disk" ]]; then echo -e "$mydisk"; fi
+			if [[ "${display_list}" =~ "cpu" ]]; then echo -e "$mycpu"; fi
+			if [[ "${display_list}" =~ "gpu" ]]; then echo -e "$mygpu"; fi
+			if [[ "${display_list}" =~ "mem" ]]; then echo -e "$mymem"; fi
 		fi
 	fi
 }
@@ -1498,9 +1385,9 @@ infoDisplay () {
 # Let's Do This!
 ##################
 
-if [[ -f "$HOME/.screenfetchOR" ]]; then
-	source "$HOME/.screenfetchOR"
-fi
+#if [[ -f "$HOME/.screenfetchOR" ]]; then
+#	source "$HOME/.screenfetchOR"
+#fi
 
 if [[ "$overrideDisplay" ]]; then
 	verboseOut "Found 'd' flag in syntax. Overriding display..."
@@ -1513,7 +1400,7 @@ if [[ "$overrideDisplay" ]]; then
 			_OLDIFS=IFS
 			IFS=,
 			for n in $i; do
-				if [[ ! "${display[@]}" =~ "$n" ]]; then
+				if [[ ! "${display_list}" =~ "$n" ]]; then
 					echo "The var $n is not currently being displayed."
 				else
 					for e in "${!display[@]}"; do
@@ -1529,8 +1416,8 @@ if [[ "$overrideDisplay" ]]; then
 			_OLDIFS=IFS
 			IFS=,
 			for n in $i; do
-				if [[ "${valid_display[@]}" =~ "$n" ]]; then
-					if [[ "${display[@]}" =~ "$n" ]]; then
+				if [[ "${display_list}" =~ "$n" ]]; then
+					if [[ "${display_list}" =~ "$n" ]]; then
 						echo "The $n var is already being displayed."
 					else
 						display+=("$n")
@@ -1585,3 +1472,4 @@ fi
 infoDisplay
 
 exit 0
+

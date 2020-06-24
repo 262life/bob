@@ -29,6 +29,3 @@ and execute an interactive BASH shell.
 
     # kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [--cert] [-h|--help] [--iperf] [--name[=]<value>] [-o|--output[=]<value>] [--pki] [--pvc[=]<value>] [--rsync] [--ssh]
 
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MTA5MjY1OTldfQ==
--->

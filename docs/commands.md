@@ -1,4 +1,4 @@
-# BOB plugin
+# BOB plugins
 
 [bob](commands/bob.md)
 [help](commands/help.md)

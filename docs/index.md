@@ -1,5 +1,5 @@
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob?sort=semver)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 
@@ -14,5 +14,6 @@ BOB turns a simple container instantiation into a power support tool for general
 BOB integrates deeply into cloud native environments leveraging extension points and providing a seamless experience for scheduling, lifecycle management, resource management, security, monitoring, and user experience.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDI3NjIwNjEsMTkwNjE1ODU2Ml19
+eyJoaXN0b3J5IjpbLTExOTAyOTY4MDUsLTEzMDI3NjIwNjEsMT
+kwNjE1ODU2Ml19
 -->

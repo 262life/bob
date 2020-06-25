@@ -18,10 +18,6 @@ This command will display the status of all running BOB pods in the current name
     -n, --namespace='': If present, the namespace scope for this CLI request
     -v, --verbose: If present, will increase the verbosity by one each time it's passed
 
-sage:
+## Usage:
 
     #  kubectl bob status  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value> [--all-namespaces] [-h|--help]
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyMTYzNzMxMF19
--->

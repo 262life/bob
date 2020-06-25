@@ -29,7 +29,7 @@ After the cluster is running, you must now install the BOB plugins.  You WILL re
     console
     
     #Set the version to a production semantic version
-    curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.4/installer.sh | bash -s -- v0.8.7-rc.4
+    curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.5/installer.sh | bash -s -- v0.8.7-rc.5
 
 ## kubectl plugin
 Details on the plugin can be found [here](commands.md).
@@ -39,7 +39,7 @@ Details on the plugin can be found [here](commands.md).
 The first step is to deploy the BOB cluster. Check that you are using ...
     console
     
-    helm3 install bob bob/bob --version 0.8-var7-rc.3 --set  "image.pullPolicy=Always"
+    helm3 install bob bob/bob --version 0.8-var7-rc.5 --set  "image.pullPolicy=Always"
 
 ## Upgrading
 
@@ -47,7 +47,7 @@ To upgrade the BOB cluster, simply upgrade the helm chart.
 
     console
     
-    helm3 upgrade bob bob/bob --version 0.8-var7-rc.3
+    helm3 upgrade  bob bob/bob --version v0.8.7-rc.5 [--devel]
 
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 
@@ -60,6 +60,6 @@ To teardown the BOB cluster, simply uninstall the helm chart.
 
 When you are done with the test cluster, see [these instructions](ceph-teardown.md) to clean up the cluster.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODkzOTc5MTcsMTM0NDA2MDc5LDIwMD
-YzOTAxMjYsLTExMzI4NzUwOF19
+eyJoaXN0b3J5IjpbMjk2NDI2ODE1LC0xMjg5Mzk3OTE3LDEzND
+QwNjA3OSwyMDA2MzkwMTI2LC0xMTMyODc1MDhdfQ==
 -->

@@ -1,4 +1,4 @@
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release/v0.8.7-rc.7)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/publish_release/v0.8.7-rc.8)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)

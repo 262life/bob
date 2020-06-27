@@ -2,6 +2,10 @@
 ### Added
 - Features under development
 
+## [0.8.7-rc.6] - 2020-06-18
+### Added
+- removing dependancies on core
+
 ## [0.8.7-rc.5] - 2020-06-18
 ### Added
 - fixed an ordering issue on makedistro

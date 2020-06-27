@@ -107,8 +107,8 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme/bob:v0.8.7-rc.2
-    imagePullPolicy: IfNotPresent
+  - image: bobdotme/bob:v0.8.7-rc.6
+    imagePullPolicy: Always
     name: ${POD_NAME}
     ports:
     - containerPort: 80
@@ -124,16 +124,32 @@ spec:
     volumeMounts:
     $POD_PKI_M
     $POD_PV_M
-    - name: bob-pv-claim
+    - name: shared-volume
       mountPath: /usr
   restartPolicy: Always
+  initContainers:
+  - image: bobdotme/bob-proxy:v0.8.7-rc.6
+    imagePullPolicy: Always
+    name: initialize
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: "2"
+      requests:
+        memory: "1M"
+        cpu: "500m"
+    volumeMounts:
+    - name: shared-volume
+      mountPath: /usr
+    command: ["/usr/bin/rsync"]
+    args: ["-a","rsync://bob.bob.svc:8873/core /"]
   volumes:
   $POD_PKI_V
   $POD_PV_V
-  - name: bob-pv-claim
-    nfs:
-      server: localhost
-      path: /usr
+  - name: shared-volume
+    emptyDir: 
+      medium: Memory
+      sizeLimit: "1Gi"
 END
 
 STAT=$?

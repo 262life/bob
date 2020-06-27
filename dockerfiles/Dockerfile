@@ -24,5 +24,8 @@ ADD files/entrypoint.sh /files/entrypoint.sh
 ADD files/.bashrc /root/.bashrc
 ADD files/screenfetch /usr/bin/screenfetch
 ADD files/ganesha.conf /etc/ganesha/ganesha.conf
+ADD files/rsyncd.conf /etc/rsyncd.conf
+
+EXPOSE 8873
 
 ENTRYPOINT [ "/files/entrypoint.sh" ]

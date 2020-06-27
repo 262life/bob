@@ -10,6 +10,7 @@ mount -oremount,ro /data
 service ssh start 
 systemctl start rpcbind
 systemctl start nfs-ganesha
+/usr/bin/rsync --daemon --port=8873
 
 exec bash -c "while [ 1==1 ]; do sleep 120;done"
 

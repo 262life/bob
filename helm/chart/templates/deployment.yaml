@@ -53,6 +53,11 @@ spec:
       port: 5201
       targetPort: 5201
       name: iperf3
+    - protocol: TCP
+      port: 8873
+      targetPort: 8873
+      name: sync
+---
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -78,6 +83,9 @@ spec:
         ports:
         - containerPort: 80
           name: dummy
+          protocol: TCP
+        - containerPort: 8873
+          name: sync
           protocol: TCP
         - containerPort: 2049
           name: nfs-service

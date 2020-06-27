@@ -6,12 +6,12 @@ cd distro/work || exit
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 
 #-----  proxy and mini distro
-sudo rm -f "$(find usr/bin \( -type f -o -type l \) | grep -E -v '\[|dash|ls')"
+sudo rm -f "$(find usr/bin \( -type f -o -type l \) | grep -E -v '\[|dash|ls')" 2>/dev/null
 sudo find . -empty -type d -delete
-sudo rm -rf "$(find etc/*   | grep -E -v '\[|passwd|nsswitch')"
+sudo rm -rf "$(find etc/*   | grep -E -v '\[|passwd|nsswitch')" 2> /dev/null
 sudo mv usr/bin/dash usr/bin/sh
-sudo rm -f "$(find usr/lib -type f  | grep -E -v 'x86_64-linux-gnu')"
-sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin
+sudo rm -f "$(find usr/lib -type f  | grep -E -v 'x86_64-linux-gnu')" 2>/dev/null
+sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin 2>/dev/null
 #--------
 
 sudo rm usr/lib/x86_64-linux-gnu/libprocps.so.8
@@ -149,7 +149,6 @@ sudo tar --exclude usr -zcf ../squashed.tar.gz ./*
 sudo cp ../socat usr/bin/socat && sudo chown root:wheel usr/bin/socat && sudo chmod 755 usr/bin/socat
 sudo cp ../rsync usr/bin/rsync && sudo chown root:wheel usr/bin/rsync && sudo chmod 755 usr/bin/rsync
 sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:wheel usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
-ls -lR usr/bin
 sudo tar --exclude var -zcf ../squashed-proxy.tar.gz ./*
 
 ##-----

@@ -2,7 +2,7 @@
 ### Added
 - Features under development
 
-## [0.8.7-rc.8] - 2020-06-18
+## [0.8.7] - 2020-06-18
 ### Added
 - removing dependancies on core
 - added new sync initContainer

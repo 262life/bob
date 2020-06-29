@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 # screenFetch - a CLI Bash script to show system/theme info in screenshots
 
 # Copyright (c) 2010-2019 Brett Bohnenkamper <kittykatt@kittykatt.us>

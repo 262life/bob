@@ -2,7 +2,7 @@
 ### Added
 - Features under development
 
-## [0.8.9] - 2020-06-18
+## [0.9.0] - 2020-06-18
 ### Changes
 - Cleanup for codefactor
 

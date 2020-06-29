@@ -8,7 +8,7 @@ This command in its basic form will attach to a new BOB pod in the current names
       kubectl bob exec --name xxx
     
       # Attach to a pod in the supplied  namespace
-      kubectl bob --name xxx -n namespace
+      kubectl bob exec --name xxx -n namespace
 
 ## Options:
         --context='': The name of the kubeconfig context to use
@@ -18,4 +18,4 @@ This command in its basic form will attach to a new BOB pod in the current names
     -v, --verbose: If present, will increase the verbosity by one each time it's passed
 
 ## Usage:
-    #  kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [-h|--help] [--name[=]<value]
+    #  kubectl bob  exec [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [-h|--help] [--name[=]<value] -- [commands]

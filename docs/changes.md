@@ -2,6 +2,10 @@
 ### Added
 - Features under development
 
+## [0.8.9] - 2020-06-18
+### Changes
+- Cleanup for codefactor
+
 ## [0.8.8] - 2020-06-18
 ### Added
 - bob exec command

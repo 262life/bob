@@ -2,6 +2,13 @@
 ### Added
 - Features under development
 
+## [0.8.8] - 2020-06-18
+### Added
+- bob exec command
+
+### Changed
+- Code cleanup
+
 ## [0.8.7] - 2020-06-18
 ### Added
 - removing dependancies on core

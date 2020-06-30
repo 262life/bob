@@ -6,7 +6,7 @@ cd distro/work || exit
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz 
 
 #-----  proxy and mini distro
-find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" \) -delete
+sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" \) -delete
 sudo find . -empty -type d -delete
 sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" \) -delete 
 sudo mv usr/bin/dash usr/bin/sh

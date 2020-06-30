@@ -1,16 +1,16 @@
-#!/bin/sh
+#!/bin/sh -x
 
 sudo rm -rf distro/work 2>/dev/null
 sudo mkdir distro/work
 cd distro/work || exit
-sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
+sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz 
 
 #-----  proxy and mini distro
-sudo rm -f "$(find usr/bin \( -type f -o -type l \) | grep -E -v '\[|dash|ls')" 2>/dev/null
+find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" \) -delete
 sudo find . -empty -type d -delete
-sudo rm -rf "$(find etc/*   | grep -E -v '\[|passwd|nsswitch')" 2> /dev/null
+sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" \) -delete 
 sudo mv usr/bin/dash usr/bin/sh
-sudo rm -f "$(find usr/lib -type f  | grep -E -v 'x86_64-linux-gnu')" 2>/dev/null
+sudo find usr/lib -type f  \(  -name "*" ! -name "x86_64-linux-gnu"  \) -delete 
 sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin 2>/dev/null
 #--------
 

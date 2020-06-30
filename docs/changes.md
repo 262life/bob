@@ -1,5 +1,9 @@
 
 
+## [0.9.3] - 2020-06-30
+### Changes
+- Small Fixes
+
 ## [0.9.2] - 2020-06-30
 ### Changes
 - Cleanup for codefactor

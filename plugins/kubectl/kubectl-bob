@@ -108,7 +108,7 @@ spec:
   terminationGracePeriodSeconds: 20
   containers:
   - image: bobdotme/bob:v0.8.7
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     name: ${POD_NAME}
     ports:
     - containerPort: 80
@@ -129,7 +129,7 @@ spec:
   restartPolicy: Always
   initContainers:
   - image: bobdotme/bob-proxy:v0.8.7
-    imagePullPolicy: Always
+    imagePullPolicy: IfNotPresent
     name: initialize
     resources:
       limits:

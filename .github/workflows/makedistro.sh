@@ -10,7 +10,7 @@ sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "d
 sudo find . -empty -type d -delete
 sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" \) -delete 
 sudo mv usr/bin/dash usr/bin/sh
-sudo find usr/lib -type f  \(  -name "*" ! -name "x86_64-linux-gnu"  \) -delete 
+#sudo find usr/lib -type f  \(  -name "*" ! -name "x86_64-linux-gnu"  \) -delete 
 sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin 2>/dev/null
 #--------
 

@@ -1,5 +1,8 @@
 FROM ubuntu:focal-20200319
 
+MAINTAINER Bob Liotta <bob@bobdot.me>
+LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
+
 RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selections && \
     apt-get --quiet --yes update  && \
     apt-get --quiet --yes install --no-install-recommends fio iperf3 openssh-client openssh-server rsync curl wget iputils-ping dnsutils vim-tiny apt-utils pciutils nfs-ganesha nfs-ganesha-vfs systemctl&& \
@@ -27,5 +30,4 @@ ADD files/ganesha.conf /etc/ganesha/ganesha.conf
 ADD files/rsyncd.conf /etc/rsyncd.conf
 
 EXPOSE 8873
-
 ENTRYPOINT [ "/files/entrypoint.sh" ]

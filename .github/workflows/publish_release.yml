@@ -59,3 +59,4 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
+            docs/bob-${{ env.RELEASE_VERSION }}.tgz

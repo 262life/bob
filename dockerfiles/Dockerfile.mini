@@ -1,8 +1,9 @@
 FROM scratch
+
+MAINTAINER Bob Liotta <bob@bobdot.me>
+LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
+
 ADD distro/squashed.tar.gz /
-ADD files/entrypoint-mini.sh /files/entrypoint.sh
 ADD files/.bashrc /root/.bashrc
 
-
-ENTRYPOINT [ "/files/entrypoint.sh" ]
-#CMD [ "/usr/bin/bash" ]
+CMD /bin/sh  -c 'trap : TERM INT; (while true; do sleep 1000; done) & wait'

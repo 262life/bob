@@ -1,25 +1,7 @@
 FROM scratch
 ADD distro/squashed-proxy.tar.gz /
 
-#MAINTAINER Marc Nuri <marc@marcnuri.com>
-#LABEL MAINTAINER "Marc Nuri" <marc@marcnuri.com>
+MAINTAINER Bob Liotta <bob@bobdot.me>
+LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 
-ARG DEF_REMOTE_PORT=2049
-ARG DEF_LOCAL_PORT=2049
-
-ENV REMOTE_PORT=$DEF_REMOTE_PORT
-ENV LOCAL_PORT=$DEF_LOCAL_PORT
-ENV REMOTE_HOST=bob.bob.svc
-
-## By default container listens on $LOCAL_PORT (80)
-EXPOSE 2049
-
-#RUN echo "Installing base packages" \
-#	&& apk add --update --no-cache \
-#		socat \
-#	&& echo "Removing apk cache" \
-#	&& rm -rf /var/cache/apk/
-
-#CMD /usr/bin/sh -c "while [ 1==1 ]; do sleep 120;done"
-CMD /usr/bin/socat tcp-listen:$LOCAL_PORT,reuseaddr,fork tcp:$REMOTE_HOST:$REMOTE_PORT & pid=$! && \
-	echo "Socat proxy started listening on $LOCAL_PORT: Redirecting traffic to $REMOTE_HOST:$REMOTE_PORT ($pid)" && wait $pid
+CMD /bin/sh  -c 'trap : TERM INT; (while true; do sleep 1000; done) & wait'

@@ -1,5 +1,15 @@
 
 
+## [0.9.4] - 2020-07-01
+### Added
+- Added helm chart to artifacts
+- Added pod information to bob pod
+### Changes
+- Modified charts in include all releases in the repo
+###  Removed
+- Removed old nfs architure in favor of sync
+- Removed an entrypoint and added to Dockerfile
+
 ## [0.9.3] - 2020-06-30
 ### Changes
 - Small Fixes

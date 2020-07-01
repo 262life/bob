@@ -46,7 +46,7 @@
 
 ### Changed
 - entrypoint fix on micro container
-- fixed a screenfetch bug
+- fixed an info bug
 
 ### Removed
 - Nothing

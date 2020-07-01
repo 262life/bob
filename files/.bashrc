@@ -1,1 +1,1 @@
-[ $SHLVL == 1 ] && /usr/bin/screenfetch
+[ $SHLVL == 1 ] && /usr/bin/info

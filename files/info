@@ -963,7 +963,7 @@ asciiText () {
 	if [ "$truncateSet" == "Yes" ]; then
 		missinglines=$((${#out_array[*]} + startline - ${#fulloutput[*]}))
 		for ((i=0; i<missinglines; i++)); do
-			fulloutput+=("${c1}$(printf '%*s' "$logowidth")")
+			fulloutput+=("${c1}$(printf '%s' "$logowidth")")
 		done
 		for ((i=0; i<${#fulloutput[@]}; i++)); do
 			my_out=$(printf "${fulloutput[i]}$c0\n" "${out_array}")
@@ -1050,7 +1050,7 @@ asciiText () {
 		fi
 		missinglines=$((${#out_array[*]} + startline - ${#fulloutput[*]}))
 		for ((i=0; i<missinglines; i++)); do
-			fulloutput+=("${c1}$(printf '%*s' "$logowidth")")
+			fulloutput+=("${c1}$(printf '%s' "$logowidth")")
 		done
 		#n=${#fulloutput[*]}
 		for ((i=0; i<${#fulloutput[*]}; i++)); do

@@ -24,7 +24,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selecti
 
 ADD files/entrypoint.sh /files/entrypoint.sh
 ADD files/.bashrc /root/.bashrc
-ADD files/screenfetch /usr/bin/screenfetch
+ADD files/info /usr/bin/info
 ADD files/ganesha.conf /etc/ganesha/ganesha.conf
 ADD files/rsyncd.conf /etc/rsyncd.conf
 

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# screenFetch - a CLI Bash script to show system/theme info in screenshots
+# info - a CLI Bash script to show system/theme info in screenshots
 
-# Copyright (c) 2010-2019 Brett Bohnenkamper <kittykatt@kittykatt.us>
+# Adapted on the work from Copyright (c) 2010-2019 Brett Bohnenkamper <kittykatt@kittykatt.us>
+# Copyright (c) 2020 Bob Liotta <bob@bobdot.me>
 
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -16,21 +17,6 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-# Yes, I do realize some of this is horribly ugly coding. Any ideas/suggestions would be
-# appreciated by emailing me or by stopping by http://github.com/KittyKatt/screenFetch. You
-# could also drop in on the IRC channel at irc://irc.rizon.net/screenFetch.
-# to put forth suggestions/ideas. Thank you.
-
-# Requires: bash 4.0+
-# Optional dependencies: xorg-xdpyinfo (resoluton detection)
-#                        scrot (screenshot taking)
-#                        curl (screenshot uploading)
-
-
-#LANG=C
-#LANGUAGE=C
-#LC_ALL=C
 
 
 scriptVersion="3.9.1"
@@ -86,11 +72,6 @@ display_type="ASCII"
 # Plain logo
 display_logo="no"
 
-# Colors to use for the information found. These are set below according to distribution.
-# If you would like to set your OWN color scheme for these, uncomment the lines below and edit them to your heart's content.
-# textcolor="\e[0m"
-# labelcolor="\e[1;34m"
-
 
 # Screenshot Settings
 # This setting lets the script know if you want to take a screenshot or not. 1=Yes 0=No
@@ -107,7 +88,7 @@ uploadLoc=
 verbosity=
 
 
-# The below function will allow you to add custom lines of text to the screenfetch output.
+# The below function will allow you to add custom lines of text to the info output.
 # It will automatically be executed at the right moment if use_customlines is set to 1.
 use_customlines=
 customlines () {
@@ -1421,8 +1402,8 @@ infoDisplay () {
 # Let's Do This!
 ##################
 
-#if [[ -f "$HOME/.screenfetchOR" ]]; then
-#	source "$HOME/.screenfetchOR"
+#if [[ -f "$HOME/.infoOR" ]]; then
+#	source "$HOME/.infoOR"
 #fi
 
 if [[ "$overrideDisplay" ]]; then

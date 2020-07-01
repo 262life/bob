@@ -77,6 +77,9 @@ display=(
 		'mem'
 		'node'
 		'ip'
+		'sa'
+		'namespace'
+		'pod'
 )
 # Display Type: ASCII or Text
 display_type="ASCII"
@@ -740,6 +743,24 @@ detectmem () {
 }
 # Memory Detection - End
 
+# POD Detection
+detectpod () {
+        pod=${MY_POD_NAME}
+}
+# POD Detection - End
+
+# ServiceAccount Detection
+detectsa () {
+        sa=${MY_POD_SERVICE_ACCOUNT}
+}
+# ServiceAccount Detection - End
+
+# Namespace Detection
+detectnamespace () {
+        namespace=${MY_POD_NAMESPACE}
+}
+# Namespace Detection - End
+
 # Node Detection
 detectnode () {
         node=${MY_NODE_NAME}
@@ -1327,6 +1348,21 @@ infoDisplay () {
 		if [[ "${display_list}" =~ "ip" ]]; then
 			myip=$(echo -e "$labelcolor K8s IP:$textcolor $ip")
 			out_array=( "${out_array[@]}" "$myip" )
+			((display_index++))
+		fi
+		if [[ "${display_list}" =~ "pod" ]]; then
+			mypod=$(echo -e "$labelcolor K8s POD:$textcolor $pod")
+			out_array=( "${out_array[@]}" "$mypod" )
+			((display_index++))
+		fi
+		if [[ "${display_list}" =~ "namespace" ]]; then
+			mynamespace=$(echo -e "$labelcolor K8s NAMESPACE:$textcolor $namespace")
+			out_array=( "${out_array[@]}" "$mynamespace" )
+			((display_index++))
+		fi
+		if [[ "${display_list}" =~ "sa" ]]; then
+			mysa=$(echo -e "$labelcolor K8s SERVICE ACCOUNT:$textcolor $sa")
+			out_array=( "${out_array[@]}" "$mysa" )
 			((display_index++))
 		fi
 		if [[ "$use_customlines" = 1 ]]; then

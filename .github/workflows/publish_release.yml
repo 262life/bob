@@ -60,4 +60,4 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-            docs/bob-helm-${{ env.RELEASE_VERSION }}.tgz
+            helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz

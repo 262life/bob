@@ -1,5 +1,10 @@
 
 
+## [0.9.5] - 2020-07-01
+### Added
+- Added helm chart to artifacts
+- Improved the login screen
+
 ## [0.9.4] - 2020-07-01
 ### Added
 - Added helm chart to artifacts

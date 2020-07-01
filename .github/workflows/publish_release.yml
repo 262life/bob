@@ -33,6 +33,7 @@ jobs:
           bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.proxy .github/workflows/init.sh bob-proxy"
           bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile.mini  .github/workflows/init.sh bob"
           bash -c "chmod 755 .github/workflows/charts.sh; .github/workflows/charts.sh"
+          bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
           bash -c "chmod 755 .github/workflows/helpdocs.sh; .github/workflows/helpdocs.sh"
       - name: push
@@ -59,4 +60,4 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-            docs/bob-${{ env.RELEASE_VERSION }}.tgz
+            docs/bob-helm-${{ env.RELEASE_VERSION }}.tgz

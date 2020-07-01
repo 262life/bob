@@ -1,6 +1,5 @@
 FROM ubuntu:focal-20200319
 
-MAINTAINER Bob Liotta <bob@bobdot.me>
 LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 
 RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selections && \

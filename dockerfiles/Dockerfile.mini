@@ -1,6 +1,5 @@
 FROM scratch
 
-MAINTAINER Bob Liotta <bob@bobdot.me>
 LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 
 ADD distro/squashed.tar.gz /

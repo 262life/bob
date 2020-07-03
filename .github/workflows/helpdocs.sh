@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This creates helpdocs
+
 echo "# BOB plugins" > docs/commands.md
 echo ""             >> docs/commands.md
 

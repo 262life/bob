@@ -36,6 +36,24 @@ jobs:
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
           bash -c "chmod 755 .github/workflows/helpdocs.sh; .github/workflows/helpdocs.sh"
+      - name: Run Snyk to check Docker image for vulnerabilities - bob-core
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: BobDotMe/bob-core:-${{ env.RELEASE_VERSION }}
+      - name: Run Snyk to check Docker image for vulnerabilities - bob-proxy
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+                image: BobDotMe/bob-proxy:-${{ env.RELEASE_VERSION }}
+      - name: Run Snyk to check Docker image for vulnerabilities - bob
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: BobDotMe/bob:-${{ env.RELEASE_VERSION }}
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

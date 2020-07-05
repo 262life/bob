@@ -4,5 +4,6 @@ LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 
 ADD distro/squashed.tar.gz /
 ADD files/.bashrc /root/.bashrc
+ADD files/entrypoint-bootstrap.sh /files/entrypoint.sh
 
-CMD /bin/sh  -c 'trap : TERM INT; (while true; do sleep 1000; done) & wait'
+ENTRYPOINT [ "/files/entrypoint.sh" ]

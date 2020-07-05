@@ -44,7 +44,7 @@ spec:
       terminationGracePeriodSeconds: 30
       volumes:
       - name: shared-volume
-        emptyDir: 
+        emptyDir:
           medium: Memory
           sizeLimit: "1Gi"
 ---

@@ -12,5 +12,11 @@ systemctl start rpcbind
 systemctl start nfs-ganesha
 /usr/bin/rsync --daemon --port=8873
 
-exec bash -c "while [ 1==1 ]; do sleep 120;done"
+trap : TERM INT; (while true; do sleep 1000; done) &
+if hostname | grep bob-bootstrap >/dev/null 2>/dev/null ;then
+  rm /usr/bin/dash
+  rm /bin/bash
+fi
+
+wait
 

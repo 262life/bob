@@ -21,10 +21,10 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
-            memory: 200Mi
+            memory: 2000Mi
           requests:
             cpu: 100m
-            memory: 200Mi
+            memory: 4Mi
         volumeMounts:
         - name: shared-volume
           mountPath: /usr
@@ -34,10 +34,10 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
-            memory: 200Mi
+            memory: 2000Mi
           requests:
             cpu: 100m
-            memory: 200Mi
+            memory: 4Mi
         volumeMounts:
         - name: shared-volume
           mountPath: /usr-sync

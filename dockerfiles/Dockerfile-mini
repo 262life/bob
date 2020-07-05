@@ -4,6 +4,6 @@ LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 
 ADD distro/squashed.tar.gz /
 ADD files/.bashrc /root/.bashrc
-ADD files/entrypoint-bootstrap.sh /files/entrypoint.sh
+ADD files/entrypoint-mini.sh /files/entrypoint.sh
 
 ENTRYPOINT [ "/files/entrypoint.sh" ]

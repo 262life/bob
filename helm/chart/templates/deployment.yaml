@@ -18,7 +18,7 @@ spec:
       containers:
       - name: daemonset
         image: "bobdotme/bob-mini:{{ .Chart.Version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
         resources:
           limits:
             memory: 2000Mi
@@ -31,7 +31,7 @@ spec:
       initContainers:
       - name: bootstrap
         image: "bobdotme/bob-bootstrap:{{ .Chart.Version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
         resources:
           limits:
             memory: 2000Mi
@@ -82,7 +82,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - image: "bobdotme/bob-core:{{ .Chart.Version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
         name: bob-core
         ports:
         - containerPort: 8873

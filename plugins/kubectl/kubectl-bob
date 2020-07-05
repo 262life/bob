@@ -107,7 +107,7 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme-mini/bob:v0.8.7
+  - image: bobdotme/bob-mini:v0.8.7
     imagePullPolicy: IfNotPresent
     name: ${POD_NAME}
     ports:

@@ -1,6 +1,6 @@
 
 
-## [0.9.6-rc.3] - 2020-07-05
+## [0.9.6-rc.4] - 2020-07-05
 ### Changes
 - Added code for bootstrap to wait for core dependancy
 

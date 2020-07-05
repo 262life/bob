@@ -53,7 +53,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: bobdotme/bob:${{ env.RELEASE_VERSION }}
+          image: bobdotme/bob-mini:${{ env.RELEASE_VERSION }}
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

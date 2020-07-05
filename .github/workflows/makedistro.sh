@@ -5,7 +5,7 @@ sudo mkdir distro/work
 cd distro/work || exit
 sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz 
 
-#-----  proxy and mini distro
+#-----  bootstrap  and mini distro
 sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" \) -delete
 sudo find . -empty -type d -delete
 sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" \) -delete 
@@ -148,7 +148,7 @@ sudo tar --exclude usr -zcf ../squashed.tar.gz ./*
 sudo cp ../socat usr/bin/socat && sudo chown root:root usr/bin/socat && sudo chmod 755 usr/bin/socat
 sudo cp ../rsync usr/bin/rsync && sudo chown root:root usr/bin/rsync && sudo chmod 755 usr/bin/rsync
 sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
-sudo tar --exclude var -zcf ../squashed-proxy.tar.gz ./*
+sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 ##-----
 

@@ -163,8 +163,6 @@ spec:
     volumeMounts:
     - name: shared-volume
       mountPath: /usr-sync
-    command: ["/bin/sh"]
-    args: ["-c","echo 'here....'; /usr/bin/rsync -a rsync://bob.bob.svc:8873/core/usr/ /usr-sync/; ls -lR /usr-sync"]
   volumes:
   $POD_PKI_V
   $POD_PV_V

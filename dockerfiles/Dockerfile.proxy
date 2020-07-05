@@ -1,6 +1,0 @@
-FROM scratch
-ADD distro/squashed-proxy.tar.gz /
-
-LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
-
-CMD /bin/sh  -c 'trap : TERM INT; (while true; do sleep 1000; done) & wait'

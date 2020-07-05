@@ -1,5 +1,9 @@
 
 
+## [0.9.6-rc.1] - 2020-07-05
+### Changes
+- Added code for bootstrap to wait for core dependancy
+
 ## [0.9.5] - 2020-07-01
 ### Added
 - Added helm chart to artifacts

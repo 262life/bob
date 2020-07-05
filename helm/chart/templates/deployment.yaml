@@ -2,27 +2,22 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: bob-proxy
+  name: bob-bootstrap
   namespace: bob
   labels:
-    k8s-app: bob-proxy
+    k8s-app: bob-bootstrap
 spec:
   selector:
     matchLabels:
-      name: bob-proxy
+      name: bob-bootstrap
   template:
     metadata:
       labels:
-        name: bob-proxy
+        name: bob-bootstrap
     spec:
       containers:
-      - name: bob-proxy
-        ports:
-        - containerPort: 2049
-          hostPort: 2049
-          name: dummy
-          protocol: TCP
-        image: "bobdotme/bob-proxy:{{ .Chart.Version }}"
+      - name: daemonset
+        image: "bobdotme/bob-mini:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
@@ -30,7 +25,28 @@ spec:
           requests:
             cpu: 100m
             memory: 200Mi
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /usr
+      initContainers:
+      - name: bootstrap
+        image: "bobdotme/bob-bootstrap:{{ .Chart.Version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /usr-sync
       terminationGracePeriodSeconds: 30
+      volumes:
+      - name: shared-volume
+        emptyDir: 
+          medium: Memory
+          sizeLimit: "1Gi"
 ---
 apiVersion: v1
 kind: Service
@@ -41,18 +57,6 @@ spec:
   selector:
     app: bob-core
   ports:
-    - protocol: TCP
-      port: 2049
-      targetPort: 2049
-      name: ramdisk
-    - protocol: TCP
-      port: 22
-      targetPort: 22
-      name: ssh
-    - protocol: TCP
-      port: 5201
-      targetPort: 5201
-      name: iperf3
     - protocol: TCP
       port: 8873
       targetPort: 8873
@@ -81,14 +85,8 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: bob-core
         ports:
-        - containerPort: 80
-          name: dummy
-          protocol: TCP
         - containerPort: 8873
           name: sync
-          protocol: TCP
-        - containerPort: 2049
-          name: nfs-service
           protocol: TCP
         resources:
           limits:

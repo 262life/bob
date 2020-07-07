@@ -1,6 +1,6 @@
 
 
-## [0.9.6] - 2020-07-05
+## [v0.9.6] - 2020-07-05
 ### Changes
 - Added code for bootstrap to wait for core dependancy
 
@@ -44,13 +44,19 @@
 
 ## [0.8.7] - 2020-06-18
 ### Added
-- removing dependancies on core
-- added new sync initContainer
-- removing nfs dependancy
+- removing dependancies on core0.0] - 2020-06-11
+### Added
+- Features under development
+
+## [0.8.7-rc.5] - 2020-06-18
+### Added
+- fixed an ordering issue on makedistro
+- aAdded new sync initContainer
+- removing nfs dependancyhelm chart
 
 ### Changed
 - entrypoint fix on micro container
-- fixed an info bug
+- fixed an info screenfetch bug
 
 ### Removed
 - Nothing
@@ -62,3 +68,6 @@
 ## [v0.0.0] - 2020-06-11
 ### Added
 - Features under development
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDU4ODk0MjIxXX0=
+-->

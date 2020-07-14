@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BobDotMe/bob)
+
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/release/v0.9.6)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)

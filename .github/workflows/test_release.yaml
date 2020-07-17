@@ -5,8 +5,8 @@ on:
     tags:
     - "v[0-9]+.[1-9]+.[0-9]*"
 
-  release:
-    types: [published]
+  #release:
+  #  types: [published]
 
 jobs:
   kind:

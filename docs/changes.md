@@ -3,7 +3,7 @@
 ### Changes
 - None
 
-## [v0.9.6] - 2020-07-05
+## [0.9.6] - 2020-07-05
 ### Changes
 - Added code for bootstrap to wait for core dependancy
 

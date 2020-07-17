@@ -1,5 +1,8 @@
-name: "Create cluster using KinD"
+name: create_cluster
 on:
+  push:
+    tags:
+    - "v[0-9]+.[1-9]+.[0-9]*"
   release:
     types: [published]
 

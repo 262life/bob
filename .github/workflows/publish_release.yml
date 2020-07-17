@@ -20,7 +20,7 @@ jobs:
           echo "$RELEASE_VERSION" > VERSION
       - name: Create Plugins
         run: |
-          bash -c "chmod 755 .github/workflows/plugins.sh; .github/workflows/plugins.sh"
+          bash -c "chmod 755 .github/workfnones/plugins.sh; .github/workfnones/plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Build Action
         env: # Or as an environment variable
@@ -28,35 +28,35 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/workflows/init.sh bob-core"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/workflows/init.sh bob-bootstrap"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/workflows/init.sh bob-mini"
-          bash -c "chmod 755 .github/workflows/charts.sh; .github/workflows/charts.sh"
+          bash -c "chmod 755 .github/workfnones/makedistro.sh; .github/workfnones/makedistro.sh"
+          bash -c "chmod 755 .github/workfnones/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/workfnones/init.sh bob-core"
+          bash -c "chmod 755 .github/workfnones/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/workfnones/init.sh bob-bootstrap"
+          bash -c "chmod 755 .github/workfnones/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/workfnones/init.sh bob-mini"
+          bash -c "chmod 755 .github/workfnones/charts.sh; .github/workfnones/charts.sh"
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
-          bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
-          bash -c "chmod 755 .github/workflows/helpdocs.sh; .github/workflows/helpdocs.sh"
+          bash -c "chmod 755 .github/workfnones/update_readme.sh; .github/workfnones/update_readme.sh"
+          bash -c "chmod 755 .github/workfnones/helpdocs.sh; .github/workfnones/helpdocs.sh"
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
+          args: --severity-threshold=none
       - name: Run Snyk to check Docker image for vulnerabilities - bob-bootstrap
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-bootstrap:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
+          args: --severity-threshold=none
       - name: Run Snyk to check Docker image for vulnerabilities - bob
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-mini:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
+          args: --severity-threshold=none
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

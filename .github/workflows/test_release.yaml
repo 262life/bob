@@ -1,7 +1,6 @@
 name: "Create cluster using KinD"
 #on: [pull_request, push]
-on:
-  deployment
+on: [deployment]
 
 jobs:
   kind:

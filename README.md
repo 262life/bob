@@ -2,9 +2,9 @@
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/release/v0.9.6)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)
-![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob?label=docker%20pulls%20-%20container)
-![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20core)
-![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-proxy?label=docker%20pulls%20-%20proxy)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-mini?label=docker%20pulls%20-%20bob-mini)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20bob-core)
+![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-bootstrap?label=docker%20pulls%20-%2bob-bootstrap)
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 [![CodeFactor](https://www.codefactor.io/repository/github/bobdotme/bob/badge)](https://www.codefactor.io/repository/github/bobdotme/bob)
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)

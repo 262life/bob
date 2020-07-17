@@ -1,7 +1,9 @@
 name: "Create cluster using KinD"
 
-on: 
-  deployment
+on:
+  release:
+    types: [published]
+
 jobs:
   kind:
     runs-on: ubuntu-latest

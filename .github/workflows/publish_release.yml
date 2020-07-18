@@ -42,7 +42,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=high
+          args: --severity-threshold=low
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob-bootstrap
         uses: snyk/actions/docker@master
@@ -50,7 +50,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-bootstrap:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=high
+          args: --severity-threshold=low
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob
         uses: snyk/actions/docker@master
@@ -58,7 +58,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-mini:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=high
+          args: --severity-threshold=low
           command: monitor
       - name: push
         uses: github-actions-x/commit@v2.6

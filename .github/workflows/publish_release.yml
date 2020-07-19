@@ -90,12 +90,13 @@ jobs:
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
             helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz
-      - name: Testing
+      - name: Create Cluster
         uses: engineerd/setup-kind@v0.4.0
         with:
           version: "v0.8.1"
           config: ".github/tests/bob-cluster.yaml"
-        run: |
+      - name: Tests
+         run: |
           kubectl cluster-info
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)

@@ -2,7 +2,7 @@
 
 ##################  Do not modify anything here #############################
 
-source .github/workflows/build_functions.sh
+source .github/scripts/build_functions.sh
 
 ##################  Begin Script ############################################
 

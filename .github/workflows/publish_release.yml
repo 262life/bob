@@ -96,7 +96,7 @@ jobs:
           version: "v0.8.1"
           config: ".github/tests/bob-cluster.yaml"
       - name: Tests
-         run: |
+        run: |
           kubectl cluster-info
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)

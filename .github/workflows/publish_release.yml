@@ -25,7 +25,7 @@ jobs:
           fi  
       - name: Create Plugins
         run: |
-          bash -c "chmod 755 .github/workflows/plugins.sh; .github/workflows/plugins.sh"
+          bash -c "chmod 755 .github/scripts/plugins.sh; .github/scripts/plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Build Action
         env: # Or as an environment variable

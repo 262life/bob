@@ -33,14 +33,14 @@ jobs:
             docker_token: ${{ secrets.DOCKER_TOKEN }}
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 .github/workflows/makedistro.sh; .github/workflows/makedistro.sh"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/workflows/init.sh bob-core"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/workflows/init.sh bob-bootstrap"
-          bash -c "chmod 755 .github/workflows/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/workflows/init.sh bob-mini"
-          bash -c "chmod 755 .github/workflows/charts.sh; .github/workflows/charts.sh"
+          bash -c "chmod 755 .github/scripts/makedistro.sh; .github/scripts/makedistro.sh"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/scripts/init.sh bob-core"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/scripts/init.sh bob-bootstrap"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/scripts/init.sh bob-mini"
+          bash -c "chmod 755 .github/scripts/charts.sh; .github/scripts/charts.sh"
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
-          bash -c "chmod 755 .github/workflows/update_readme.sh; .github/workflows/update_readme.sh"
-          bash -c "chmod 755 .github/workflows/helpdocs.sh; .github/workflows/helpdocs.sh"
+          bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"
+          bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:

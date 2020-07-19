@@ -4,4 +4,5 @@ tasks:
       function gt() {
         TAG=${1}; git tag --delete ${TAG} 2>/dev/null; git push  --delete origin ${TAG} 2>/dev/null; git tag  ${TAG}; git push --tags
       }
-
+      sudo apt install -y spellcheck
+      

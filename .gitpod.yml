@@ -1,6 +1,8 @@
-
-
 tasks:
   - init: 'echo "TODO: Replace with init/build command"'
-    command: 'echo "TODO: Replace with command to start project"'
+    command: 'gt() { TAG=${1}; git tag --delete ${TAG} 2>/dev/null; git push  --delete origin ${TAG} 2>/dev/null; git tag  ${TAG}; git push --tags }'
  
+
+vscode:
+  extensions:
+    - KnisterPeter.vscode-github@0.30.3:rQD9QRRZedlNZP/Tt/AMzw==

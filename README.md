@@ -9,7 +9,7 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BobDotMe/bob)
 
 <img alt="bob" align="left" src="docs/bob.png" width="20%" height="20%">
-# BOB - Bash On Board!
+## BOB - Bash On Board!
 
 Bash on board! (we like to call it BOB) is an open source **general purpose container** for Kubernetes, providing the utilities, support tools and a framework, that allows a diverse set problems to be solved for pod initialization and support to natively integrate with cloud-native environments.
 

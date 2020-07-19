@@ -1,4 +1,3 @@
-
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 [![CodeFactor](https://www.codefactor.io/repository/github/bobdotme/bob/badge)](https://www.codefactor.io/repository/github/bobdotme/bob)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/release/v0.9.6)

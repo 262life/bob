@@ -18,6 +18,11 @@ jobs:
           echo "::set-env name=RELEASE_VERSION::$RELEASE_VERSION"
           echo "Release Version is $RELEASE_VERSION"
           echo "$RELEASE_VERSION" > VERSION
+          if echo "$RELEASE_VERSION" | grep "rc" > /dev/null ; then
+            echo "::set-env name=RELEASE_PRE::true"
+          else
+            echo "::set-env name=RELEASE_PRE::false"
+          fi  
       - name: Create Plugins
         run: |
           bash -c "chmod 755 .github/workflows/plugins.sh; .github/workflows/plugins.sh"
@@ -76,7 +81,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CHANGELOG_FILE: "docs/changes.md"
           DRAFT_RELEASE: "false"
-          PRE_RELEASE: "false"
+          PRE_RELEASE: "${{ env.RELEASE_PRE }}"
           ALLOW_EMPTY_CHANGELOG: "false"
           ALLOW_TAG_PREFIX: "true"
         with:
@@ -85,3 +90,13 @@ jobs:
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
             helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz
+      - name: Testing
+        uses: engineerd/setup-kind@v0.4.0
+        with:
+          version: "v0.8.1"
+          config: ".github/tests/bob-cluster.yaml"
+        run: |
+          kubectl cluster-info
+          kubectl get pods -n kube-system
+          echo "current-context:" $(kubectl config current-context)
+          echo "environment-kubeconfig:" ${KUBECONFIG}

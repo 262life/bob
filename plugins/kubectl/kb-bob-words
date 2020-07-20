@@ -2,7 +2,7 @@
 getDictWords() { 
 
   getSurname;
-  DICT="$(echo $SURNAMES | base64 --decode | gunzip)"
+  DICT="$(echo "$SURNAMES" | base64 --decode | gunzip)"
   LINES=$(echo "$DICT" | wc -l )
 
   random_line1=$[ ( $RANDOM % $LINES ) + 1 ]; random_line2=$[ ( $RANDOM % $LINES ) + 1 ]; 

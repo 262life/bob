@@ -20,8 +20,10 @@ jobs:
           echo "$RELEASE_VERSION" > VERSION
           if echo "$RELEASE_VERSION" | grep "rc" > /dev/null ; then
             echo "::set-env name=RELEASE_PRE::true"
+            echo "::set-env name=RELEASE_LATEST::false"
           else
             echo "::set-env name=RELEASE_PRE::false"
+            echo "::set-env name=RELEASE_LATEST::true"
           fi  
       - name: Create Plugins
         run: |
@@ -34,9 +36,9 @@ jobs:
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
           bash -c "chmod 755 .github/scripts/makedistro.sh; .github/scripts/makedistro.sh"
-          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/scripts/init.sh bob-core"
-          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/scripts/init.sh bob-bootstrap"
-          bash -c "chmod 755 .github/scripts/init.sh; LATEST=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/scripts/init.sh bob-mini"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile       .github/scripts/init.sh bob-core"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/scripts/init.sh bob-bootstrap"
+          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini  .github/scripts/init.sh bob-mini"
           bash -c "chmod 755 .github/scripts/charts.sh; .github/scripts/charts.sh"
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"

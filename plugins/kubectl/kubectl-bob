@@ -26,6 +26,7 @@ while getopts "$optspec" optchar; do
                 rsync       ) getBoolOpt    $opts        ;;
                 ssh         ) getBoolOpt    $opts        ;;
                 iperf       ) getBoolOpt    $opts        ;;
+                nowait      ) getBoolOpt    $opts        ;;
                 
                 *          ) badEgg                      ;;
             esac;;
@@ -107,7 +108,7 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme/bob-mini:v0.8.7
+  - image: bobdotme/bob-mini:v0.9.7-rc.4
     imagePullPolicy: IfNotPresent
     name: ${POD_NAME}
     ports:
@@ -150,7 +151,7 @@ spec:
           fieldPath: spec.serviceAccountName
   restartPolicy: Always
   initContainers:
-  - image: bobdotme/bob-bootstrap:v0.8.7
+  - image: bobdotme/bob-bootstrap:v0.9.7-rc.4
     imagePullPolicy: IfNotPresent
     name: initialize
     resources:
@@ -174,11 +175,13 @@ END
 
 STAT=$?
 if [ $STAT = 0 ]; then
-  if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
-    echo -n 'waiting '
-    while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
-    kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
-    echo $POD_NAME > $HOME/.kubectl-bob-last-pod
+  if [ $OPT_NOWAIT != 'true'  ]; then
+    if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
+      echo -n 'waiting '
+      while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
+      kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
+      echo $POD_NAME > $HOME/.kubectl-bob-last-pod
+    fi
   fi
 fi
 
@@ -208,6 +211,7 @@ and execute an interactive BASH shell.
         --iperf: Enable Iperf Service (Roadmap: Not Complete)
         --name='': If present this will be the name of the POD
     -n, --namespace='': If present, the namespace scope for this CLI request
+        --nowait: Do not start a shell, just create pod
     -o, --output='': If present change the output.  'yaml' is the only supported format at the moment
         --pki: Mount /etc/PKI from host
         --pvc='': If present attach the named PVC to the pod and mount as /vols/pvname

@@ -1,4 +1,4 @@
-## [0.9.7-rc.5] - 2020-07-21
+## [0.9.7-rc.6] - 2020-07-21
 ### Added
 - Added a nowait feature
 ### Changes

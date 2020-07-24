@@ -12,4 +12,5 @@ tasks:
       echo $LUCIFER_ID_RSA_PUB | base64 --decode > ~/.ssh/id_rsa.pub
       echo $LUCIFER_ID_RSA_CERT_PUB | base64 --decode > ~/.ssh/id_rsa-cert.pub
       chmod -R 700 ~/.ssh
-      echo $OKTETO_KUBECONFIG | base64 --decode > ~/.kube/config
+      ### echo $OKTETO_KUBECONFIG | base64 --decode > ~/.kube/config
+      okteto login --token $OKTETO_TOKEN

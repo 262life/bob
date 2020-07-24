@@ -7,7 +7,8 @@ RUN sudo apt install -y shellcheck \
     && wget https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz \
     && tar zxvf helm-v3.2.4-linux-amd64.tar.gz \
     && sudo mv linux-amd64/helm /usr/local/bin/helm3 \
-    && sudo chmod 755 /usr/local/bin/helm3
+    && sudo chmod 755 /usr/local/bin/helm3 \
+    && curl https://get.okteto.com -sSfL | sh
     
 # Install docker
 RUN sudo apt-get -y update \

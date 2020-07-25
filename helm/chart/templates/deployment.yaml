@@ -95,5 +95,5 @@ spec:
           requests:
             memory: "1Gi"
             cpu: "300m"
-        securityContext:
-          privileged: true
+        #securityContext:
+        #  privileged: true

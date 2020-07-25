@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: DaemonSet
+kind: {{ .Values.manifest}}
 metadata:
   name: bob-bootstrap
   namespace: {{ .Values.namespace}}

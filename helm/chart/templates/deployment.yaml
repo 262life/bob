@@ -88,6 +88,9 @@ spec:
         - containerPort: 8873
           name: sync
           protocol: TCP
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /data
         resources:
           limits:
             memory: "1Gi"
@@ -97,3 +100,8 @@ spec:
             cpu: "300m"
         #securityContext:
         #  privileged: true
+      volumes:
+      - name: shared-volume
+        emptyDir:
+          medium: Memory
+          sizeLimit: "1Gi"

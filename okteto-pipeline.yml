@@ -1,6 +1,6 @@
 icon: https://github.com/BobDotMe/bob/blob/master/docs/bob.png
 deploy:
-  - helm upgrade --install bob helm/chart  --version '0.9.7-rc.6' --values helm/chart/values-okteto.yaml
+  - helm upgrade --install bob helm/chart  --version '0.9.7-rc.6' --values helm/chart/template/values-okteto.yaml
 devs:
   #- api/okteto.yml
   #- frontend/okteto.yml

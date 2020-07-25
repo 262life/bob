@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: bob-bootstrap
-  namespace: bob
+  namespace: {{  .Values.namespace default "bob"}}
   labels:
     k8s-app: bob-bootstrap
 spec:
@@ -18,7 +18,7 @@ spec:
       containers:
       - name: daemonset
         image: "bobdotme/bob-mini:{{ .Chart.Version }}"
-        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
+        imagePullPolicy: 
         resources:
           limits:
             memory: 2000Mi
@@ -31,7 +31,7 @@ spec:
       initContainers:
       - name: bootstrap
         image: "bobdotme/bob-bootstrap:{{ .Chart.Version }}"
-        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
+        imagePullPolicy: {{  .Values.image.pullPolicy default "IfNotPresent"}}
         resources:
           limits:
             memory: 2000Mi
@@ -52,7 +52,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bob
-  namespace: bob
+  namespace: {{  .Values.namespace default "bob"}}
 spec:
   selector:
     app: bob-core
@@ -67,7 +67,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: bob-core
-  namespace: bob
+  namespace: {{  .Values.namespace default "bob"}}
 spec:
   selector:
     matchLabels:

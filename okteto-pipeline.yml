@@ -1,6 +1,6 @@
 icon: https://github.com/BobDotMe/bob/blob/master/docs/bob.png
 deploy:
-  - helm upgrade --install bob helm/chart --set-string namespace='rsliotta' --version 'latest'
+  - helm upgrade --install bob helm/chart --set-string namespace='rsliotta' --version '0.9.7-rc.6'
 devs:
   #- api/okteto.yml
   #- frontend/okteto.yml

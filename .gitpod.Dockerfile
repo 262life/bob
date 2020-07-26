@@ -9,10 +9,9 @@ RUN sudo apt install -y shellcheck \
     && sudo mv linux-amd64/helm /usr/local/bin/helm3 \
     && sudo chmod 755 /usr/local/bin/helm3 \
     && sudo apt install -y xdg-utils \
-    && curl https://get.okteto.com -sSfL | sh
-    
-# Install docker
-RUN sudo apt-get -y update \
+    && sudo apt-get install -yq chromium-browser && \
+    && curl https://get.okteto.com -sSfL | sh \
+    && sudo apt-get -y update \
     && sudo apt-get -y install \
             apt-transport-https \
             ca-certificates \
@@ -25,6 +24,7 @@ RUN sudo apt-get -y update \
             stable" \
     && sudo apt-get -y update \
     && sudo apt-get -y install docker-ce
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # Apply user-specific settings
 

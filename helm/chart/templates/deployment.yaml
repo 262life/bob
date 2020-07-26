@@ -98,10 +98,12 @@ spec:
           mountPath: /data
         resources:
           limits:
-            memory: "1Gi"
+            memory: "2Gi"
             cpu: "300m"
           requests:
-            memory: "1Gi"
+            memory: "1
+            
+            Gi"
             cpu: "300m"
         #securityContext:
         #  privileged: true

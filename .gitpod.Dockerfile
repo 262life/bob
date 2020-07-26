@@ -9,7 +9,7 @@ RUN sudo apt install -y shellcheck \
     && sudo mv linux-amd64/helm /usr/local/bin/helm3 \
     && sudo chmod 755 /usr/local/bin/helm3 \
     && sudo apt install -y xdg-utils \
-    && sudo apt-get install -yq chromium-browser && \
+    && sudo apt-get install -yq chromium-browser \
     && curl https://get.okteto.com -sSfL | sh \
     && sudo apt-get -y update \
     && sudo apt-get -y install \

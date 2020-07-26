@@ -9,9 +9,6 @@ RUN sudo apt install -y shellcheck \
     && sudo mv linux-amd64/helm /usr/local/bin/helm3 \
     && sudo chmod 755 /usr/local/bin/helm3 \
     && sudo apt install -y xdg-utils \
-    && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  \
-    && sudo dpkg -i google-chrome-stable_current_amd64.deb \
-    && sudo apt-get install -f \
     && curl https://get.okteto.com -sSfL | sh \
     && sudo apt-get -y update \
     && sudo apt-get -y install \
@@ -27,6 +24,9 @@ RUN sudo apt install -y shellcheck \
     && sudo apt-get -y update \
     && sudo apt-get -y install docker-ce \
     && sudo rm -rf /var/lib/apt/lists/*
+    ## && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  \
+    ## && sudo dpkg -i google-chrome-stable_current_amd64.deb \
+    ## && sudo apt-get install -f \
 
 # Apply user-specific settings
 

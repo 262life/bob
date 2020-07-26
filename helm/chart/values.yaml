@@ -7,4 +7,5 @@ manifest: Daemonset
 image:
   pullPolicy: IfNotPresent
   repo: bobdotme
+  replicas: 3
 

@@ -78,7 +78,7 @@ spec:
     matchLabels:
       app: bob-core
   serviceName: bob-core
-  replicas: 3
+  replicas: {{ .Values.image.replicas}}
   template:
     metadata:
       labels:

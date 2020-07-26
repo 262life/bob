@@ -28,11 +28,6 @@ spec:
         volumeMounts:
         - name: shared-volume
           mountPath: /usr
-        env:
-        - name: BOB_SERVICE_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
       initContainers:
       - name: bootstrap
         image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
@@ -46,6 +41,11 @@ spec:
         volumeMounts:
         - name: shared-volume
           mountPath: /usr-sync
+        env:
+        - name: BOB_SERVICE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
       terminationGracePeriodSeconds: 30
       volumes:
       - name: shared-volume

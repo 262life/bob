@@ -18,7 +18,7 @@ spec:
       containers:
       - name: daemonset
         image: "{{ .Values.image.repo}}/bob-mini:{{ .Values.image.version }}"
-        imagePullPolicy: 
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
             memory: 1000Mi

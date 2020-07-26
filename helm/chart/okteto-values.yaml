@@ -6,4 +6,6 @@ namespace: rsliotta
 manifest: Deployment
 image:
   pullPolicy: IfNotPresent
+  repo: registry.cloud.okteto.net/rsliotta
+
 

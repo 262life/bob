@@ -1,7 +1,7 @@
 icon: https://github.com/BobDotMe/bob/blob/master/docs/bob.png
 deploy:
   - helm delete bob
-  - helm upgrade --install bob helm/chart  --version 'preview' --values helm/chart/okteto-values.yaml
+  - helm install bob helm/chart  --version 'preview' --values helm/chart/okteto-values.yaml
 devs:
   #- api/okteto.yml
   #- frontend/okteto.yml

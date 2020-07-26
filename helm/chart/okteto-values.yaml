@@ -5,7 +5,7 @@
 namespace: rsliotta
 manifest: Deployment
 image:
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   repo: registry.cloud.okteto.net/rsliotta
   replicas: 1
   version: preview

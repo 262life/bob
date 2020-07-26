@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
-            memory: 1000Mi
+            memory: 2000Mi
           requests:
             cpu: 100m
             memory: 4Mi
@@ -34,7 +34,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy}}
         resources:
           limits:
-            memory: 1000Mi
+            memory: 2000Mi
           requests:
             cpu: 100m
             memory: 4Mi

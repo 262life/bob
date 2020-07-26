@@ -6,4 +6,5 @@ namespace: rsliotta
 manifest: Daemonset
 image:
   pullPolicy: IfNotPresent
+  repo: bobdotme
 

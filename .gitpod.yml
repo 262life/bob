@@ -14,4 +14,4 @@ tasks:
       chmod -R 700 ~/.ssh
       ### echo $OKTETO_KUBECONFIG | base64 --decode > ~/.kube/config
       okteto login --token $OKTETO_TOKEN
-      docker login docker login registry.cloud.okteto.net -u rsliotta -t ${OKTETO_TOKEN}
+      docker login registry.cloud.okteto.net -u rsliotta -p ${OKTETO_TOKEN}

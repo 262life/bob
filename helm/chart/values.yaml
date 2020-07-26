@@ -8,4 +8,5 @@ image:
   pullPolicy: IfNotPresent
   repo: bobdotme
   replicas: 3
+  version: latest
 

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: daemonset
-        image: "{{ .Values.image.repo}}/bob-mini:{{ .Chart.Version }}"
+        image: "{{ .Values.image.repo}}/bob-mini:{{ .image.version }}"
         imagePullPolicy: 
         resources:
           limits:
@@ -35,7 +35,7 @@ spec:
               fieldPath: metadata.namespace
       initContainers:
       - name: bootstrap
-        image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Chart.Version }}"
+        image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy}}
         resources:
           limits:
@@ -86,7 +86,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - image: "{{ .Values.image.repo}}/bob-core:{{ .Chart.Version }}"
+      - image: "{{ .Values.image.repo}}/bob-core:{{ .image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: bob-core
         ports:

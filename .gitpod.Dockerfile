@@ -23,7 +23,7 @@ RUN sudo apt install -y shellcheck \
             $(lsb_release -cs) \
             stable" \
     && sudo apt-get -y update \
-    && sudo apt-get -y install docker-ce
+    && sudo apt-get -y install docker-ce \
     && sudo rm -rf /var/lib/apt/lists/*
 
 # Apply user-specific settings

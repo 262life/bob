@@ -110,7 +110,7 @@ spec:
           medium: Memory
           sizeLimit: "1Gi"
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: childs-lenard 

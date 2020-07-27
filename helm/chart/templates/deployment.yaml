@@ -111,7 +111,7 @@ spec:
           sizeLimit: "1Gi"
 ---
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: childs-lenard 
   labels:

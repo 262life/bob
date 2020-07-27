@@ -67,7 +67,6 @@ spec:
       targetPort: 8873
       name: sync
 ---
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -114,20 +113,15 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: childs-lenard
-  
+  name: childs-lenard 
   labels:
     app: bob
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme/bob-mini:v0.9.6
-    imagePullPolicy: IfNotPresent
+  - image: "{{ .Values.image.repo}}/bob-mini:{{ .Values.image.version }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
     name: childs-lenard
-    ports:
-    - containerPort: 80
-      name: dummy
-      protocol: TCP
     resources:
       limits:
         memory: "1Gi"
@@ -136,11 +130,8 @@ spec:
         memory: "1M"
         cpu: "500m"
     volumeMounts:
-    
-    
     - name: shared-volume
       mountPath: /usr
-
     env:
     - name: MY_NODE_NAME
       valueFrom:
@@ -164,8 +155,8 @@ spec:
           fieldPath: spec.serviceAccountName
   restartPolicy: Always
   initContainers:
-  - image: bobdotme/bob-bootstrap:v0.9.6
-    imagePullPolicy: IfNotPresent
+  - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
+    imagePullPolicy: {{ .Values.image.pullPolicy }}
     name: initialize
     resources:
       limits:
@@ -178,8 +169,6 @@ spec:
     - name: shared-volume
       mountPath: /usr-sync
   volumes:
-  
-  
   - name: shared-volume
     emptyDir: 
       medium: Memory

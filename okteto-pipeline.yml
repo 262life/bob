@@ -3,6 +3,6 @@ deploy:
   - okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
   - okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap
   - okteto build -t okteto.dev/bob-core:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile
-  - helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT}
+  - helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT} --set namespace=${OKTETO_NAMESPACE}
 devs:
   - okteto.yml

@@ -1,6 +1,8 @@
-icon: https://github.com/BobDotMe/bob/blob/master/docs/bob.png
+icon: https://github.com/BobDotMe/bob/raw/master/docs/bob.png
 deploy:
-  - helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml
+  - okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
+  - okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap
+  - okteto build -t okteto.dev/bob-core:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile
+  - helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT}
 devs:
-  #- api/okteto.yml
-  #- frontend/okteto.yml
+  - okteto.yml

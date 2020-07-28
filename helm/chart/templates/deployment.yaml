@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: {{ .Values.manifest}}
 metadata:
   name: bob-bootstrap
-  namespace: {{ .Values.namespace}}
   labels:
     k8s-app: bob-bootstrap
 spec:

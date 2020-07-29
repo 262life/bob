@@ -18,14 +18,16 @@ jobs:
       with:
         name: rsliotta
     
-    - name: "Deploy application"
-      uses: okteto/apply@master
-      with:
-        namespace: rsliotta
-        manifest: okteto.yaml
 
-    - name: "Push changes"
-      uses: okteto/push@master
+    - name: "Build"
+      uses: okteto/build@master
       with:
-        namespace: rsliotta
-        name: hello-world
+        tag: okteto.dev/bob-mini:${OKTETO_GIT_COMMIT}
+        file: dockerfiles/Dockerfile-mini
+
+
+
+  #  okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
+  #- okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap
+  #- okteto build -t okteto.dev/bob-core:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile
+  #- helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT} --set namespace=${OKTETO_NAMESPACE}

@@ -109,7 +109,7 @@ spec:
         emptyDir:
           medium: Memory
           sizeLimit: "1Gi"
-{{- if eq .Values.okteto.develop "true" }}
+{{- if .Values.okteto.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment

@@ -1,0 +1,31 @@
+# File: .github/workflows/workflow.yml
+on: [push]
+
+name: okteto
+
+jobs:
+
+  devflow:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: okteto/login@master
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+    
+    - name: "Activate Namespace"
+      uses: okteto/namespace@master
+      with:
+        name: rsliotta
+    
+    - name: "Deploy application"
+      uses: okteto/apply@master
+      with:
+        namespace: rsliotta
+        manifest: okteto.yaml
+
+    - name: "Push changes"
+      uses: okteto/push@master
+      with:
+        namespace: rsliotta
+        name: hello-world

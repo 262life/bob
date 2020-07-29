@@ -61,8 +61,8 @@ The status of each utility provider supported by BOB can be found in the table b
 |Name|Details|Status                                                                                                                                                                                                                                                                                                        
 | -  | - | - |
 |core|The framework for the common utilities|Beta|                                                                                                                                                                                                                                                                              
-|proxy|Proxy Services|Beta|                                                                                             
-|container|The micro container|Beta                                                                                        
+|bootstrap|bootstrap Services|Beta|                                                                                             
+|mini|The mini container|Beta                                                                                        
 
 ### Official Releases
 

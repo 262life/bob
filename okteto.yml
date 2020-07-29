@@ -1,4 +1,4 @@
-name: bob-bootstrap
+name: bob-core
 image: okteto/dev:latest
 command:
 - bash

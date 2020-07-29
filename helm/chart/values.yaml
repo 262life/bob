@@ -10,4 +10,4 @@ image:
   replicas: 3
   version: latest
 okteto:
-  develop: false
+  enabled: false

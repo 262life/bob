@@ -9,4 +9,5 @@ image:
   repo: bobdotme
   replicas: 3
   version: latest
-
+okteto:
+  develop: false

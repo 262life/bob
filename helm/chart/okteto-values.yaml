@@ -9,5 +9,7 @@ image:
   repo: okteto.dev
   replicas: 1
   version: preview
+okteto:
+  develop: true
 
 

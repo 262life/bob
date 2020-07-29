@@ -24,7 +24,7 @@ jobs:
     - name: "Build"
       uses: okteto/build@master
       with:
-        tag: okteto.dev/bob-mini:${OKTETO_GIT_COMMIT}
+        tag: okteto.dev/bob-mini:${GITHUB_SHA}
         file: dockerfiles/Dockerfile-mini
 
 

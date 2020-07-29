@@ -14,4 +14,7 @@ tasks:
       chmod -R 700 ~/.ssh
       chromium-browser --no-sandbox
       okteto login --token $OKTETO_TOKEN
+      cp ~/.kube/config ~/.kube/okteto.cfg
       docker login registry.cloud.okteto.net -u rsliotta -p ${OKTETO_TOKEN}
+      source <(kubectl completion bash)
+      source <(curl -s  https://raw.githubusercontent.com/BobDotMe/shortcuts/master/.k8s_shortcuts)

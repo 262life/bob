@@ -207,7 +207,7 @@ spec:
       containers:
       - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ["/bin/bash"]
+        command: ["/bin/sh"]
         args: ["-c", "trap : TERM INT; (while true; do sleep 1000; done)"]
         name: boot-init
         resources:

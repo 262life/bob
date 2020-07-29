@@ -10,6 +10,6 @@ image:
   replicas: 1
   version: preview
 okteto:
-  enabled: false
+  enabled: true
 
 

@@ -9,7 +9,7 @@ image:
   repo: okteto.dev
   replicas: 1
   version: preview
-#okteto:
-#  enabled: false
+okteto:
+  enabled: false
 
 

@@ -3,9 +3,16 @@ image:
 tasks:
   - init: 'set +x; clear'
     command: |
+      
       function gt() {
         TAG=${1}; git tag --delete ${TAG} 2>/dev/null; git push  --delete origin ${TAG} 2>/dev/null; git tag  ${TAG}; git push --tags
       }
+
+      function deploy() {
+        gq https://cloud.okteto.com/graphql -H "Authorization: Bearer $OKTETO_TOKEN" -q 'mutation deployGitRepository($name: String!, $space: String!, $repository: String!, $branch: String!) {deployGitRepository( name: $name, space: $space, repository: $repository, branch: $branch) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
+      }
+
+
       mkdir ~/.ssh 2>/dev/null
       mkdir ~/.kube 2>/dev/null
       echo $LUCIFER_ID_RSA | base64 --decode > ~/.ssh/id_rsa

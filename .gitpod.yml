@@ -19,7 +19,6 @@ tasks:
       echo $LUCIFER_ID_RSA_PUB | base64 --decode > ~/.ssh/id_rsa.pub
       echo $LUCIFER_ID_RSA_CERT_PUB | base64 --decode > ~/.ssh/id_rsa-cert.pub
       chmod -R 700 ~/.ssh
-      chromium-browser --no-sandbox
       okteto login --token $OKTETO_TOKEN
       cp ~/.kube/config ~/.kube/okteto.cfg
       docker login registry.cloud.okteto.net -u rsliotta -p ${OKTETO_TOKEN}

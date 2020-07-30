@@ -13,7 +13,7 @@ Bash on board! (we like to call it BOB) is an open source **general purpose cont
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-bootstrap?label=docker%20pulls%20-%20bob-bootstrap)\
 ![Twitter Follow](https://img.shields.io/twitter/follow/BobDotMe?style=social)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/BobDotMe/bob)
-[![Develop on Okteto](https://img.shields.io/badge/Okteto-Kubernetes%20for%20Developers-brightgreen?style=plastic&logo=appveyor)](https://cloud.okteto.com/deploy)
+[![Develop on Okteto](https://img.shields.io/badge/Okteto-Kubernetes%20for%20Developers-brightgreen?logo=apache-echarts)](https://cloud.okteto.com/deploy)
 
 BOB turns a simple container instanciation into a power support tool for general troubleshooting, service rendering, and performance evaluation.  It does this by creating a core set services that house and manage the utilities as well as a super lightweight container to invoke in a pod.
 

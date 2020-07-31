@@ -1,3 +1,8 @@
+## [0.9.7-rc.6] - 2020-07-21
+### Added
+- Added a nowait feature
+### Changes
+- Fixed words function for multiplatform
 
 ## [0.9.7-rc.4] - 2020-07-17
 ### Changes

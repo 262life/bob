@@ -3,9 +3,13 @@
 # Declare variables to be passed into your templates.
 
 namespace: rsliotta
-manifest: Daemonset
+manifest: Deployment
 image:
-  pullPolicy: IfNotPresent
-  repo: bobdotme
-  replicas: 3
-  version: latest
+  pullPolicy: Always
+  repo: okteto.dev
+  replicas: 1
+  version: preview
+okteto:
+  enabled: true
+
+

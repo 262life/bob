@@ -1,0 +1,11 @@
+name: bob-core
+image: okteto/dev:latest
+command:
+- bash
+workdir: /okteto
+persistentVolume:
+  enabled: true
+resources:
+  limits:
+    cpu: "1"
+    memory: 2Gi

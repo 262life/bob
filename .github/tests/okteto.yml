@@ -1,0 +1,35 @@
+# File: .github/workflows/workflow.yml
+on: [push]
+
+name: okteto
+
+jobs:
+
+  devflow:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v1
+  
+    - uses: okteto/login@master
+      with:
+        token: ${{ secrets.OKTETO_TOKEN }}
+    
+    - name: "Activate Namespace"
+      uses: okteto/namespace@master
+      with:
+        name: rsliotta
+
+    - name: "Build"
+      uses: okteto/build@master
+      with:
+        tag: okteto.dev/bob-mini:${GITHUB_SHA}
+        file: dockerfiles/Dockerfile-mini
+
+
+
+  #  okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
+  #- okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap
+  #- okteto build -t okteto.dev/bob-core:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile
+  #- helm upgrade --install bob helm/chart  --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT} --set namespace=${OKTETO_NAMESPACE}

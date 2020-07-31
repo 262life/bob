@@ -18,6 +18,7 @@ and execute an interactive BASH shell.
         --iperf: Enable Iperf Service (Roadmap: Not Complete)
         --name='': If present this will be the name of the POD
     -n, --namespace='': If present, the namespace scope for this CLI request
+        --nowait: Do not start a shell, just create pod
     -o, --output='': If present change the output.  'yaml' is the only supported format at the moment
         --pki: Mount /etc/PKI from host
         --pvc='': If present attach the named PVC to the pod and mount as /vols/pvname

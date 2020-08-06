@@ -16,9 +16,13 @@ sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/pe
 ldd  /bin/* /usr/bin/* \
        | sed -e "s/(.*)//g" -e "s/^[ \t]*//g" \
        | grep -v "^.*:" \
-       | sort -u > /tmp/ ldd.db
+       | sort -u > /tmp/ldd.db.raw
 
-find .  -name "*.so*" -type f  "$(printf "! -name %s " $(cat /tmp/ldd.db))" -delete
+grep "=" /tmp/ldd.db.raw | awk -F\=\>\ '{print $2}' > /tmp/ldd.db
+grep "^\/" /tmp/ldd.db.raw  >> /tmp/ldd.db
+
+
+sudo find .  -name "*.so*" -type f  "$(printf "! -name %s " $(cat /tmp/ldd.db))" -delete
 
 exit
 

@@ -47,7 +47,6 @@ sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 ##-----
 
-exit 
 cd ../..
 sudo rm -rf distro/work
 

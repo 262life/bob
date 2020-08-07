@@ -34,7 +34,7 @@ do
 basename "$r" >> /tmp/ldd.db
 done
 
-sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
+#sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
 sudo rm -rf  var/lib/dpkg var/log/dpkg*
 
 

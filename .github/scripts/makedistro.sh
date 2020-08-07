@@ -8,8 +8,8 @@ sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 #-----  bootstrap  and mini distro
 sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" \) -delete
 sudo find . -empty -type d -delete
-sudo rm -rf etc/pam.d
-sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" \) -delete 
+#sudo rm -rf etc/pam.d
+sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" ! -name "ld.so.cache" \) -delete 
 
 
 sudo mv usr/bin/dash usr/bin/sh

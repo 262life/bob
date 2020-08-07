@@ -21,6 +21,9 @@ sudo ldd  bin/* usr/bin/* \
        | grep -v "^.*:" \
        | sort -u > /tmp/ldd.db.raw
 
+# Save loader
+sudo find /usr -name "ld*.so*" >> /tmp/ldd.raw
+
 grep "=" /tmp/ldd.db.raw | awk -F\=\> '{print $2}' > /tmp/ldd.db
 grep "^\/" /tmp/ldd.db.raw  >> /tmp/ldd.db
 mv /tmp/ldd.db /tmp/ldd.db.raw2

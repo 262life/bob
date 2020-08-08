@@ -4,3 +4,8 @@ ADD files/entrypoint-bootstrap.sh /files/entrypoint.sh
 
 LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
 ENTRYPOINT [ "/files/entrypoint.sh" ]
+
+RUN /usr/bin/ls /tmp
+RUN /usr/bin/sh -c "echo Shell Working"
+RUN /usr/bin/rsync --help
+RUN /usr/bin/sleep 1

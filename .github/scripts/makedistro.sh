@@ -39,8 +39,9 @@ done
 sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
 sudo find usr/lib  -type l ! -exec test -e {} \; -delete
 
-sudo rm -rf /lib/x86_64-linux-gnu/security
+sudo rm -rf  lib/x86_64-linux-gnu/security
 sudo rm -rf  var/lib/dpkg var/log/dpkg*
+sudo find var/log -type f -delete
 
 
 #----- Sidecar distro
@@ -56,6 +57,6 @@ sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 ##-----
 
 cd ../..
-#sudo rm -rf distro/work
+sudo rm -rf distro/work
 
 

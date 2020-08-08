@@ -37,6 +37,7 @@ do
 done
 
 sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
+sudo find usr/lib  -type l ! -exec test -e {} \; -delete
 
 sudo rm -rf /lib/x86_64-linux-gnu/security
 sudo rm -rf  var/lib/dpkg var/log/dpkg*
@@ -49,7 +50,7 @@ sudo tar --exclude usr -zcf ../squashed.tar.gz ./*
 ##------
 sudo cp ../socat usr/bin/socat && sudo chown root:root usr/bin/socat && sudo chmod 755 usr/bin/socat
 sudo cp ../rsync usr/bin/rsync && sudo chown root:root usr/bin/rsync && sudo chmod 755 usr/bin/rsync
-sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
+ sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
 sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 ##-----

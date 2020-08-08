@@ -8,12 +8,13 @@ sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz
 #-----  bootstrap  and mini distro
 sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" \) -delete
 sudo find . -empty -type d -delete
-#sudo rm -rf etc/pam.d
+sudo rm -rf etc/pam.d
 sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" ! -name "ld.so.cache" \) -delete 
 
 
 sudo mv usr/bin/dash usr/bin/sh
 sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin 2>/dev/null
+
 #--------  Remove Libs
 
 sudo ldd  bin/* usr/bin/* \
@@ -21,22 +22,23 @@ sudo ldd  bin/* usr/bin/* \
        | grep -v "^.*:" \
        | sort -u > /tmp/ldd.db.raw
 
-# Save loader
-sudo find /usr -name "ld*.so*" >> /tmp/ldd.raw
-
 grep "=" /tmp/ldd.db.raw | awk -F\=\> '{print $2}' > /tmp/ldd.db
 grep "^\/" /tmp/ldd.db.raw  >> /tmp/ldd.db
 mv /tmp/ldd.db /tmp/ldd.db.raw2
 
+# Save loader
+ld_ver=$(sudo basename $(find usr/lib -name "ld-*.so") | sed -e "s/ld-//g" -e "s/\.so//g")
+find usr/lib -name "*${ld_ver}*" >> /tmp/ldd.db.raw2
+
 grep -v not  /tmp/ldd.db.raw2 |
 while read r
 do
-basename "$r" >> /tmp/ldd.db
+  basename "$r" >> /tmp/ldd.db
 done
 
-#sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
-sudo rm -rf /lib/x86_64-linux-gnu/security
+sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
 
+sudo rm -rf /lib/x86_64-linux-gnu/security
 sudo rm -rf  var/lib/dpkg var/log/dpkg*
 
 
@@ -53,6 +55,6 @@ sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 ##-----
 
 cd ../..
-sudo rm -rf distro/work
+#sudo rm -rf distro/work
 
 

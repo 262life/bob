@@ -1,11 +1,11 @@
 icon: https://github.com/BobDotMe/bob/raw/master/docs/bob.png
 deploy:
-  - cat deploy/ubuntu-focal-latest-a* \> deploy/ubuntu-focal-latest.tar.gz
+  - cat distro/ubuntu-focal-latest-a*  \> distro/ubuntu-focal-latest.tar.gz
   - ls deploy
   - okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
   - okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap
   - okteto build -t okteto.dev/bob-core:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile
   - helm upgrade --install bob helm/chart  --history-max 1 --values helm/chart/okteto-values.yaml --set image.version=${OKTETO_GIT_COMMIT} --set namespace=${OKTETO_NAMESPACE}
-  - rm deploy/ubuntu-focal-latest.tar.gz
+  - rm distro/ubuntu-focal-latest.tar.gz
 devs:
   - okteto.yml

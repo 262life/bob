@@ -5,7 +5,7 @@ on:
     - "v[0-9]+.[1-9]+.[0-9]*"
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v1

@@ -1,8 +1,17 @@
 #!/bin/sh 
 
+cd distro || exit
+
+if [ ! -f ubuntu-focal-latest.tar.gz ];then
+  cat ubuntu-focal-latest-* > ubuntu-focal-latest.tar.gz
+fi
+
+cd .. || exit
+
 sudo rm -rf distro/work 2>/dev/null
 sudo mkdir distro/work
 cd distro/work || exit
+
 sudo tar zxf ../ubuntu-focal-latest.tar.gz 
 
 #-----  bootstrap  and mini distro
@@ -58,6 +67,9 @@ sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 cd ../..
 sudo rm -rf distro/work
+cd distro
+sudo rm -f ubuntu-local-latest-*
+split -b 20000000 ubuntu-focal-latest.tar.gz ubuntu-focal-latest-
+cd ..
 sudo rm -f distro/ubuntu-focal-latest.tar.gz
-
 

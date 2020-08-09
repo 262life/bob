@@ -38,7 +38,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
           commit-message: 'publish'
-          force-add: 'true'
+          force-add: 'false'
           files: distro/ubuntu-focal-latest-*
           name: rsliotta
           email: bob@bobdot.me

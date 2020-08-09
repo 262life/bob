@@ -33,7 +33,7 @@ find usr/lib -name "*${ld_ver}*" >> /tmp/ldd.db.raw2
 grep -v not  /tmp/ldd.db.raw2 |
 while read r
 do
-  basename "$r" >> /tmp/ldd.db
+  basename "$r*" >> /tmp/ldd.db
 done
 
 sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete
@@ -58,6 +58,6 @@ sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 cd ../..
 sudo rm -rf distro/work
-sudo rm -rf distro/ubuntu-focal-latest.tar.gz
+sudo rm -f distro/ubuntu-focal-latest.tar.gz
 
 

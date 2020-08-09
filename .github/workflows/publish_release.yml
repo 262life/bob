@@ -29,6 +29,19 @@ jobs:
         run: |
           bash -c "chmod 755 .github/scripts/plugins.sh; .github/scripts/plugins.sh"
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
+      - name: Prebuild
+        run: |
+          bash "rm -f distro/ubuntu-focal-latest-*"
+      - name: Prepush
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          commit-message: 'publish'
+          force-add: 'true'
+          files: distro/*
+          name: rsliotta
+          email: bob@bobdot.me
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
@@ -48,7 +61,7 @@ jobs:
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
       - name: Cleanup before push
         run: |
-          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz distro/ubuntu-focal-latest-*"       
+          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz"       
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:

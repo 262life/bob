@@ -38,6 +38,7 @@ jobs:
           bash -c "chmod 755 .github/scripts/build_scratch_image.sh; .github/scripts/build_scratch_image.sh"
           bash -c "chmod 755 .github/scripts/makedistro.sh; .github/scripts/makedistro.sh"
           bash -c "cat distro/ubuntu-focal-latest-* > distro/ubuntu-focal-latest.tar.gz"
+          bash -c "ls -l distro; tar ztvf distro/squashed-bootstrap.tar.gz"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-bootstrap .github/scripts/init.sh bob-bootstrap"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-mini      .github/scripts/init.sh bob-mini"

@@ -39,7 +39,7 @@ jobs:
           push-branch: 'master'
           commit-message: 'publish'
           force-add: 'true'
-          files: distro/*
+          files: distro/ubuntu-focal-latest-*
           name: rsliotta
           email: bob@bobdot.me
       - name: Build Action

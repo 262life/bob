@@ -3,17 +3,17 @@
 sudo rm -rf distro/work 2>/dev/null
 sudo mkdir distro/work
 cd distro/work || exit
-sudo tar zxf ../ubuntu-focal-core-cloudimg-amd64-root.tar.gz 
+sudo tar zxf ../ubuntu-focal-latest.tar.gz 
 
 #-----  bootstrap  and mini distro
-sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" \) -delete
+sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" ! -name "rsync" ! -name "socat" \) -delete
 sudo find . -empty -type d -delete
 sudo rm -rf etc/pam.d
 sudo find etc/*  \( -name "*" ! -name "\[" ! -name "passwd" ! -name "nsswitch" ! -name "ld.so.cache" \) -delete 
 
 
 sudo mv usr/bin/dash usr/bin/sh
-sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/udev usr/sbin 2>/dev/null
+sudo rm -rf usr/share usr/lib/x86_64-linux-gnu/gconv usr/lib/x86_64-linux-gnu/perl-base usr/lib/x86_64-linux-gnu/e2fsprogs usr/lib/x86_64-linux-gnu/audit usr/lib/x86_64-linux-gnu/security etc/systemd usr/lib/terminfo usr/lib/apt usr/lib/lsb usr/lib/systemd usr/lib/locale usr/local  usr/lib/python* usr/lib/udev usr/sbin work 2>/dev/null
 
 #--------  Remove Libs
 
@@ -49,14 +49,15 @@ sudo rm -rf var/cache/debconf/templates.dat
 sudo tar --exclude usr -zcf ../squashed.tar.gz ./*
 
 ##------
-sudo cp ../socat usr/bin/socat && sudo chown root:root usr/bin/socat && sudo chmod 755 usr/bin/socat
-sudo cp ../rsync usr/bin/rsync && sudo chown root:root usr/bin/rsync && sudo chmod 755 usr/bin/rsync
- sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
+#sudo cp ../socat usr/bin/socat && sudo chown root:root usr/bin/socat && sudo chmod 755 usr/bin/socat
+#sudo cp ../rsync usr/bin/rsync && sudo chown root:root usr/bin/rsync && sudo chmod 755 usr/bin/rsync
+#sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
 sudo tar --exclude var -zcf ../squashed-bootstrap.tar.gz ./*
 
 ##-----
 
 cd ../..
 sudo rm -rf distro/work
+sudo rm -rf distro/ubuntu-focal-latest.tar.gz
 
 

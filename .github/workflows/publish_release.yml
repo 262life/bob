@@ -31,7 +31,7 @@ jobs:
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Prebuild
         run: |
-          bash -c "ls distro/ubuntu-focal-latest-* 2>/dev/null; if [ $? = 0 ]; then rm -f distro/ubuntu-focal-latest-* ;fi"
+          bash -c "ls distro/ubuntu-focal-latest-* 2>/dev/null; if [ $? = 0 ]; then rm -f distro/ubuntu-focal-latest-* ;fi; touch distro/ubuntu-focal-latest-semiphore"
       - name: Prepush
         uses: github-actions-x/commit@v2.6
         with:

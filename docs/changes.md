@@ -1,3 +1,7 @@
+## [0.9.7-rc.2] - 2020-08-09
+### Changes
+- Refactored the images
+
 ## [0.9.7-rc.1] - 2020-07-21
 ### Added
 - README CODE

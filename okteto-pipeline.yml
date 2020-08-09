@@ -1,6 +1,6 @@
 icon: https://github.com/BobDotMe/bob/raw/master/docs/bob.png
 deploy:
-  - cat deploy/ubuntu-focal-latest-a* > deploy/ubuntu-focal-latest.tar.gz
+  - cat deploy/ubuntu-focal-latest-a* \> deploy/ubuntu-focal-latest.tar.gz
   - ls deploy
   - okteto build -t okteto.dev/bob-mini:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-mini
   - okteto build -t okteto.dev/bob-bootstrap:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-bootstrap

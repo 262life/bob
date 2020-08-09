@@ -93,7 +93,7 @@ jobs:
           push-branch: 'master'
           commit-message: 'publish'
           force-add: 'true'
-          files: README.md VERSION docs/index.yaml docs/*.tgz docs/commands.md docs/commands/* helm/chart/* distro/*.tar.gz
+          files: README.md VERSION docs/index.yaml docs/*.tgz docs/commands.md docs/commands/* helm/chart/* distro/*.tar.gz distro/ubuntu-focal-latest-*
           name: rsliotta
           email: bob@bobdot.me
       - name: Release

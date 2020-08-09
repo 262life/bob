@@ -46,6 +46,9 @@ jobs:
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
+      - name: Cleanup before push
+        run: |
+          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz distro/ubuntu-focal-latest-*"       
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:

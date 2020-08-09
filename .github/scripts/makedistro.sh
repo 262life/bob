@@ -45,7 +45,13 @@ do
   basename "$r*" >> /tmp/ldd.db
 done
 
+echo "---------------------"
+echo "Raw Database..."
+echo "---------------------"
+cat /tmp/ldd.db.raw
+echo "---------------------"
 echo "ldd database..."
+echo "---------------------"
 cat /tmp/ldd.db
 
 sudo find .  -name "*.so*" -type f   $(printf "! -name %s " $(cat /tmp/ldd.db) )   -delete

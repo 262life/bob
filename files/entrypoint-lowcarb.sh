@@ -1,10 +1,10 @@
 #!/bin/sh -eu
 trap : TERM INT; (while true; do sleep 1000; done) &
 
-echo ":${MY_NODE_NAME}:"
+echo ":${MY_POD_NAME}:"
 while true
 do
-  if echo "${MY_NODE_NAME}" | grep bob-bootstrap >/dev/null 2>/dev/null ;then
+  if  "${MY_POD_NAME}" == "bob-bootstrap"  ;then
     echo "Bob Services loaded...." >&2
     rm /usr/bin/dash-x 2>/dev/null
     rm /bin/bash-x 2>/dev/null

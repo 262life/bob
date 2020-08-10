@@ -22,7 +22,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' |  debconf-set-selecti
     cd /etc/alternatives && mv ./* /usr/bin/. && \
     rm -rf work
 
-ADD files/entrypoint.sh /files/entrypoint.sh
+ADD files/entrypoint-core.sh /files/entrypoint.sh
 ADD files/.bashrc /root/.bashrc
 ADD files/info /usr/bin/info
 ADD files/ganesha.conf /etc/ganesha/ganesha.conf

@@ -72,7 +72,7 @@ spec:
     spec:
       containers:
       - name: daemonset
-        image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
+        image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
@@ -90,25 +90,25 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: boot-init 
+  name: bob-lowcarb 
   labels:
-    app: boot-init
+    app: bob-lowcarb
 spec:
   selector:
     matchLabels:
-      name: boot-init
+      name: bob-lowcarb
   template:
     metadata:
       labels:
-        name: boot-init
+        name: bob-lowcarb
     spec:
       terminationGracePeriodSeconds: 20
       containers:
       - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ["/bin/sh"]
-        args: ["-c", "trap : TERM INT; (while true; do sleep 1000; done)"]
-        name: boot-init
+        #command: ["/bin/sh"]
+        #args: ["-c", "trap : TERM INT; (while true; do sleep 1000; done)"]
+        name: bob-lowcarb
         resources:
           limits:
             memory: "1Gi"

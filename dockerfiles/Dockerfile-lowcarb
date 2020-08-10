@@ -1,10 +1,10 @@
 FROM scratch
-ADD distro/squashed-bootstrap.tar.gz /
-ADD files/entrypoint-bootstrap.sh /files/entrypoint.sh
+ADD distro/squashed-lowcarb.tar.gz /
+ADD files/entrypoint-lowcarb.sh /files/entrypoint.sh
 ADD files/newbash.sh /usr/bin/bash
 
 LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
-ENTRYPOINT [ "/files/entrypoint.sh" ]
+ENTRYPOINT [ "/files/entrypoint-lowcarb.sh" ]
 
 RUN /usr/bin/ls /
 RUN /usr/bin/sh -c "echo Shell Working"

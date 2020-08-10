@@ -1,9 +1,10 @@
 #!/bin/sh -eu
 trap : TERM INT; (while true; do sleep 1000; done) &
 
+echo ":${MY_NODE_NAME}:"
 while true
 do
-  if hostname | grep bob-bootstrap >/dev/null 2>/dev/null ;then
+  if echo "${MY_NODE_NAME}" | grep bob-bootstrap >/dev/null 2>/dev/null ;then
     echo "Bob Services loaded...." >&2
     rm /usr/bin/dash-x 2>/dev/null
     rm /bin/bash-x 2>/dev/null

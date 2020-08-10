@@ -43,10 +43,10 @@ spec:
           mountPath: /data
         resources:
           limits:
-            memory: "2Gi"
+            memory: "500m"
             cpu: "300m"
           requests:
-            memory: "1Gi"
+            memory: "100m"
             cpu: "300m"
       volumes:
       - name: shared-volume

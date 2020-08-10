@@ -14,7 +14,7 @@ cd distro/work || exit
 
 sudo tar zxf ../ubuntu-focal-latest.tar.gz 
 
-#-----  bootstrap  and mini distro
+#-----  lowcarb  and mini distro
 sudo find usr/bin \( -type f -o -type l \) \( -name "*" ! -name "\["  ! -name "dash" ! -name "ls" ! -name "sleep" ! -name "rsync" ! -name "socat" \) -delete
 sudo find . -empty -type d -delete
 sudo rm -rf etc/pam.d
@@ -62,15 +62,7 @@ sudo rm -rf  var/lib/dpkg var/log/dpkg*
 sudo find var/log -type f -delete
 
 
-#----- Sidecar distro
-#sudo rm -rf var/cache/debconf/templates.dat
-#sudo tar --exclude usr -zcf ../squashed.tar.gz ./*
-
-##------
-#sudo cp ../socat usr/bin/socat && sudo chown root:root usr/bin/socat && sudo chmod 755 usr/bin/socat
-#sudo cp ../rsync usr/bin/rsync && sudo chown root:root usr/bin/rsync && sudo chmod 755 usr/bin/rsync
-#sudo cp -R ../x86_64-linux-gnu/*  usr/lib/x86_64-linux-gnu/. && sudo chown root:root usr/lib/x86_64-linux-gnu/*  && sudo chmod 755 usr/lib/x86_64-linux-gnu/*
-sudo tar --exclude var -zcvf ../squashed-bootstrap.tar.gz ./*
+sudo tar --exclude var -zcvf ../squashed-lowcarb.tar.gz ./*
 
 ##-----
 

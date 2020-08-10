@@ -104,7 +104,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 20
       containers:
-      - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
+      - image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         #command: ["/bin/sh"]
         #args: ["-c", "trap : TERM INT; (while true; do sleep 1000; done)"]

@@ -116,9 +116,6 @@ spec:
           requests:
             memory: "1M"
             cpu: "500m"
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr-sync
         env:
         - name: MY_NODE_NAME
           valueFrom:
@@ -145,9 +142,4 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
       restartPolicy: Always
-      volumes:
-      - name: shared-volume
-        emptyDir: 
-          medium: Memory
-          sizeLimit: "1Gi"
 {{- end }}

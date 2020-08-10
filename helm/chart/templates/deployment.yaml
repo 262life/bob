@@ -79,12 +79,12 @@ spec:
             memory: 10Mi
           requests:
             cpu: 100m
+            memory: 4Mi
         env:
         - name: BOB_SERVICE_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-            memory: 4Mi
 {{- if .Values.okteto.enabled }}
 ---
 apiVersion: apps/v1

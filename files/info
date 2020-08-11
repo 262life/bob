@@ -935,26 +935,22 @@ asciiText () {
 			startline="0"
 			logowidth="36"
 			fulloutput=(
-"${c3}               ......               %s"
-"${c3}         .'${c1}D${c3}lddddddddddd'.          %s"
-"${c3}      .'ddd${c1}X${c5}${b}${c3}xdddddddddddddd.       %s"
-"${c3}    .dddddx${c1}M${c5}${b}${c1}M0${c3};dddddddddddddd.     %s"
-"${c3}   'dddddl${c1}MM${c5}${b}${c1}MMN${c3}cddddddddddddddd.   %s"
-"${c3}  ddddddc${c1}WMM${c5}${b}${c1}MMMW${c3}lddddddddddddddd.  %s"
-"${c3} ddddddc${c1}WMMM${c5}${b}${c1}MMMMO${c3}ddoddddddddddddd. %s"
-"${c3}.ddddd:${c1}NMMMM${c5}${b}${c1}MMMMK${c3}dd${c1}NX${c3}od;c${c1}lxl${c3}dddddd %s"
-"${c3}dddddc${c1}WMMMMM${c5}${b}${c1}MMMMNN${c3}dd${c1}MMXl${c3};d${c1}00xl;${c3}ddd.%s"
-"${c3}ddddl${c1}WMMMMMM${c5}${b}${c1}MMMMMM${c3}d;${c1}MMMM0${c3}:dl${c1}XMMXk:${c3}'%s"
-"${c3}dddo${c1}WMMMMMMM${c5}${b}${c1}MMMMMM${c3}dd${c1}MMMMMW${c3}od${c3};${c1}XMMMOd%s"
-"${c3}.dd${c1}MMMMMMMMM${c5}${b}${c1}MMMMMM${c3}d:${c1}MMMMMMM${c3}kd${c1}lMKll %s"
-"${c3}.;dk0${c1}KXNWWMM${c5}${b}${c1}MMMMMM${c3}dx${c1}MMMMMMM${c3}Xl;lxK; %s"
-"${c3}  'ddd;:ccod${c5}${b}     ${c1}          d'      %s"
-#BOB
-"${c1}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}   %s"
-"${c2}    ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}     %s"
-"${c2}      ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}       %s"
-"${c2}         ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}  %s"
-"${c4}  ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}  %s")
+
+"                                        %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}        ${c5}/${b}${c2}       ${b}${b}${b}${b}${b}${b}${b}${b}    %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}       ${c5}${b}${b}${c2}       ${b}${b}${b}${b}${b}${b}${b}${b}${b}   %s"
+"${c2}   ${b}${b}      ${b}${b}       ${c5}${b}${c2}       ${b}${b}      ${b}${b}  %s"
+"${c2}   ${b}${b}      ${b}${b}      ${c4}${b}${b}${b}      ${c2}${b}${b}      ${b}${b}  %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}     ${c1}${b}${b}${b}${b}${b}${b}${b}${c2}    ${b}${b}${b}${b}${b}${b}${b}${b}${b}   %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}    ${c1}${b}${b}${b}${b}${b}${b}${b}${b}${b}${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}   %s"
+"${c2}   ${b}${b}      ${b}${b}  ${c1}${b}${b}  o  o ${b}${b}${c2}  ${b}${b}      ${b}${b}  %s"
+"${c2}   ${b}${b}      ${b}${b}  ${c1}${b}${b}       ${b}${b}${c2}  ${b}${b}      ${b}${b}  %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}    ${c1}${b}${b}${b}${b}${b}${b}${b}${b}${b}${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}${b}   %s"
+"${c2}   ${b}${b}${b}${b}${b}${b}${b}${b}      ${c1}${b}${b}${b}${b}${b}${b}${b}${c2}    ${b}${b}${b}${b}${b}${b}${b}${b}    %s"
+"${c2}                                        %s"
+"${c1}   B A S H   o n   B o a r d !          %s"
+"${c2}                                        %s"
+"${c4}  ${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}${b}  %s")
 		;;
 	esac
 

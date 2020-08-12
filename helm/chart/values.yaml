@@ -3,9 +3,11 @@
 # Declare variables to be passed into your templates.
 
 namespace: rsliotta
-manifest: Daemonset
+manifest: DaemonSet
 image:
   pullPolicy: IfNotPresent
   repo: bobdotme
   replicas: 3
   version: latest
+okteto:
+  enabled: true  

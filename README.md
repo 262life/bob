@@ -6,7 +6,7 @@ Bash on board! (we like to call it BOB) is an open source **general purpose cont
 
 ![Hex.pm](https://img.shields.io/hexpm/l/apa)
 [![CodeFactor](https://www.codefactor.io/repository/github/bobdotme/bob/badge)](https://www.codefactor.io/repository/github/bobdotme/bob)
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/release/v0.9.7-rc.2?label=build%20v0.9.7-rc.2)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/BobDotMe/bob/release/v0.9.7-rc.3?label=build%20v0.9.7-rc.3)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/BobDotMe/bob)\
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-mini?label=docker%20pulls%20-%20bob-mini)
 ![Docker Pulls](https://img.shields.io/docker/pulls/bobdotme/bob-core?label=docker%20pulls%20-%20bob-core)

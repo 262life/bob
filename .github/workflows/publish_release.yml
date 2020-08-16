@@ -61,22 +61,22 @@ jobs:
       - name: Cleanup before push
         run: |
           bash -c "rm -f distro/ubuntu-focal-latest.tar.gz"
-      - name: Run Snyk to check Docker image for vulnerabilities - bob-core
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
-          command: monitor
-      - name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          image: bobdotme/bob-lowcarb:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
-          command: monitor
+      #- name: Run Snyk to check Docker image for vulnerabilities - bob-core
+      #  uses: snyk/actions/docker@master
+      #  env:
+      #    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #  with:
+      #    image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
+      #    args: --severity-threshold=low
+      #    command: monitor
+      #- name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
+      #  uses: snyk/actions/docker@master
+      #  env:
+      #    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #  with:
+      #    image: bobdotme/bob-lowcarb:${{ env.RELEASE_VERSION }}
+      #    args: --severity-threshold=low
+      #    command: monitor
       - name: push
         uses: github-actions-x/commit@v2.6
         with:

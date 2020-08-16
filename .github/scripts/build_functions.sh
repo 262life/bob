@@ -31,7 +31,7 @@ build_container() {
 
   docker build -f ${DOCKERFILE} -t $CONTAINER:$TAG  .
   
-  if [ ${NOPUBLISH:-false} == 'true' ]; then exit
+  if [ ${PUBLISH:-true} == 'false' ]; then exit
   else
     echo  ${docker_token} | docker --debug login --password-stdin --username ${docker_login} 
     docker tag  $CONTAINER:$TAG bobdotme/$CONTAINER:$TAG

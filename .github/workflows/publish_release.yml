@@ -24,7 +24,7 @@ jobs:
           else
             echo "::set-env name=RELEASE_PRE::false"
             echo "::set-env name=RELEASE_LATEST::true"
-          fi  
+          fi
       - name: Create Plugins
         run: |
           bash -c "chmod 755 .github/scripts/plugins.sh; .github/scripts/plugins.sh"
@@ -60,7 +60,7 @@ jobs:
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
       - name: Cleanup before push
         run: |
-          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz"       
+          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz"
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:
@@ -109,4 +109,4 @@ jobs:
             examples/testpv.yaml
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
-            helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz          
+            helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz

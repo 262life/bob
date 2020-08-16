@@ -31,7 +31,7 @@ sudo ldd  bin/* usr/bin/* \
        | grep -v "^.*:" \
        | sort -u > /tmp/ldd.db.raw
 
-grep "=" /tmp/ldd.db.raw | awk -F\=\> '{print $2}' > /tmp/ldd.db
+grep "=" /tmp/ldd.db.raw | awk -F=\> '{print $2}' > /tmp/ldd.db
 grep "^\/" /tmp/ldd.db.raw  >> /tmp/ldd.db
 mv /tmp/ldd.db /tmp/ldd.db.raw2
 
@@ -40,7 +40,7 @@ ld_ver=$(sudo basename $(find usr/lib -name "ld-*.so") | sed -e "s/ld-//g" -e "s
 find usr/lib -name "*${ld_ver}*" >> /tmp/ldd.db.raw2
 
 grep -v not  /tmp/ldd.db.raw2 |
-while read r
+while read -r r
 do
   basename "$r*" >> /tmp/ldd.db
 done

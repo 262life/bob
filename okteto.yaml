@@ -3,4 +3,4 @@ build:
   dockerfile: dockerfiles/Dockerfile-okteto
 name: dev
 #image: registry.cloud.okteto.net/rsliotta/dev:devel
-command: ["/bin/bash"] 
+command: ["/bin/bash"]

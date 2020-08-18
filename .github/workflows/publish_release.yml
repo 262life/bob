@@ -67,7 +67,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=low
+          args: --severity-threshold=low --debug
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
         uses: snyk/actions/docker@master

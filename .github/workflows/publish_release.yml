@@ -67,7 +67,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
-          args: '--severity-threshold=low --debug'
+          args: --severity-threshold=low --debug
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
         uses: snyk/actions/docker@master
@@ -77,7 +77,7 @@ jobs:
           image: bobdotme/bob-lowcarb:${{ env.RELEASE_VERSION }}
           args: --severity-threshold=low --debug
           command: monitor
-       - name: push
+      - name: push
         uses: github-actions-x/commit@v2.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

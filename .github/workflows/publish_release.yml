@@ -83,7 +83,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --severity-threshold=high --debug
-          file: helm/chart/Chart.yaml
+          file: helm/chart/templates/deployment.yaml
           command: test
       - name: push
         uses: github-actions-x/commit@v2.6

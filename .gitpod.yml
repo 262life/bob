@@ -3,7 +3,8 @@ image:
 tasks:
   - init: 'set +x; clear'
     command: |
-
+      set +x;clear
+       
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
       function gt() {

@@ -8,11 +8,11 @@ tasks:
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
       function gt() {
-        TAG=${1}; git tag --delete ${TAG} 2>/dev/null; git push  --delete origin ${TAG} 2>/dev/null; git tag  ${TAG}; git push --tags
+        TAG=\${1}; git tag --delete \${TAG} 2>/dev/null; git push  --delete origin \${TAG} 2>/dev/null; git tag  \${TAG}; git push --tags
       }
 
       function deploy() {
-        gq https://cloud.okteto.com/graphql -H "Authorization: Bearer $OKTETO_TOKEN" -q 'mutation deployGitRepository($name: String!, $space: String!, $repository: String!, $branch: String!) {deployGitRepository( name: $name, space: $space, repository: $repository, branch: $branch) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
+        gq https://cloud.okteto.com/graphql -H "Authorization: Bearer \$OKTETO_TOKEN" -q 'mutation deployGitRepository($name: String!, $space: String!, $repository: String!, \$branch: String!) {deployGitRepository( name: \$name, \space: \$space, repository: \$repository, branch: $branch) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
       }
       
       EOD

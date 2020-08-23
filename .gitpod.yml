@@ -30,4 +30,5 @@ tasks:
       okteto login --token $OKTETO_TOKEN
       cp ~/.kube/config ~/.kube/okteto.cfg
       docker login registry.cloud.okteto.net -u rsliotta -p ${OKTETO_TOKEN}
+      exec /bin/bash
       

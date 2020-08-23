@@ -12,7 +12,7 @@ tasks:
       }
 
       function deploy() {
-        gq https://cloud.okteto.com/graphql -H "Authorization: Bearer \$OKTETO_TOKEN" -q 'mutation deployGitRepository($name: String!, $space: String!, $repository: String!, \$branch: String!) {deployGitRepository( name: \$name, \space: \$space, repository: \$repository, branch: $branch) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
+        gq https://cloud.okteto.com/graphql -H "Authorization: Bearer \$OKTETO_TOKEN" -q 'mutation deployGitRepository(\$name: String!, \$space: String!, \$repository: String!, \$branch: String!) {deployGitRepository( name: \$name, space: \$space, repository: \$repository, branch: \$branch ) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
       }
       
       EOD

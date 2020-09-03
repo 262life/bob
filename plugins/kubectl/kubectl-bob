@@ -98,6 +98,8 @@ for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
   done
 
 POD_NOWAIT="${OPT_NOWAIT:-false}"
+[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="bobdotme/bob-lowcarb:v0.9.7-rc.3"
+
 
 cat << END | $CMD
 apiVersion: v1
@@ -110,7 +112,7 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme/bob-lowcarb:v0.9.7-rc.3
+  - image: ${POD_IMAGE_VERSION}
     imagePullPolicy: IfNotPresent
     name: ${POD_NAME}
     #ports:

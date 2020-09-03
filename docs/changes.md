@@ -2,10 +2,6 @@
 ### Changes
 - Testing a Release
 
-## [0.9.7-rc.3] - 2020-08-16
-### Changes
-- Testing a Release
-
 ## [0.9.7-rc.2] - 2020-08-09
 ### Changes
 - Refactored the images

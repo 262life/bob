@@ -1,3 +1,7 @@
+## [0.9.7-rc.4] - 2020-09-03
+### Changes
+- Testing a Release
+
 ## [0.9.7-rc.3] - 2020-08-16
 ### Changes
 - Testing a Release

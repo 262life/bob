@@ -99,6 +99,7 @@ for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
 
 POD_NOWAIT="${OPT_NOWAIT:-false}"
 [ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="bobdotme/bob-lowcarb:v0.9.7-rc.3"
+[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_PULL_POLICY='Always' || POD_PULL_POLICY="IfNotPresent"
 
 
 cat << END | $CMD
@@ -113,7 +114,7 @@ spec:
   terminationGracePeriodSeconds: 20
   containers:
   - image: ${POD_IMAGE_VERSION}
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: ${POD_PULL_POLICY}
     name: ${POD_NAME}
     #ports:
     #- containerPort: 80
@@ -170,7 +171,6 @@ if [ $STAT = 0 ]; then
     if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
       echo -n 'waiting '
       while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
-      sleep 1
       kubectl $POD_CONTEXT exec -it $POD_NAME -- /bin/bash
       echo $POD_NAME > $HOME/.kubectl-bob-last-pod
     fi

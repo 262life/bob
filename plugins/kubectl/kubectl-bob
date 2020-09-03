@@ -110,25 +110,25 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 20
   containers:
-  - image: bobdotme/bob-lowcarb:v0.9.7-rc.6
+  - image: bobdotme/bob-lowcarb:v0.9.7-rc.3
     imagePullPolicy: IfNotPresent
     name: ${POD_NAME}
-    ports:
-    - containerPort: 80
-      name: dummy
-      protocol: TCP
+    #ports:
+    #- containerPort: 80
+    #  name: dummy
+    #  protocol: TCP
     resources:
       limits:
         memory: "1Gi"
-        cpu: "1"
+        cpu: "2"
       requests:
         memory: "1M"
         cpu: "500m"
     volumeMounts:
     $POD_PKI_M
     $POD_PV_M
-    - name: shared-volume
-      mountPath: /usr
+    #- name: shared-volume
+    #  mountPath: /usr
 
     env:
     - name: MY_NODE_NAME
@@ -151,28 +151,15 @@ spec:
       valueFrom:
         fieldRef:
           fieldPath: spec.serviceAccountName
+    - name: BOB_SERVICE_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace      
   restartPolicy: Always
-  initContainers:
-  - image: bobdotme/bob-bootstrap:v0.9.7-rc.6
-    imagePullPolicy: IfNotPresent
-    name: initialize
-    resources:
-      limits:
-        memory: "1Gi"
-        cpu: "1"
-      requests:
-        memory: "1M"
-        cpu: "500m"
-    volumeMounts:
-    - name: shared-volume
-      mountPath: /usr-sync
   volumes:
   $POD_PKI_V
   $POD_PV_V
-  - name: shared-volume
-    emptyDir: 
-      medium: Memory
-      sizeLimit: "1Gi"
+ 
 END
 
 STAT=$?
@@ -181,7 +168,8 @@ if [ $STAT = 0 ]; then
     if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
       echo -n 'waiting '
       while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
-      kubectl $POD_CONTEXT exec -it $POD_NAME /bin/bash
+      sleep 1
+      kubectl $POD_CONTEXT exec -it $POD_NAME -- /bin/bash
       echo $POD_NAME > $HOME/.kubectl-bob-last-pod
     fi
   fi

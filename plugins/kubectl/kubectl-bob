@@ -98,7 +98,7 @@ for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
   done
 
 POD_NOWAIT="${OPT_NOWAIT:-false}"
-[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="bobdotme/bob-lowcarb:v0.9.7-rc.3"
+[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="${CURRENT_VERSION}"
 [ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_PULL_POLICY='Always' || POD_PULL_POLICY="IfNotPresent"
 
 
@@ -223,6 +223,8 @@ EOD
 ###########
 
 declare -a OPT_PVC 
+
+CURRENT_VERSION="bob-lowcarb:v0.9.7-rc.4"
 
 . $(dirname $0)/kb-bob-words
 . $(dirname $0)/kb-bob-functions

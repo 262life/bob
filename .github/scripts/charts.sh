@@ -10,7 +10,7 @@ if echo "$OSTYPE" | grep -q 'darwin' ; then loc="${HOME}/projects/bob/helm"; els
 cd helm || exit
 
 sed ${sedopts} -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
-sed ${sedopts} -e "s/^version: .*$/version: $CV/g" chart/values.yaml
+sed ${sedopts} -e "s/version: .*$/version: $CV/g" chart/values.yaml
 sed ${sedopts} -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
 for chart in ./*

@@ -4,7 +4,7 @@ tasks:
   - init: 'set +x; clear'
     command: |
       set +x;clear
-       
+
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
       function gt() {
@@ -14,13 +14,13 @@ tasks:
       function deploy() {
         gq https://cloud.okteto.com/graphql -H "Authorization: Bearer \$OKTETO_TOKEN" -q 'mutation deployGitRepository(\$name: String!, \$space: String!, \$repository: String!, \$branch: String!) {deployGitRepository( name: \$name, space: \$space, repository: \$repository, branch: \$branch ) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
       }
-      
+
       EOD
-      
+    
       echo "source <(kubectl completion bash)" >> ~/.bashrc
       echo "source <(curl -s -L https://github.com/BobDotMe/k8s_shortcuts/releases/latest/download/k8s_shortcuts)" >> ~/.bashrc
 
-      ## Done once per startup 
+      ## Done once per startup
       mkdir ~/.ssh 2>/dev/null
       mkdir ~/.kube 2>/dev/null
       echo $LUCIFER_ID_RSA | base64 --decode > ~/.ssh/id_rsa
@@ -31,4 +31,3 @@ tasks:
       cp ~/.kube/config ~/.kube/okteto.cfg
       docker login registry.cloud.okteto.net -u rsliotta -p ${OKTETO_TOKEN}
       exec /bin/bash
-      

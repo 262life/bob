@@ -1,4 +1,4 @@
-## [0.9.7-rc.6] - 2020-09-05
+## [0.9.7] - 2020-09-06
 ### Changes
 - Testing a Release
 - Refactored the images

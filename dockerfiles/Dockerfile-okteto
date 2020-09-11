@@ -1,0 +1,20 @@
+FROM ubuntu:focal
+
+LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
+
+ADD files/sudummy.sh /usr/bin/sudo
+
+RUN apt update -y  \
+    && apt install -y software-properties-common curl wget iputils-ping dnsutils vim-tiny apt-utils pciutils \
+    && add-apt-repository -y ppa:deadsnakes/ppa \
+    && apt update -y \
+    && apt install -y python3.8 \
+    && echo "Beginning Docker..." \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && add-apt-repository \
+            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable" \
+    && apt -y update \
+    && apt -y install docker-ce
+ 

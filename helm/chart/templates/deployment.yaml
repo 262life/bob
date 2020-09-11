@@ -1,58 +1,4 @@
 ---
-apiVersion: apps/v1
-kind: {{ .Values.manifest}}
-metadata:
-  name: bob-bootstrap
-  namespace: {{ .Values.namespace}}
-  labels:
-    k8s-app: bob-bootstrap
-spec:
-  selector:
-    matchLabels:
-      name: bob-bootstrap
-  template:
-    metadata:
-      labels:
-        name: bob-bootstrap
-    spec:
-      containers:
-      - name: daemonset
-        image: "{{ .Values.image.repo}}/bob-mini:{{ .Values.image.version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        resources:
-          limits:
-            memory: 2000Mi
-          requests:
-            cpu: 100m
-            memory: 4Mi
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr
-      initContainers:
-      - name: bootstrap
-        image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy}}
-        resources:
-          limits:
-            memory: 2000Mi
-          requests:
-            cpu: 100m
-            memory: 4Mi
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr-sync
-        env:
-        - name: BOB_SERVICE_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-      terminationGracePeriodSeconds: 30
-      volumes:
-      - name: shared-volume
-        emptyDir:
-          medium: Memory
-          sizeLimit: "1Gi"
----
 apiVersion: v1
 kind: Service
 metadata:
@@ -100,37 +46,71 @@ spec:
             memory: "2Gi"
             cpu: "300m"
           requests:
-            memory: "1Gi"
+            memory: "100m"
             cpu: "300m"
-        #securityContext:
-        #  privileged: true
       volumes:
       - name: shared-volume
         emptyDir:
           medium: Memory
           sizeLimit: "1Gi"
+---
+apiVersion: apps/v1
+kind: {{ .Values.manifest}}
+metadata:
+  name: bob-bootstrap
+  namespace: {{ .Values.namespace}}
+  labels:
+    k8s-app: bob-bootstrap
+spec:
+  selector:
+    matchLabels:
+      name: bob-bootstrap
+  template:
+    metadata:
+      labels:
+        name: bob-bootstrap
+    spec:
+      containers:
+      - name: daemonset
+        image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          limits:
+            memory: 10Mi
+          requests:
+            cpu: 100m
+            memory: 4Mi
+        env:
+        - name: BOB_SERVICE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
 {{- if .Values.okteto.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: childs-lenard 
+  name: bob-lowcarb
   labels:
-    app: bob
+    app: bob-lowcarb
 spec:
   selector:
     matchLabels:
-      name: childs-lenard
+      name: bob-lowcarb
   template:
     metadata:
       labels:
-        name: childs-lenard
+        name: bob-lowcarb
     spec:
       terminationGracePeriodSeconds: 20
       containers:
-      - image: "{{ .Values.image.repo}}/bob-mini:{{ .Values.image.version }}"
+      - image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: childs-lenard
+        name: bob-lowcarb
         resources:
           limits:
             memory: "1Gi"
@@ -138,88 +118,6 @@ spec:
           requests:
             memory: "1M"
             cpu: "500m"
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr
-        env:
-        - name: MY_NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: MY_POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: MY_POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: MY_POD_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: MY_POD_SERVICE_ACCOUNT
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.serviceAccountName
-      restartPolicy: Always
-      initContainers:
-      - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: initialize
-        resources:
-          limits:
-            memory: "1Gi"
-            cpu: "2"
-          requests:
-            memory: "1M"
-            cpu: "500m"
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr-sync
-        env:
-        - name: BOB_SERVICE_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-      volumes:
-      - name: shared-volume
-        emptyDir: 
-          medium: Memory
-          sizeLimit: "1Gi"
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: boot-init 
-  labels:
-    app: boot-init
-spec:
-  selector:
-    matchLabels:
-      name: boot-init
-  template:
-    metadata:
-      labels:
-        name: boot-init
-    spec:
-      terminationGracePeriodSeconds: 20
-      containers:
-      - image: "{{ .Values.image.repo}}/bob-bootstrap:{{ .Values.image.version }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        command: ["/bin/sh"]
-        args: ["-c", "trap : TERM INT; (while true; do sleep 1000; done)"]
-        name: boot-init
-        resources:
-          limits:
-            memory: "1Gi"
-            cpu: "2"
-          requests:
-            memory: "1M"
-            cpu: "500m"
-        volumeMounts:
-        - name: shared-volume
-          mountPath: /usr-sync
         env:
         - name: MY_NODE_NAME
           valueFrom:
@@ -246,9 +144,4 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
       restartPolicy: Always
-      volumes:
-      - name: shared-volume
-        emptyDir: 
-          medium: Memory
-          sizeLimit: "1Gi"
 {{- end }}

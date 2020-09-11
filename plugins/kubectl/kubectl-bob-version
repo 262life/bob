@@ -20,7 +20,7 @@ while getopts "$optspec" optchar; do
 done
 
 #### Do Not remove this line
-echo 'version: v0.9.7-rc.4'
+echo 'version: v0.9.7'
 
 }
 

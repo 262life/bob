@@ -54,9 +54,11 @@ POD_NAME=${OPT_NAME:-$(getDictWords)}
 [ $VB -gt 0 ] && echo POD Name: $POD_NAME
 
 [ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_KUBECTL_NAMESPACE="$OPT_NAMESPACE"
 [ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+[ $VB -gt 0 ] && echo POD kubectl Namespace: $POD_KUBECTL_NAMESPACE
 
-[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_NAMESPACE"
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_CONTEXT"
 [ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
 
 [ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
@@ -169,8 +171,8 @@ if [ $STAT = 0 ]; then
   if [ $POD_NOWAIT != 'true'  ]; then
     if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
       echo -n 'waiting '
-      while [[ $(kubectl $POD_CONTEXT get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
-      kubectl $POD_CONTEXT exec -it $POD_NAME -- /bin/bash
+      while [[ $(kubectl $POD_CONTEXT -n $POD_KUBECTL_NAMESPACE get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
+      kubectl $POD_CONTEXT -n $POD_KUBECTL_NAMESPACE exec -it $POD_NAME -- /bin/bash
       echo $POD_NAME > $HOME/.kubectl-bob-last-pod
     fi
   fi

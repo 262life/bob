@@ -29,7 +29,7 @@ After the cluster is running, you must now install the BOB plugins.  You WILL re
     console
     
     #Set the version to a production semantic version
-    curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/v0.8.7-rc.5/installer.sh | bash -s -- v0.8.7-rc.5
+    export vers="v0.9.7"; curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/${vers}/installer.sh | bash -s -- ${vers}
 
 ## kubectl plugin
 Details on the plugin can be found [here](commands.md).

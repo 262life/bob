@@ -2,10 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: rsliotta
-manifest: Daemonset
+namespace: bob
+manifest: DaemonSet
 image:
   pullPolicy: IfNotPresent
   repo: bobdotme
   replicas: 3
-  version: latest
+  version: v0.9.7
+okteto:
+  enabled: false

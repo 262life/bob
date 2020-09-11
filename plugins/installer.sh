@@ -2,6 +2,7 @@
 
 VERSION=${1:-none}
 DESTPATH=${2:-/usr/local/bin}
+SERVICENAMESPACE=${3:-bob}
 
 if [ ${VERSION} == 'none' ]; then
     echo "========================================================="
@@ -29,6 +30,7 @@ cd ${DESTPATH}
 
 curl --location --silent -o - https://github.com/BobDotMe/bob/releases/download/${VERSION}/bob-plugins-${VERSION}.tgz | 
 sudo tar zxvf - && sudo chmod 755 kubectl-b* kb-bob-*
+sudo bash -c "echo ${SERVICENAMESPACE} > kb-service-properties"
 
 
 

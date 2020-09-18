@@ -29,5 +29,6 @@ RUN sudo apt install -y shellcheck \
     && sudo rm -rf /var/lib/apt/lists/* 
 
 # Apply user-specific settings
+# Refresh on 2020-09-18
 
 

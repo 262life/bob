@@ -35,6 +35,6 @@ tasks:
       chmod -R 700 ~/.ssh
       okteto login --token $OKTETO_TOKEN
       cp ~/.kube/config ~/.kube/okteto.cfg
-      docker login registry.cloud.okteto.net -u $GITPOD_GIT_USER_NAME -p ${OKTETO_TOKEN}
-      okteto namespace $GITPOD_GIT_USER_NAME
+      docker login registry.cloud.okteto.net -u $OKTETO_USER -p ${OKTETO_TOKEN}
+      okteto namespace $OKTETO_USER
       exec /bin/bash

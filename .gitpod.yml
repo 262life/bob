@@ -5,6 +5,8 @@ tasks:
     command: |
       set +x;clear
 
+      [ ${OPT_CONTEXT:-none} == 'none' ] && echo "OKTETO_TOKEN Not set!  This will surely cause issues below...."  && exit
+      
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
       function gt() {

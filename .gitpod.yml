@@ -5,8 +5,10 @@ tasks:
     command: |
       set +x;clear
 
-      [ ${OKTETO_TOKEN:-none} == 'none' ] && echo "OKTETO_TOKEN Not set!  This will surely cause issues below...." 
-      [ ${OKTETO_USER:-none} == 'none' ] && echo "OKTETO_USER Not set!    This will surely cause issues below...." 
+      [ ${OKTETO_TOKEN:-none} == 'none' ] && echo "OKTETO_TOKEN Not set!              This will surely cause issues below...." 
+      [ ${OKTETO_USER:-none} == 'none' ] && echo "OKTETO_USER Not set!                This will surely cause issues below...." 
+      [ ${OKTETO_REPOSITORY:-none} == 'none' ] && echo "OKTETO_REPOSITORY Not set!    This will surely cause issues below...." 
+      [ ${OKTETO_BRANCH:-none} == 'none' ] && echo "OKTETO_BRANCH Not set!            This will surely cause issues below...." 
       
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
@@ -14,12 +16,12 @@ tasks:
         TAG=\${1}; git tag --delete \${TAG} 2>/dev/null; git push  --delete origin \${TAG} 2>/dev/null; git tag  \${TAG}; git push --tags
       }
 
-      #function deploy() {
+      #function build() {
       #  gq https://cloud.okteto.com/graphql -H "Authorization: Bearer \$OKTETO_TOKEN" -q 'mutation deployGitRepository(\$name: String!, \$space: String!, \$repository: String!, \$branch: String!) {deployGitRepository( name: \$name, space: \$space, repository: \$repository, branch: \$branch ) {id, status}}' -v 'name=bob' -v 'space=' -v 'repository=https://github.com/BobDotMe/bob' -v 'branch=master'
       #}
 
       function build() {
-        okteto pipeline deploy
+        okteto pipeline deploy  --repository ${OKTETO_REPOSITORY} --branch ${OKTETO_BRANCH}
       }
 
       EOD

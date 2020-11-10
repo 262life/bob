@@ -10,4 +10,5 @@
 [Roadmap](road.md)
 [Building](build.md)
 [License](license.md)
+[Contributing](contrib.md)
 [gimmick:theme](flatly)

@@ -103,7 +103,7 @@ POD_NOWAIT="${OPT_NOWAIT:-false}"
 [ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="${CURRENT_VERSION}"
 [ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_PULL_POLICY='Always' || POD_PULL_POLICY="IfNotPresent"
 
-POD_SERVICENAMESPACE=$(cat $(dirname $0)/kb-service-properties 2>/dev/null)
+POD_SERVICENAMESPACE="$(cat $(dirname $0)/kb-service-properties 2>/dev/null || echo ${OKTETO_USER})"
 
 cat << END | $CMD
 apiVersion: v1

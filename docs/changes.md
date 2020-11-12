@@ -2,6 +2,7 @@
 ### Changes
 - Improvements for Gitpod and Okteto
 - Minor fixes to banner
+- Security fix for Github action
 ### Adds
 - Added screen
 - Added ldap utilities

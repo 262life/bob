@@ -562,7 +562,7 @@ detectcpu () {
 			fi
 		done
 		if [ -e "$thermal" ] && [ "${thermal:+isSetToNonNull}" = 'isSetToNonNull' ]; then
-			temperature=$(bc <<< "scale=1; $(cat "$thermal")/1000")
+			temperature=0;
 		fi
 	fi
 	if [ -n "$temperature" ]; then

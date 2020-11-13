@@ -8,6 +8,6 @@ image:
   pullPolicy: IfNotPresent
   repo: bobdotme
   replicas: 3
-  version: v0.8.6
+  version: v0.9.8
 okteto:
   enabled: false

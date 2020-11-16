@@ -31,36 +31,20 @@ jobs:
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Prebuild
         run: |
-          bash -c "ls distro/ubuntu-focal-latest-* 2>/dev/null; if [ $? = 0 ]; then rm -f distro/ubuntu-focal-latest-* ;fi; touch distro/ubuntu-focal-latest-semiphore"
-      - name: Prepush
-        uses: github-actions-x/commit@v2.6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'master'
-          commit-message: 'publish'
-          force-add: 'false'
-          files: distro/ubuntu-focal-latest-*
-          name: rsliotta
-          email: bob@bobdot.me
+          bash -c "cd distro; wget https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
+          bash -c "cd distro; wget https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 .github/scripts/build_scratch_image.sh; .github/scripts/build_scratch_image.sh"
-          bash -c "chmod 755 .github/scripts/makedistro.sh; .github/scripts/makedistro.sh"
-          bash -c "cat distro/ubuntu-focal-latest-* > distro/ubuntu-focal-latest.tar.gz"
-          bash -c "ls -l distro; tar ztvf distro/squashed-lowcarb.tar.gz"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-lowcarb .github/scripts/init.sh bob-lowcarb"
           bash -c "chmod 755 .github/scripts/charts.sh; .github/scripts/charts.sh"
           bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
-      - name: Cleanup before push
-        run: |
-          bash -c "rm -f distro/ubuntu-focal-latest.tar.gz"
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core
         uses: snyk/actions/docker@master
         env:
@@ -92,7 +76,7 @@ jobs:
           push-branch: 'master'
           commit-message: 'publish'
           force-add: 'true'
-          files: README.md VERSION docs/index.yaml docs/*.tgz docs/commands.md docs/commands/* helm/chart/* distro/*.tar.gz distro/ubuntu-focal-latest-*
+          files: README.md VERSION docs/index.yaml docs/*.tgz docs/commands.md docs/commands/* helm/chart/*
           name: rsliotta
           email: bob@bobdot.me
       - name: Release

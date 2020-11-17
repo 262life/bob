@@ -1,8 +1,6 @@
 name: telegram push
-on:
-  push:
-    tags:
-    - "*"
+on: [push]
+ 
 jobs:
 
   build:

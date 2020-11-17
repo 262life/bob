@@ -7,13 +7,13 @@ jobs:
   release:
     runs-on: ubuntu-20.04
     steps:
-    - name: send custom message with args
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v1
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
           echo "RELEASE_NAME_POSTFIX=$POSTFIX" >> $GITHUB_ENV

@@ -2,8 +2,30 @@ apiVersion: v1
 entries:
   bob:
   - apiVersion: v2
+    appVersion: v0.9.81
+    created: "2020-11-17T14:47:57.757806415Z"
+    description: Bash on Board! - General purpose container for Kubernetes
+    digest: 9998a6acaf81d36ed3e67956e31285fa5c9527bb15f14e5872cd89fc8fb72d2c
+    home: https://BobDotMe.github.io/bob
+    icon: https://raw.githubusercontent.com/coreos/etcd/master/logos/etcd-horizontal-color.png
+    keywords:
+    - bob
+    - BobDotMe
+    - bash
+    - bobdotme
+    maintainers:
+    - email: bob@bobdot.me
+      name: rsliotta
+    name: bob
+    sources:
+    - https://github.com/BobDotMe/bob
+    type: application
+    urls:
+    - https://BobDotMe.github.io/bob/bob-v0.9.81.tgz
+    version: v0.9.81
+  - apiVersion: v2
     appVersion: v0.9.9
-    created: "2020-11-16T23:36:46.998777482Z"
+    created: "2020-11-17T14:47:57.758123621Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: d66db774bbd52af7f4afe9588de8cd1308aad42da90427636cabcf4878527dac
     home: https://BobDotMe.github.io/bob
@@ -25,7 +47,7 @@ entries:
     version: v0.9.9
   - apiVersion: v2
     appVersion: v0.9.8
-    created: "2020-11-16T23:36:46.998447283Z"
+    created: "2020-11-17T14:47:57.757482609Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 68be759ec206db36fd0244665327e040ad76018305d4b878f507d5d5d27e87ae
     home: https://BobDotMe.github.io/bob
@@ -47,7 +69,7 @@ entries:
     version: v0.9.8
   - apiVersion: v2
     appVersion: v0.9.8-rc.1
-    created: "2020-11-16T23:36:46.998083285Z"
+    created: "2020-11-17T14:47:57.748946849Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: da81eb9eb5645c89f761fb582329efe3f8881094d2dc1f577174fefa815e4a50
     home: https://BobDotMe.github.io/bob
@@ -69,7 +91,7 @@ entries:
     version: v0.9.8-rc.1
   - apiVersion: v2
     appVersion: v0.9.7
-    created: "2020-11-16T23:36:46.997699187Z"
+    created: "2020-11-17T14:47:57.748667443Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 7a77c4381375f61ac90f08d52f11df5d6abc681ff167f42d53b5d37751c0aab3
     home: https://BobDotMe.github.io/bob
@@ -91,7 +113,7 @@ entries:
     version: v0.9.7
   - apiVersion: v2
     appVersion: v0.9.7-rc.6
-    created: "2020-11-16T23:36:46.997259189Z"
+    created: "2020-11-17T14:47:57.748385238Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 9d8d2380dea5fa4038c6651d529ae595b132b77b5e1ade864eea1c2dca4519f6
     home: https://BobDotMe.github.io/bob
@@ -113,7 +135,7 @@ entries:
     version: v0.9.7-rc.6
   - apiVersion: v2
     appVersion: v0.9.7-rc.5
-    created: "2020-11-16T23:36:46.996919991Z"
+    created: "2020-11-17T14:47:57.748096033Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 520d50d761839fc2a6cdcfe13bd02c406a1c277936d41e5b3c8262bb6863ebe1
     home: https://BobDotMe.github.io/bob
@@ -135,7 +157,7 @@ entries:
     version: v0.9.7-rc.5
   - apiVersion: v2
     appVersion: v0.9.7-rc.4
-    created: "2020-11-16T23:36:46.996561792Z"
+    created: "2020-11-17T14:47:57.747828928Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 076e583ec079dd87fb985cdf1f7fe52190a604ebfdfac6ce4f0fa1556aa96f7a
     home: https://BobDotMe.github.io/bob
@@ -157,7 +179,7 @@ entries:
     version: v0.9.7-rc.4
   - apiVersion: v2
     appVersion: v0.9.7-rc.3
-    created: "2020-11-16T23:36:46.996079595Z"
+    created: "2020-11-17T14:47:57.747556522Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 00d2659a0108259441c5d2de126d7a2567c5fc0a8415e9e9410d8cf584953f49
     home: https://BobDotMe.github.io/bob
@@ -179,7 +201,7 @@ entries:
     version: v0.9.7-rc.3
   - apiVersion: v2
     appVersion: v0.9.7-rc.2
-    created: "2020-11-16T23:36:46.995722996Z"
+    created: "2020-11-17T14:47:57.747258417Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 5a16c0ab6e3116f2a05bee9406aab93f9f07ef7df9d72f3fb140ac5f34fadf03
     home: https://BobDotMe.github.io/bob
@@ -201,7 +223,7 @@ entries:
     version: v0.9.7-rc.2
   - apiVersion: v2
     appVersion: v0.9.7-rc.1
-    created: "2020-11-16T23:36:46.995421198Z"
+    created: "2020-11-17T14:47:57.746996112Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 41490761872ce8330ae826794b4105c0ea735ed6b455a8fa3d406fd10209737d
     home: https://BobDotMe.github.io/bob
@@ -223,7 +245,7 @@ entries:
     version: v0.9.7-rc.1
   - apiVersion: v2
     appVersion: v0.9.6
-    created: "2020-11-16T23:36:46.995083699Z"
+    created: "2020-11-17T14:47:57.746692806Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 13a4050806f066febd78f227cc99a9e07c3ef060a0c11992ce72a1dfe27f0b0c
     home: https://BobDotMe.github.io/bob
@@ -245,7 +267,7 @@ entries:
     version: v0.9.6
   - apiVersion: v2
     appVersion: v0.9.5
-    created: "2020-11-16T23:36:46.994760201Z"
+    created: "2020-11-17T14:47:57.746464402Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: 5f9f427dca4368d2e1f0fb60cd1ef376d01f60f84e77efd5ccc026fb5bba6b30
     home: https://BobDotMe.github.io/bob
@@ -267,7 +289,7 @@ entries:
     version: v0.9.5
   - apiVersion: v2
     appVersion: v0.8.6
-    created: "2020-11-16T23:36:46.994450202Z"
+    created: "2020-11-17T14:47:57.746231398Z"
     description: Bash on Board! - General purpose container for Kubernetes
     digest: c634e7fbd0347295c7210c80dc2e45b4451db43369b3e2a445486f7172b5b5e3
     home: https://BobDotMe.github.io/bob
@@ -287,4 +309,4 @@ entries:
     urls:
     - https://BobDotMe.github.io/bob/bob-v0.8.6.tgz
     version: v0.8.6
-generated: "2020-11-16T23:36:46.993607006Z"
+generated: "2020-11-17T14:47:57.745745488Z"

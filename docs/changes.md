@@ -1,3 +1,7 @@
+## [0.9.81] - 2020-11-17
+### Changes
+- Abstraction of binary image.
+
 ## [0.9.8] - 2020-11-12
 ### Changes
 - Improvements for Gitpod and Okteto

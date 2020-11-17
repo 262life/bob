@@ -7,7 +7,12 @@ jobs:
   release:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
+     - name: send custom message with args
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+    - name: Checkout
         uses: actions/checkout@v1
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
@@ -94,3 +99,9 @@ jobs:
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
             helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+ 

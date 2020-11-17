@@ -13,7 +13,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: The ${{ github.event_name }} event triggered first step.
+        args: A new ${{ github.event_name }} event with a commit_id of ${{ github.commit_ref }} for ${{ github.github.event.path }}
     - uses: actions/checkout@master
     - name: send custom message with args
       uses: appleboy/telegram-action@master

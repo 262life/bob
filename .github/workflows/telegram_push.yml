@@ -13,4 +13,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        args: A new ${{ github.event_name }} event by ${{ GITHUB_ACTOR }} with a commit_id of ${{ GITHUB_REF }} for ${{ GITHUB_EVENT_PATH }}   
+        args: A new ${{ github.event_name }} event by ${{ repo.namespace }} with a commit_id of ${{ GITHUB_REF }} for ${{ GITHUB_EVENT_PATH }}   

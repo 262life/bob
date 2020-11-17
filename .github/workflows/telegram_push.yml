@@ -15,4 +15,4 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           A new ${{ github.event_name }} event by ${{ github.actor }} repo ${{ github.repository }} 
-            - ${{ github.event_path }}
+            - ${{ github.sha }}

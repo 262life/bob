@@ -28,6 +28,7 @@ tasks:
     
       echo "source <(kubectl completion bash)" >> ~/.bashrc
       echo "source <(curl -s -L https://github.com/BobDotMe/k8s_shortcuts/releases/latest/download/k8s_shortcuts)" >> ~/.bashrc
+      echo "complete -F __start_kubectl k"  >> ~/.bashrc
 
       ## Done once per startup
       mkdir ~/.ssh 2>/dev/null

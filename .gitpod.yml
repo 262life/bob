@@ -5,11 +5,14 @@ tasks:
     command: |
       set +x;clear
 
+      export OKTETO_BRANCH=$(git branch -v | awk '{print $2}')
+      export OKTETO_REPOSITORY=$(git remote -v | grep \(push\) | awk '{print $2}')
+
       [ ${OKTETO_TOKEN:-none} == 'none' ] && echo "OKTETO_TOKEN Not set!              This will surely cause issues below...." 
       [ ${OKTETO_USER:-none} == 'none' ] && echo "OKTETO_USER Not set!                This will surely cause issues below...." 
       [ ${OKTETO_REPOSITORY:-none} == 'none' ] && echo "OKTETO_REPOSITORY Not set!    This will surely cause issues below...." 
       [ ${OKTETO_BRANCH:-none} == 'none' ] && echo "OKTETO_BRANCH Not set!            This will surely cause issues below...." 
-      
+
       # Added to bashrc so each shell gets the settings
       cat <<EOD >> ~/.bashrc
       function gt() {

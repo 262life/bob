@@ -1,8 +1,8 @@
 icon: https://github.com/BobDotMe/bob/raw/master/docs/bob.png
 deploy:
   - "cd distro"
-  - "curl -s -H https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
-  - "curl -s -H https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
+  - "curl -s -L https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
+  - "curl -s -L https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
   - "cd .."
   - okteto build -t okteto.dev/bob-lowcarb:${OKTETO_GIT_COMMIT} -f dockerfiles/Dockerfile-lowcarb
   - okteto build -t okteto.dev/bob-lowcarb:preview -f dockerfiles/Dockerfile-lowcarb

@@ -28,7 +28,7 @@ For installation, deployment, and administration, see our [Documentation](https:
 
 ## Contributing
 
-We welcome contributions. See [Contributing](contrib.md) and [Getting Started](https://github.com/bobdotme/bob/docs/GETTING_STARTED.md) guides to get started.
+We welcome contributions. See [Contributing](contrib.md) and [Getting Started](https://github.com/BobDotMe/bob/blob/master/docs/GETTING_STARTED.md) guides to get started.
 We welcome contributions. See [license](license.md) to get started.
 
 ## Report a Bug

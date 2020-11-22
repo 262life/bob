@@ -18,7 +18,7 @@ BoB! turns a simple container instanciation into a power support tool for genera
 
 BoB! integrates deeply into cloud native environments leveraging extension points and providing a seamless experience.
 For more details about the solutions currently supported by BoB!, please refer to the [project status section](#project-status) below.
-We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://bobdotme.github.io/bob/#!road.md) for more details.
+We plan to continue adding support for many common functions required based on community demand and engagement in future releases. See our [roadmap](https://github.com/BobDotMe/bob/blob/master/docs/road.md) for more details.
 
 ## Licensing
 
@@ -26,7 +26,7 @@ BoB! is under the Apache 2.0 [License.](https://github.com/BobDotMe/bob/blob/mas
 
 ## Getting Started and Documentation
 
-For installation, deployment, and administration, see our [Documentation](https://bobdotme.github.io/bob/#!documentation.md)
+For installation, deployment, and administration, see our [Documentation](https://github.com/BobDotMe/bob/blob/master/docs/documentation.md)
 
 ## Contributing
 
@@ -48,34 +48,26 @@ Please use the following to reach members of the community:
 
 ### Reporting Security Vulnerabilities
 
-If you find a vulnerability or a potential vulnerability in BoB! please let us know immediately at
-[bob@bobdot.me](mailto:bob@bobdot.me). We'll send a confirmation email to acknowledge your
+If you find a vulnerability or a potential vulnerability in BoB! please let us know immediately at [bob@bobdot.me](mailto:bob@bobdot.me). We'll send a confirmation email to acknowledge your
 report, and we'll send an additional email when we've identified the issues positively or
 negatively.
 
-
 ## Project Status
 
-The status of each utility provider supported by BOB can be found in the table below.
+The status of each utility provider supported by BoB! can be found in the table below.
 
-- **Alpha:** The API may change in incompatible ways in a later software release without notice, recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.
-- **Beta:** Support for the overall features will not be dropped, though details may change. Support for upgrading or migrating between versions will be provided, either through automation or manual steps.
+- **Alpha:** The API may change in incompatible ways in a later software release without notice, recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.<br><br>
+- **Beta:** Support for the overall features will not be dropped, though details may change. Support for upgrading or migrating between versions will be provided, either through automation or manual steps.<br><br>
 - **Stable:** Features will appear in released software for many subsequent versions and support for upgrading between versions will be provided with software automation in the vast majority of scenarios.
 
-|Name|Details|Status                                                                                                                                                                                                                                                                                                        
+|Name|Details|Status                              
 | -  | - | - |
-|core|The framework for the common utilities|Beta|                                                                                                                                                                                                                                                                              
-|proxy|Proxy Services|Beta|                                                                                             
-|container|The micro container|Beta                                                                                        
+|core|The framework for the common utilities|Stable|                                           
+|lowcarb|Lightweight container|Stable|            
 
 ### Official Releases
 
-Official releases of BOB can be found on the [releases page](https://github.com/bobdotme/bob/releases).
-Please note that it is **strongly recommended** that you use [official releases](https://github.com/BobDotMe/bob/releases) of BOB, as unreleased versions from the master branch are subject to changes and incompatibilities that will not be supported in the official releases.
+Official releases of BoB! can be found on the [releases page](https://github.com/bobdotme/bob/releases).
+Please note that it is **strongly recommended** that you use [official releases](https://github.com/BobDotMe/bob/releases) of BoB!, as unreleased versions from the master branch are subject to changes and incompatibilities that will not be supported in the official releases.
 Builds from the master branch can have functionality changed and even removed at any time without compatibility support and without prior notice.
-
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbNzkzNjg2MDA3XX0=
--->
 

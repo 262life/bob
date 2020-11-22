@@ -7,6 +7,7 @@ Helm version **3.x** or higher is supported by BoB!.
 
 ## TL;DR
 If you're feeling lucky, a simple BoB! cluster can be created with the following `helm 3` command.  No `values.yaml` is necessary. For the more detailed install, skip to the next section to [deploy the BoB! cluster](#deploy-the-bob-cluster).
+    
     console
     ```
     #Set the version to a production semantic version
@@ -29,9 +30,9 @@ Details on the plugin can be found [here](commands.md).
 
 
 The first step is to deploy the BoB! cluster. Check that you are using ...
-    ```
-    console
     
+    console
+    ```
     helm3 install bob bob/bob --version 0.8-var7-rc.5 --set  "image.pullPolicy=Always"
     ```
 ## Upgrading

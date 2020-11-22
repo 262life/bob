@@ -31,8 +31,8 @@ For installation, deployment, and administration, see our [Documentation](https:
 ## Contributing
 
 We welcome contributions. 
-* See the [Contributing](contrib.md) regarding how to engage 
-* See the [Getting Started](https://github.com/BobDotMe/bob/blob/master/docs/GETTING_STARTED.md) guide to setup your environment.
+* See the [Contributing](docs/contrib.md) regarding how to engage 
+* See the [Getting Started](GETTING_STARTED.md) guide to setup your environment.
 
 ## Report a Bug
 

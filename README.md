@@ -1,4 +1,4 @@
-<img alt="bob" align="left" src="https://github.com/BobDotMe/artwork/blob/main/logos/BobLogo-Color.png" width="20%" height="20%">
+<img alt="bob" align="left" src="https://github.com/BobDotMe/artwork/raw/main/logos/BobLogo-Color.png" width="20%" height="20%">
 
 ## BOB - Bash On Board!
 

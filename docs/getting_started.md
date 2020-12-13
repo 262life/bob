@@ -1,7 +1,7 @@
 # Getting Started for Developers
 
 ## Remarks
-One if the coolest things about this project is I wanted to experience how we developer completely in the cloud with modern tools and practices.  That being said, the only tool you require on your local laptop/tablet (yes I said tablet) is the chrome web browser.  Others work as well but I found chrome to be the best.
+One if the coolest things about this project is I wanted to experience how we develop completely in the cloud with modern tools and practices.  That being said, the only tool you require on your local laptop/tablet (yes I said tablet) is the chrome web browser.  Others work as well but I found chrome to be the best.
 
 As a note, you of course will require to have a github account to develop but I will not get into how to do that in this document.
 

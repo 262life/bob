@@ -24,6 +24,6 @@ mv "*.tgz" repo/.
 
 cd .. || exit
 
-"${helmver}" repo index --url https://BobDotMe.github.io/bob helm/repo 2>/dev/null
+"${helmver}" repo index --url https://BobDotMe.github.io/bob/helm/repo helm/repo 2>/dev/null
 
 mv helm/repo/index.yaml index.yaml

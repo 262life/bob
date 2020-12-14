@@ -20,6 +20,8 @@ do
   "${helmver}" package "$chart"
 done
 
+find .
+fudge
 mv "*.tgz" repo/.
 
 cd .. || exit

@@ -1,16 +1,12 @@
-## [0.9.82] - 2020-11-17
-### Changes
-- Abstraction of binary image.
-
-## [0.9.81] - 2020-11-17
-### Changes
-- Abstraction of binary image.
-
-## [0.9.8] - 2020-11-12
+## [0.9.8] - 2020-12-14
 ### Changes
 - Improvements for Gitpod and Okteto
 - Minor fixes to banner
 - Security fix for Github action
+- Abstraction of binary image.
+- Reorganized helm repo
+
+
 ### Adds
 - Added screen
 - Added ldap utilities

@@ -80,7 +80,7 @@ jobs:
           push-branch: 'master'
           commit-message: 'publish'
           force-add: 'true'
-          files: README.md VERSION docs/index.yaml docs/*.tgz docs/commands.md docs/commands/* helm/chart/*
+          files: README.md VERSION index.yaml helm/repo/*.tgz docs/commands.md docs/commands/* helm/chart/*
           name: rsliotta
           email: bob@bobdot.me
       - name: Release

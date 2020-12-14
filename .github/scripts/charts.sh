@@ -20,9 +20,10 @@ do
   "${helmver}" package "$chart"
 done
 
+echo "Working Tree"
 find .
-fudge
-mv "*.tgz" repo/.
+
+mv *.tgz repo/.
 
 cd .. || exit
 

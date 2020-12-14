@@ -26,7 +26,7 @@ ls -l
 echo ---
 echo *
 echo ---
-mv "*.tgz" repo/.
+mv "bob-v*.tgz" repo/.
 
 cd .. || exit
 

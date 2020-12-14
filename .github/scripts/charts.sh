@@ -23,7 +23,7 @@ done
 
 echo "pwd" $(pwd)
 ls -l
-mv *.tgz repo/.
+mv ./*.tgz repo/.
 
 cd .. || exit
 

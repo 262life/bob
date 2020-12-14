@@ -13,7 +13,7 @@ sed ${sedopts} -e "s/^version.*$/version: $CV/g" chart/Chart.yaml
 sed ${sedopts} -e "s/version: .*$/version: $CV/g" chart/values.yaml
 sed ${sedopts} -e "s/^appVersion.*$/appVersion: $CV/g" chart/Chart.yaml
   
-for chart in ./*
+for chart in ./chart
 do
   echo "Helm Version: $(helm version)"
   echo "Processing: $chart"
@@ -21,7 +21,7 @@ do
   "${helmver}" package "$chart"
 done
 
-mv ${loc}/*.tgz ../repo/.
+mv ${loc}/*.tgz repo/.
 
 cd .. || exit
 

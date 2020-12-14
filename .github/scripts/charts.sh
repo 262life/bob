@@ -23,6 +23,9 @@ done
 
 echo "pwd" $(pwd)
 ls -l
+echo ---
+echo *
+echo ---
 mv ./*.tgz repo/.
 
 cd .. || exit

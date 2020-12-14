@@ -26,6 +26,4 @@ cd .. || exit
 
 "${helmver}" repo index --url https://BobDotMe.github.io/bob helm/repo 2>/dev/null
 
-
-find . -name index.yaml
-fudge
+mv helm/repo/index.yaml index.yaml

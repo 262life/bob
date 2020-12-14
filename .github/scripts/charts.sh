@@ -21,10 +21,10 @@ do
   "${helmver}" package "$chart"
 done
 
-mv ${loc}/*.tgz ../docs/.
+mv ${loc}/*.tgz ../repo/.
 
-cd ../docs || exit
+cd .. || exit
 
-"${helmver}" repo index --url https://BobDotMe.github.io/bob . 2>/dev/null
+"${helmver}" repo index --url https://BobDotMe.github.io/bob helm/repo 2>/dev/null
 
 

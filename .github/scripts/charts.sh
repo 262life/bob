@@ -20,10 +20,12 @@ do
   "${helmver}" package "$chart"
 done
 
-mv "bob-v*.tgz" repo/.
+mv "*.tgz" repo/.
 
 cd .. || exit
 
 "${helmver}" repo index --url https://BobDotMe.github.io/bob helm/repo 2>/dev/null
 
 
+find . -name index.yaml
+fudge

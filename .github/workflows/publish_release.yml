@@ -47,7 +47,6 @@ jobs:
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"
           bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-lowcarb .github/scripts/init.sh bob-lowcarb"
           bash -c "chmod 755 .github/scripts/charts.sh; .github/scripts/charts.sh"
-          bash -c "cp docs/bob-${{ env.RELEASE_VERSION }}.tgz helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz"
           bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"
       - name: Run Snyk to check Docker image for vulnerabilities - bob-core

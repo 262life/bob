@@ -5,7 +5,6 @@ echo Version: $CV
 
 if echo "$OSTYPE" | grep -q 'darwin' ; then sedopts='-i .bak'; else sedopts='-i'; fi
 if echo "$OSTYPE" | grep -q 'darwin' ; then helmver='helm3'; else helmver='helm'; fi
-if echo "$OSTYPE" | grep -q 'darwin' ; then loc="${HOME}/projects/bob/helm"; else loc='/home/runner/work/bob/bob/helm'; fi
 
 cd helm || exit
 
@@ -21,11 +20,6 @@ do
   "${helmver}" package "$chart"
 done
 
-echo "pwd" $(pwd)
-ls -l
-echo ---
-echo *
-echo ---
 mv "bob-v*.tgz" repo/.
 
 cd .. || exit

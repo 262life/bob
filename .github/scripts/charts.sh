@@ -21,6 +21,8 @@ do
   "${helmver}" package "$chart"
 done
 
+echo "pwd" $(pwd)
+ls -l
 mv ${loc}/*.tgz repo/.
 
 cd .. || exit

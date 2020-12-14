@@ -1,4 +1,4 @@
-## [0.9.8] - 2020-12-14
+## [0.9.9] - 2020-12-14
 ### Changes
 - Improvements for Gitpod and Okteto
 - Minor fixes to banner

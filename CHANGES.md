@@ -6,7 +6,6 @@
 - Abstraction of binary image.
 - Reorganized helm repo
 
-
 ### Adds
 - Added screen
 - Added ldap utilities

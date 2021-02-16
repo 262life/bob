@@ -1,4 +1,4 @@
-image: bobdotme/gitpod-workspace-devops:v1.0
+image: bobdotme/gitpod-workspace-full:v1.0
 
 
 tasks:

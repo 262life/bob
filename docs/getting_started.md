@@ -58,7 +58,7 @@ To get started, do the following:
 
 ### Start Development
 
-* Head over the https://github.com/BobDotMe/bob and either fork the project and/or checkout depending on your project rights.
+* Head over the https://github.com/262life/bob and either fork the project and/or checkout depending on your project rights.
 * Hit the "Gitpod" Button.  It start start Gitpod and checkout your workspace.
 
 * You will notice the editor is the widely used VSCode editor.  To test building, just type 'build' in a terminal window.  That's it!

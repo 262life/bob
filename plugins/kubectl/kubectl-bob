@@ -226,7 +226,7 @@ EOD
 
 declare -a OPT_PVC 
 
-CURRENT_VERSION="bobdotme/bob-lowcarb:v0.9.7"
+CURRENT_VERSION="262life/bob-lowcarb:v0.9.7"
 
 . "$(dirname $0)/kb-bob-words"
 . "$(dirname $0)/kb-bob-functions"

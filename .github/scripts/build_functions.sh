@@ -20,7 +20,7 @@ build_container() {
   fi
 
   docker rmi -f $CONTAINER:$TAG 2>/dev/null
-  docker rmi -f bobdotme/$CONTAINER:$TAG 2>/dev/null
+  docker rmi -f 262life/$CONTAINER:$TAG 2>/dev/null
  
   if [ ${DOCKERFILE:-none} == 'none'  ]; then
     DOCKERFILE='Dockerfile'
@@ -34,16 +34,16 @@ build_container() {
   if [ ${PUBLISH:-true} == 'false' ]; then exit
   else
     echo  ${docker_token} | docker --debug login --password-stdin --username ${docker_login} 
-    docker tag  $CONTAINER:$TAG bobdotme/$CONTAINER:$TAG
-    docker push bobdotme/$CONTAINER:$TAG 
+    docker tag  $CONTAINER:$TAG 262life/$CONTAINER:$TAG
+    docker push 262life/$CONTAINER:$TAG 
   fi
   
   if [ ${LATEST:-false} == 'true' ]; then
     echo "###############################################"
     echo "Tagging this version latest"
     echo "###############################################"
-    docker tag $CONTAINER:$TAG bobdotme/$CONTAINER:latest
-    docker push bobdotme/$CONTAINER:latest
+    docker tag $CONTAINER:$TAG 262life/$CONTAINER:latest
+    docker push 262life/$CONTAINER:latest
   fi
 
 }

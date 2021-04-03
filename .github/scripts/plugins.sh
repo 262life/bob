@@ -9,7 +9,7 @@ if echo "$OSTYPE" | grep -q 'darwin' ; then sedopts='-i .bak'; else sedopts='-i'
 cd plugins/kubectl || exit
 
 sed ${sedopts} -e "s/^echo.*$/echo 'version: $CV'/g" kubectl-bob-version
-sed ${sedopts} -e "s/CURRENT_VERSION=.*$/CURRENT_VERSION=\"bobdotme\/bob-lowcarb:$CV\"/g" kubectl-bob
+sed ${sedopts} -e "s/CURRENT_VERSION=.*$/CURRENT_VERSION=\"262life\/bob-lowcarb:$CV\"/g" kubectl-bob
 
 echo result:
 echo "kubectl-bob-version: $(grep 'version:' kubectl-bob-version)"

@@ -6,7 +6,7 @@ namespace: bob
 manifest: DaemonSet
 image:
   pullPolicy: IfNotPresent
-  repo: bobdotme
+  repo: 262life
   replicas: 3
   version: v0.9.12
 okteto:

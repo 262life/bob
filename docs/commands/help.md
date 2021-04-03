@@ -2,7 +2,7 @@
 
 kubectl bob controls the BOB pods.
 
-Find more information at: https://BobDotMe.github.io/bob
+Find more information at: https://262life.github.io/bob
 
 ## Basic Commands (Beginner):
 

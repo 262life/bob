@@ -8,14 +8,13 @@ icon: https://raw.githubusercontent.com/coreos/etcd/master/logos/etcd-horizontal
 # to the chart and its templates, including the app version.
 version: v0.9.12
 appVersion: v0.9.12
-home: https://BobDotMe.github.io/bob
+home: https://262life.github.io/bob
 sources:
-- https://github.com/BobDotMe/bob
+- https://github.com/262life/bob
 maintainers:
 - name: rsliotta
-  email: bob@bobdot.me
+  email: bob@262.life
 keywords:
 - bob
-- BobDotMe
+- 262life
 - bash
-- bobdotme

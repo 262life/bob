@@ -36,8 +36,8 @@ jobs:
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Prebuild
         run: |
-          bash -c "cd distro; wget https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
-          bash -c "cd distro; wget https://github.com/BobDotMe/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
@@ -54,7 +54,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: bobdotme/bob-core:${{ env.RELEASE_VERSION }}
+          image: 262life/bob-core:${{ env.RELEASE_VERSION }}
           args: --severity-threshold=high --debug
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
@@ -62,7 +62,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: bobdotme/bob-lowcarb:${{ env.RELEASE_VERSION }}
+          image: 262life/bob-lowcarb:${{ env.RELEASE_VERSION }}
           args: --severity-threshold=high --debug
           command: monitor
       #- name: Run Snyk to check Kubernetes manifest file for issues
@@ -82,7 +82,7 @@ jobs:
           force-add: 'true'
           files: README.md VERSION index.yaml helm/repo/*.tgz docs/commands.md docs/commands/* helm/chart/*
           name: rsliotta
-          email: bob@bobdot.me
+          email: bob@262.life
       - name: Release
         uses: docker://antonyurchenko/git-release:latest
         env:

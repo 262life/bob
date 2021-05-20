@@ -1,0 +1,147 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bob
+  namespace: {{ .Values.namespace}}
+spec:
+  selector:
+    app: bob-core
+  ports:
+    - protocol: TCP
+      port: 8873
+      targetPort: 8873
+      name: sync
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bob-core
+  namespace: {{ .Values.namespace}}
+spec:
+  selector:
+    matchLabels:
+      app: bob-core
+  serviceName: bob-core
+  replicas: {{ .Values.image.replicas}}
+  template:
+    metadata:
+      labels:
+        app: bob-core
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - image: "{{ .Values.image.repo}}/bob-core:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: bob-core
+        ports:
+        - containerPort: 8873
+          name: sync
+          protocol: TCP
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /data
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "300m"
+          requests:
+            memory: "100m"
+            cpu: "300m"
+      volumes:
+      - name: shared-volume
+        emptyDir:
+          medium: Memory
+          sizeLimit: "1Gi"
+---
+apiVersion: apps/v1
+kind: {{ .Values.manifest}}
+metadata:
+  name: bob-bootstrap
+  namespace: {{ .Values.namespace}}
+  labels:
+    k8s-app: bob-bootstrap
+spec:
+  selector:
+    matchLabels:
+      name: bob-bootstrap
+  template:
+    metadata:
+      labels:
+        name: bob-bootstrap
+    spec:
+      containers:
+      - name: daemonset
+        image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          limits:
+            memory: 10Mi
+          requests:
+            cpu: 100m
+            memory: 4Mi
+        env:
+        - name: BOB_SERVICE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+{{- if .Values.okteto.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bob-lowcarb
+  labels:
+    app: bob-lowcarb
+spec:
+  selector:
+    matchLabels:
+      name: bob-lowcarb
+  template:
+    metadata:
+      labels:
+        name: bob-lowcarb
+    spec:
+      terminationGracePeriodSeconds: 20
+      containers:
+      - image: "{{ .Values.image.repo}}/bob-lowcarb:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: bob-lowcarb
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "2"
+          requests:
+            memory: "1M"
+            cpu: "500m"
+        env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_POD_SERVICE_ACCOUNT
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.serviceAccountName
+        - name: BOB_SERVICE_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      restartPolicy: Always
+{{- end }}

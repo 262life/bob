@@ -1,0 +1,236 @@
+#!/usr/bin/env bash 
+
+#-----  Main
+
+main() {
+
+opts=$*
+optspec=":onhv-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help        ) help                       ;;
+                context     ) getTextOpt    $opts        ;;
+                context=*   ) getTextOptEq  $opts        ;;
+                pvc         ) getArrayOpt   $opts        ;;
+                pvc=*       ) getArrayOptEq $opts        ;;
+                name        ) getTextOpt    $opts        ;;
+                name=*      ) getTextOptEq  $opts        ;;
+                namespace   ) getTextOpt    $opts        ;;
+                namespace=* ) getTextOptEq  $opts        ;;
+                output      ) getTextOpt    $opts        ;;
+                output=*    ) getTextOptEq  $opts        ;;
+                cert        ) getBoolOpt    $opts        ;;
+                pki         ) getBoolOpt    $opts        ;;
+                rsync       ) getBoolOpt    $opts        ;;
+                ssh         ) getBoolOpt    $opts        ;;
+                iperf       ) getBoolOpt    $opts        ;;
+                nowait      ) getBoolOpt    $opts        ;;
+                
+                *          ) badEgg                      ;;
+            esac;;
+        h  ) help                                        ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB ;;
+        n  ) OPTARG='namespace' getTextOpt $opts         ;;
+        o  ) OPTARG='output' getTextOpt $opts            ;;
+        *  ) badEgg                                      ;;
+    esac
+done
+
+[ $VB -gt 0 ] && echo
+[ $VB -gt 3 ] && echo Requested list of PVC
+
+if [ $VB -gt 3 ];then
+  for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
+    do
+      [ $VB -gt  0 ] && echo - PVC: ${OPT_PVC[$i]}
+    done
+fi
+
+POD_NAME=${OPT_NAME:-$(getDictWords)}
+[ $VB -gt 0 ] && echo POD Name: $POD_NAME
+
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="namespace: $OPT_NAMESPACE"
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_KUBECTL_NAMESPACE='' || POD_KUBECTL_NAMESPACE="-n $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+[ $VB -gt 0 ] && echo POD kubectl Namespace: $POD_KUBECTL_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_CONTEXT"
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT
+
+[ ${OPT_OUTPUT:-none} == 'none' ] && OPT_OUTPUT=""
+[ "$OPT_OUTPUT" == 'yaml' ] && CMD="cat" || CMD="kubectl $POD_CONTEXT apply -f -"
+
+[ $VB -gt 0 ] && echo && echo kubectl CMD: $CMD
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
+
+if [ "$OPT_PKI" == 'true' ]; then 
+  read -r -d '' POD_PKI_M << "  END"
+    - name: pki-volume
+      mountPath: /etc/pki
+  END
+  read -r -d '' POD_PKI_V << "  END"
+  - name: pki-volume
+    hostPath:
+      path: "/etc/pki"
+      type: Directory
+  END
+fi
+
+POD_PV_M=""
+POD_PV_V=""
+for (( i = 0; i < ${#OPT_PVC[@]}; i++ ))
+  do
+    PVC=${OPT_PVC[$i]}
+    PVCNAME=$(getRndNum)
+    M="
+    - name: bv-${PVCNAME}
+      mountPath: /vols/${PVC}
+    "
+  V="
+  - name: bv-${PVCNAME}
+    persistentVolumeClaim:
+       claimName: ${PVC}
+  "
+    POD_PV_M="$POD_PV_M$M"
+    POD_PV_V="$POD_PV_V$V"
+  done
+
+POD_NOWAIT="${OPT_NOWAIT:-false}"
+[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_IMAGE_VERSION='okteto.dev/bob-lowcarb:preview' || POD_IMAGE_VERSION="${CURRENT_VERSION}"
+[ "${OKTETO_TOKEN:-none}" != 'none' ] && POD_PULL_POLICY='Always' || POD_PULL_POLICY="IfNotPresent"
+
+POD_SERVICENAMESPACE="$(cat "$(dirname "$0")/kb-service-properties" 2>/dev/null || echo "${OKTETO_USER}")"
+
+cat << END | $CMD
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ${POD_NAME}
+  ${POD_NAMESPACE}
+  labels:
+    app: bob
+spec:
+  terminationGracePeriodSeconds: 20
+  containers:
+  - image: ${POD_IMAGE_VERSION}
+    imagePullPolicy: ${POD_PULL_POLICY}
+    name: ${POD_NAME}
+    #ports:
+    #- containerPort: 80
+    #  name: dummy
+    #  protocol: TCP
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: "2"
+      requests:
+        memory: "1M"
+        cpu: "500m"
+    volumeMounts:
+    $POD_PKI_M
+    $POD_PV_M
+    #- name: shared-volume
+    #  mountPath: /usr
+
+    env:
+    - name: MY_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+    - name: MY_POD_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.name
+    - name: MY_POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+    - name: MY_POD_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+    - name: MY_POD_SERVICE_ACCOUNT
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.serviceAccountName
+    - name: BOB_SERVICE_NAMESPACE
+      value: "$POD_SERVICENAMESPACE"
+  restartPolicy: Always
+  volumes:
+  $POD_PKI_V
+  $POD_PV_V
+ 
+END
+
+STAT=$?
+if [ $STAT = 0 ]; then
+  if [ $POD_NOWAIT != 'true'  ]; then
+    if  echo "$CMD" | grep -q "kubectl" >  /dev/null ;then
+      echo -n 'waiting '
+      while [[ $(kubectl $POD_CONTEXT $POD_KUBECTL_NAMESPACE get pods $POD_NAME -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo -n '.' && sleep .3; done; echo
+      kubectl $POD_CONTEXT $POD_KUBECTL_NAMESPACE exec -it $POD_NAME -- /bin/bash
+      echo $POD_NAME > $HOME/.kubectl-bob-last-pod
+    fi
+  fi
+fi
+
+}
+
+help() {
+
+  echo ""
+  cat  >&2 << "EOD"
+# Creates a BOB pod
+
+This command in its basic form will create a new BOB pod in the current namespace 
+and execute an interactive BASH shell.
+
+## Examples:
+
+      #Create a pod in the current namespace
+      kubectl bob 
+    
+      #Create a pod in the supplied  namespace
+      kubectl bob -n namespace
+
+## Options:
+        --context='': The name of the kubeconfig context to use
+        --cert: Mount /etc/certs from host
+    -h, --help: If present, print this help message
+        --iperf: Enable Iperf Service (Roadmap: Not Complete)
+        --name='': If present this will be the name of the POD
+    -n, --namespace='': If present, the namespace scope for this CLI request
+        --nowait: Do not start a shell, just create pod
+    -o, --output='': If present change the output.  'yaml' is the only supported format at the moment
+        --pki: Mount /etc/PKI from host
+        --pvc='': If present attach the named PVC to the pod and mount as /vols/pvname
+        --rsync: Enable Rsync Service (Roadmap: Not Complete)
+        --ssh: Enable SSH Service (Roadmap: Not Complete)
+    -v, --verbose: If present, will increase the verbosity by one each time it's passed
+# usage:
+  
+
+    # kubectl bob  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value>] [--cert] [-h|--help] [--iperf] [--name[=]<value>] [-o|--output[=]<value>] [--pki] [--pvc[=]<value>] [--rsync] [--ssh]
+EOD
+
+  echo ; exit 2
+
+}
+
+###########
+
+declare -a OPT_PVC 
+
+CURRENT_VERSION="bobdotme/bob-lowcarb:v0.9.7"
+
+. "$(dirname $0)/kb-bob-words"
+. "$(dirname $0)/kb-bob-functions"
+
+main "$@"; exit
+
+

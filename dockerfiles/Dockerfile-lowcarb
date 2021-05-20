@@ -1,0 +1,23 @@
+FROM scratch
+ADD distro/squashed-lowcarb.tar.gz /
+ADD files/entrypoint-lowcarb.sh /files/entrypoint.sh
+ADD files/newbash.sh /usr/bin/bash
+
+LABEL MAINTAINER "Bob Liotta" <bob@bobdot.me>
+
+RUN echo "-- Testing Begins ---------" \ 
+    && echo "ls /bin ---" \
+    && /usr/bin/ls /bin \
+    && echo "ls /usr/bin ---" \
+    && /usr/bin/ls /usr/bin \
+    && echo "ls /files ---" \
+    && /usr/bin/ls /files \
+    && echo "SHELL TEST ---" \
+    && /usr/bin/sh -c "echo Shell Working" \
+    && echo "RSYNC TEST ---" \
+    && /usr/bin/rsync --version \
+    && echo "SLEEP TEST ---" \
+    && /usr/bin/sleep 1
+
+ENTRYPOINT [ "/files/entrypoint.sh" ]
+

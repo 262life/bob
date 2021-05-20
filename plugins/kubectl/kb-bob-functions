@@ -1,0 +1,77 @@
+####  Global Declarations
+
+declare -a VERBOSITY
+
+DEBUG=0 ## for no run execution
+VB=0    ## for Verbosity
+
+#### 
+
+getBoolOpt() {
+
+  val="true"
+  [ $VB -gt 2 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+  X=$(echo "OPT_${OPTARG}" | tr '[:lower:]' '[:upper:]' | sed -e "s/-//g")
+  eval $X="$val"
+
+}
+
+getTextOpt() {
+
+  val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+  [ $VB -gt 2 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+  X=$(echo "OPT_${OPTARG}" | tr '[:lower:]' '[:upper:]')
+  eval $X=$val
+
+}
+
+getTextOptEq() {
+
+  val=${OPTARG#*=}
+  opt=${OPTARG%=$val}
+  [ $VB -gt 2 ] && echo "Parsing option: '--${opt}', value: '${val}'" >&2
+  X=$(echo "OPT_${opt}" | tr '[:lower:]' '[:upper:]')
+  eval $X=$val
+
+}
+
+getArrayOpt() {
+
+  val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
+  [ $VB -gt 2 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+  X=$(echo "OPT_${OPTARG}" | tr '[:lower:]' '[:upper:]')
+  eval $X=\(\${"$X[@]}" "${val}"\)
+
+}
+
+getArrayOptEq() {
+
+  val=${OPTARG#*=}
+  opt=${OPTARG%=$val}
+  [ $VB -gt 2 ] && echo "Parsing option: '--${OPTARG}', value: '${val}'" >&2;
+  X=$(echo "OPT_${opt}" | tr '[:lower:]' '[:upper:]')
+  eval $X=\(\${"$X[@]}" "${val}"\)
+
+}
+
+badEgg() {
+
+  echo
+  if [ "$OPTERR" = 1 ] && [ "${optchar}" = "-" ]; then
+    echo "Invalid parameter: --${OPTARG}" >&2
+  elif [ "$OPTERR" != 1 ] || [ "${optspec:0:1}" = ":" ]; then
+    echo "Invalid parameter: -${OPTARG}" >&2
+  fi
+
+  help; exit
+
+}
+
+getRndNum () {
+
+    if echo "$OSTYPE" | grep -q 'darwin' ; then 
+        echo $(jot -r 1 11111111-99999999)-$(jot -r 1 1111-9999)-$(jot -r 1 1111-9999)-$(jot -r 1 1111-9999)-$(jot -r 1 111111111111-999999999999)
+    else
+      echo $(shuf -i 11111111-99999999 -n 1)-$(shuf -i 1111-9999 -n 1)-$(shuf -i 1111-9999 -n 1)-$(shuf -i 1111-9999 -n 1)-$(shuf -i 111111111111-999999999999 -n1)
+    fi
+}

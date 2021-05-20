@@ -1,0 +1,5 @@
+#!/usr/bin/env bash  
+
+# Shortcut to help
+exec $(dirname $0)/kubectl-bob-help $*
+

@@ -1,0 +1,21 @@
+apiVersion: v2
+name: bob
+description: Bash on Board! - General purpose container for Kubernetes
+type: application
+icon: https://raw.githubusercontent.com/coreos/etcd/master/logos/etcd-horizontal-color.png
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: v0.9.12
+appVersion: v0.9.12
+home: https://BobDotMe.github.io/bob
+sources:
+- https://github.com/BobDotMe/bob
+maintainers:
+- name: rsliotta
+  email: bob@bobdot.me
+keywords:
+- bob
+- BobDotMe
+- bash
+- bobdotme

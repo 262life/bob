@@ -1,0 +1,92 @@
+#!/usr/bin/env bash 
+
+#-----  Main
+
+main() {
+
+opts=$*
+optspec=":nvh-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help            ) help                       ;;
+                context         ) getTextOpt    $opts        ;;
+                context=*       ) getTextOptEq  $opts        ;;
+                namespace       ) getTextOpt    $opts        ;;
+                namespace=*     ) getTextOptEq  $opts        ;;
+                all-namespaces  ) getBoolOpt    $opts        ;;
+                
+                *              ) badEgg                      ;;
+            esac;;
+        h  ) help                                            ;;
+        v  ) VERBOSITY=("${VERBOSITY[@]}" "$val"); 
+             VB=${#VERBOSITY[@]}                       
+             [ $VB -gt 0 ] && echo Verbosity set to: $VB     ;;
+        n  ) OPTARG='namespace' getTextOpt $opts             ;;
+        *  ) badEgg                                          ;;
+    esac
+done
+
+[ $VB -gt 0 ] && echo
+
+[ ${OPT_NAMESPACE:-none} == 'none' ] && POD_NAMESPACE='' || POD_NAMESPACE="-n $OPT_NAMESPACE"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_ALLNAMESPACES:-none} == 'true' ] && POD_NAMESPACE="--all-namespaces"
+[ $VB -gt 0 ] && echo POD Namespace: $POD_NAMESPACE
+
+[ ${OPT_CONTEXT:-none} == 'none' ] && POD_CONTEXT='' || POD_CONTEXT="--context $OPT_CONTEXT" 
+
+[ $VB -gt 0 ] && echo POD Context: $POD_CONTEXT 
+
+[ $DEBUG == 1 ] && echo "DEBUG SET. Exiting" >&2 && exit;
+
+kubectl $POD_CONTEXT get pods -lapp=bob $POD_NAMESPACE 
+
+}
+
+
+help() {
+
+  echo ""
+  cat  >&2 << "EOD"
+# Displays status of all running BOB pods
+
+This command will display the status of all running BOB pods in the current namespace.
+
+## Examples:
+  
+    # List all pods in ps output format.
+      kubectl bob status
+      
+      # List all pods in ps output format in a namespace
+      kubectl bob status  -n namespace
+
+## Options:
+
+        --all-namespaces: If present, all namespaces are in scope for this CLI request
+        --context='': The name of the kubeconfig context to use
+    -h, --help: If present, print this help message
+    -n, --namespace='': If present, the namespace scope for this CLI request
+    -v, --verbose: If present, will increase the verbosity by one each time it's passed
+
+## Usage:
+
+    #  kubectl bob status  [-v|--verbose] [--context[=]<value>] [-n|--namespace[=]<value> [--all-namespaces] [-h|--help]
+EOD
+
+  echo ; exit 2
+}
+
+
+###########
+
+declare -a OPT_PVC 
+
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
+
+main "$@"; exit
+
+

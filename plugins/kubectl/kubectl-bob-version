@@ -1,0 +1,49 @@
+#!/usr/bin/env bash 
+
+#-----  Main
+
+main() {
+
+opts=$*
+optspec="h-:"
+while getopts "$optspec" optchar; do
+    case "${optchar}" in
+        -  )
+            case "${OPTARG}" in
+                help            ) help                       ;;
+                
+                *              ) badEgg                      ;;
+            esac;;
+        h  ) help                                            ;;
+        *  ) badEgg                                          ;;
+    esac
+done
+
+#### Do Not remove this line
+echo 'version: v0.9.7'
+
+}
+
+help() {
+
+  echo ""
+  cat  >&2 << "EOD"
+# Displays the plugin version
+
+    #  No other details provided
+EOD
+
+  echo ; exit 2
+}
+
+
+###########
+
+declare -a OPT_PVC 
+
+. $(dirname $0)/kb-bob-words
+. $(dirname $0)/kb-bob-functions
+
+main "$@"; exit
+
+

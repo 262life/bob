@@ -1,0 +1,15 @@
+# Default values for bob.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: rsliotta
+manifest: Deployment
+image:
+  pullPolicy: Always
+  repo: okteto.dev
+  replicas: 1
+  version: preview
+okteto:
+  enabled: true
+
+

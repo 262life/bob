@@ -1,6 +1,11 @@
+## [0.9.14-RC3] - 2021-11-12
+### Changes
+- added test-harness
+
 ## [0.9.14-RC2] - 2021-11-11
 ### Changes
 - added test-harness
+
 
 ## [0.9.14-RC1] - 2021-05-21
 ### Changes

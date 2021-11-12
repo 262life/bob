@@ -12,6 +12,10 @@ spec:
       port: 8873
       targetPort: 8873
       name: sync
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: ws-test-harness
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -38,6 +42,10 @@ spec:
         - containerPort: 8873
           name: sync
           protocol: TCP
+        - containerPort: 80
+          name: ws-test-harness
+          protocol: TCP
+        volumeMounts:
         volumeMounts:
         - name: shared-volume
           mountPath: /data

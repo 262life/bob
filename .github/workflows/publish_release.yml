@@ -91,7 +91,7 @@ jobs:
           DRAFT_RELEASE: "false"
           PRE_RELEASE: "${{ env.RELEASE_PRE }}"
           ALLOW_EMPTY_CHANGELOG: "false"
-          ALLOW_TAG_PREFIX: "true"
+          ### ALLOW_TAG_PREFIX: "true"
         with:
           args: |
             examples/testpv.yaml

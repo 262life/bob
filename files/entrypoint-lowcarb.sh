@@ -17,4 +17,5 @@ do
                       sleep 2;;
   esac
 done
+rm -rf /app 2>/dev/null
 trap : TERM INT; (while true; do sleep 1000; done)

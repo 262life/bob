@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik-east-ui.kus.logistics.corp
+  name: wstest-harness
+  namespace: bob
+spec:
+  rules:
+  - host: wstest-harness.kus.logistics.corp
+    http:
+      paths:
+      - backend:
+          serviceName: bob
+          servicePort: 80

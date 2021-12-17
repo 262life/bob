@@ -13,10 +13,6 @@ jobs:
         - os: X64
           X64: true
     runs-on: ${{ matrix.os }}
-
-#  release:
-#    runs-on: ubuntu-20.04
-
     steps:
       - name: Cleanup Runner Workspace...
         if: always()

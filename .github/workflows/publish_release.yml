@@ -24,11 +24,14 @@ jobs:
           bash -c "env"
           sudo bash -c "rm -rf $GITHUB_WORKSPACE"ash -c "chmod 755 .github/scripts/extract_image.py; .github/scripts/makedistro.sh"
 
-      - name: send custom message with args
-        uses: appleboy/telegram-action@master
+      - name: notification
+        uses: Lukasss93/telegram-action@v2
+        env:
+            TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+            TELEGRAM_CHAT: ${{ secrets.TELEGRAM_TO }}
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          status: ${{job.status}}
+
       - name: Checkout
         uses: actions/checkout@v1
       - run: |
@@ -119,9 +122,12 @@ jobs:
             bob-plugins-${{ env.RELEASE_VERSION }}.tgz
             plugins/installer.sh
             helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz
-      - name: send custom message with args
-        uses: appleboy/telegram-action@master
+
+      - name: notification
+        uses: Lukasss93/telegram-action@v2
+        env:
+            TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+            TELEGRAM_CHAT: ${{ secrets.TELEGRAM_TO }}
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          status: ${{job.status}}
  

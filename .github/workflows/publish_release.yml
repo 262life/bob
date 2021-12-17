@@ -54,8 +54,9 @@ jobs:
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Prebuild
         run: |
-          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-latest.tar.gz"
-          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb.tar.gz"
+          ARCH=$(uname -m)
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-${ARCH}-latest.tar.gz"
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-${ARCH}.tar.gz"
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}

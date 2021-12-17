@@ -55,8 +55,8 @@ jobs:
       - name: Prebuild
         run: |
           ARCH=$(uname -m)
-          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-${ARCH}-latest.tar.gz -o ubuntu-focal-latest.tar.gz"
-          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-${ARCH}.tar.gz -o squashed-lowcarb.tar.gz"
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-${ARCH}-latest.tar.gz -O ubuntu-focal-latest.tar.gz"
+          bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-${ARCH}.tar.gz -O squashed-lowcarb.tar.gz"
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}

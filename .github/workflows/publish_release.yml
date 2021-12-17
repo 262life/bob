@@ -16,13 +16,14 @@ jobs:
 
 #  release:
 #    runs-on: ubuntu-20.04
+
     steps:
       - name: Cleanup Runner Workspace...
         if: always()
         run: |
           echo "Cleaning up previous run"
           bash -c "env"
-          sudo bash -c "rm -rf $GITHUB_WORKSPACE"ash -c "chmod 755 .github/scripts/extract_image.py; .github/scripts/makedistro.sh"
+          sudo bash -c "rm -rf $GITHUB_WORKSPACE"
 
       - name: notification
         uses: Lukasss93/telegram-action@v2

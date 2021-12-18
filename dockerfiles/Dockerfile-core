@@ -1,6 +1,7 @@
 FROM scratch
 ARG TARGETARCH
 ENV TARGETARCH = $TARGETARCH
+run "echo I am running for ${TARGETARCH}"
 ADD distro/ubuntu-focal-${TARGETARCH}-latest.tar.gz /
 
 LABEL MAINTAINER "Bob Liotta" <bob@262.life>

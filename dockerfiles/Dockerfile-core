@@ -1,7 +1,8 @@
 FROM scratch
 ARG TARGETARCH
-RUN "echo I am running for $TARGETARCH architecture"
-ADD "distro/ubuntu-focal-$TARGETARCH-latest.tar.gz" /
+ENV ARCH $TARGETARCH
+RUN "echo I am running for $ARCH architecture"
+ADD "distro/ubuntu-focal-$ARCH-latest.tar.gz" /
 
 LABEL MAINTAINER "Bob Liotta" <bob@262.life>
 

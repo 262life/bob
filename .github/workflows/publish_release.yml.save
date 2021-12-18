@@ -5,18 +5,14 @@ on:
     - "v[0-9]+.[1-9]+.[0-9]*"
 jobs:
 
-#  build-platforms:
-#    strategy:
-#      matrix:
-#        os: [ARM64, X64]
-#        include:
-#        - os: X64
-#          X64: true
-#    runs-on: ${{ matrix.os }}
-  runs-on: X64
- #  runs-on: ubuntu-20.04
-    steps:
-
+  build-platforms:
+    strategy:
+      matrix:
+        os: [ARM64, X64]
+        include:
+        - os: X64
+          X64: true
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Cleanup Runner Workspace...
         if: always()

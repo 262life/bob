@@ -4,9 +4,15 @@ on:
     tags:
     - "v[0-9]+.[1-9]+.[0-9]*"
 jobs:
-  release:
-    runs-on: X64
- #  runs-on: ubuntu-20.04
+
+  build-platforms:
+    strategy:
+      matrix:
+        os: [ARM64, X64]
+        include:
+        - os: X64
+          X64: true
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Cleanup Runner Workspace...
         if: always()
@@ -48,7 +54,7 @@ jobs:
           bash -c "cd plugins/kubectl;  tar zcvf ../../bob-plugins-${{ env.RELEASE_VERSION }}.tgz *; cd ../.."
       - name: Prebuild
         run: |
-          ARCH=$(dpkg --print-architecture)
+          ARCH=$(uname -m)
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-${ARCH}-latest.tar.gz -O ubuntu-focal-latest.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-${ARCH}.tar.gz -O squashed-lowcarb.tar.gz"
       - name: Build Action

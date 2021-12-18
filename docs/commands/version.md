@@ -1,3 +1,1 @@
-# Displays the plugin version
-
-    #  No other details provided
+.github/scripts/helpdocs.sh: line 13: plugins/kubectl/kubectl-bob-version: Permission denied

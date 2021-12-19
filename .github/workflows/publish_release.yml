@@ -72,19 +72,11 @@ jobs:
       - name: Prepare ALL IMAGES
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          VERSION=${RELEASE_VERSION}
-          SHORTREF=${GITHUB_SHA::8}
-
-          # If this is git tag, use the tag name as a docker tag
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-
       - name: Prepare bob-core
         id: prep-core
         run: |
           DOCKER_IMAGE="262life/bob-core"
-          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+          TAGS="${DOCKER_IMAGE}:${RELEASE_VERSION}"
 
           # If the VERSION looks like a version number, assume that
           # this is the most recent version of the image and also
@@ -111,7 +103,7 @@ jobs:
         id: prep-lowcarb
         run: |
           DOCKER_IMAGE="262life/bob-lowcarb"
-          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+          TAGS="${DOCKER_IMAGE}:${RELEASE_VERSION}"
 
           # If the VERSION looks like a version number, assume that
           # this is the most recent version of the image and also

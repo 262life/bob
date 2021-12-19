@@ -1,5 +1,7 @@
 FROM scratch
-ADD distro/squashed-lowcarb.tar.gz /
+ARG TARGETARCH
+ENV ARCH $TARGETARCH
+ADD "distro/squashed-lowcarb-$TARGETARCH.tar.gz" /
 ADD files/entrypoint-lowcarb.sh /files/entrypoint.sh
 ADD files/newbash.sh /usr/bin/bash
 

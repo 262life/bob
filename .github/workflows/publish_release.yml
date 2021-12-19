@@ -6,7 +6,6 @@ on:
 jobs:
   release:
     runs-on: X64
- #  runs-on: ubuntu-20.04
     steps:
       - name: Cleanup Runner Workspace...
         if: always()
@@ -68,7 +67,7 @@ jobs:
             --build-arg VERSION=${VERSION} \
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
             --build-arg VCS_REF=${VERSION} \
-            ${VERSOIN} --file ./dockerfiles/Dockerfile-core  ./test
+            ${VERSION} --file ./dockerfiles/Dockerfile-core  ./test
           docker buildx build --output "type=image,push=true"  ${{ steps.prepare.outputs.buildx_args }}
 
 

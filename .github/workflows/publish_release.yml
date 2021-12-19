@@ -52,18 +52,59 @@ jobs:
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-amd64-latest.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-arm64.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-amd64.tar.gz"
-      - name: Set up Docker Buildx
-        uses: crazy-max/ghaction-docker-buildx@v3
 
-      - name: Docker Buildx (build)
+
+      - name: Prepare
+        id: prep
         run: |
           DOCKER_IMAGE="262life/bob-core"
-          DOCKER_PLATFORMS="linux/amd64,linux/arm64"
-          docker buildx build --output "type=image,push=true"  --platform "${DOCKER_PLATFORMS}" \
-            --build-arg VERSION="${RELEASE_VERSION}" \
-            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-            --build-arg VCS_REF="${RELEASE_VERSION}" \
-            --tag "${DOCKER_IMAGE}:${VERSION}" --file "./dockerfiles/Dockerfile-core"
+          VERSION=${RELEASE_VERSION}
+          SHORTREF=${GITHUB_SHA::8}
+
+          # If this is git tag, use the tag name as a docker tag
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          fi
+          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+
+          # If the VERSION looks like a version number, assume that
+          # this is the most recent version of the image and also
+          # tag it 'latest'.
+          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+          fi
+
+          # Set output parameters.
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@master
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+      - name: Build
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64,linux/ppc64le
+          push: true
+          tags: ${{ steps.prep.outputs.tags }}
 
       - name: Build Action
         env: # Or as an environment variable

@@ -53,14 +53,35 @@ jobs:
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-amd64-latest.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-arm64.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-amd64.tar.gz"
+-
+      - name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v3
+
+      - name: Docker Buildx (build)
+        run: |
+          DOCKER_IMAGE=262life/bob-core
+          DOCKER_PLATFORMS=linux/amd64,linux/arm64
+          VERSION=${RELEASE_VERSION}
+          
+
+          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
+            --build-arg VERSION=${VERSION} \
+            --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+            --build-arg VCS_REF=${VERSION} \
+            ${VERSOIN} --file ./dockerfiles/Dockerfile-core  ./test
+          docker buildx build --output "type=image,push=true"  ${{ steps.prepare.outputs.buildx_args }}
+
+
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}
             docker_token: ${{ secrets.DOCKER_TOKEN }}
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"
-          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-lowcarb .github/scripts/init.sh bob-lowcarb"
+#          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"
+#          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-lowcarb .github/scripts/init.sh bob-lowcarb"
           bash -c "chmod 755 .github/scripts/charts.sh; .github/scripts/charts.sh"
           bash -c "chmod 755 .github/scripts/update_readme.sh; .github/scripts/update_readme.sh"
           bash -c "chmod 755 .github/scripts/helpdocs.sh; .github/scripts/helpdocs.sh"

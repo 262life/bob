@@ -68,11 +68,10 @@ jobs:
           username: ${{ secrets.DOCKER_ID }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Prepare bob-core
-        id: prep
+
+      - name: Prepare ALL IMAGES
         run: |
           bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
-          DOCKER_IMAGE="262life/bob-core"
           VERSION=${RELEASE_VERSION}
           SHORTREF=${GITHUB_SHA::8}
 
@@ -80,6 +79,11 @@ jobs:
           if [[ $GITHUB_REF == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
+
+      - name: Prepare bob-core
+        id: prep
+        run: |
+          DOCKER_IMAGE="262life/bob-core"
           TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
 
           # If the VERSION looks like a version number, assume that
@@ -99,6 +103,33 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./dockerfiles/Dockerfile-core
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.prep.outputs.tags }}
+
+      - name: Prepare bob-lowcarb
+        id: prep
+        run: |
+          DOCKER_IMAGE="262life/bob-lowcarb"
+          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
+
+          # If the VERSION looks like a version number, assume that
+          # this is the most recent version of the image and also
+          # tag it 'latest'.
+          if [[ $RELEASE_LATEST =~ "true" ]]; then
+            TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+          fi
+
+          # Set output parameters.
+          echo ::set-output name=tags::${TAGS}
+          echo ::set-output name=docker_image::${DOCKER_IMAGE}
+
+      - name: Build bob-core
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./dockerfiles/Dockerfile-lowcarb
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.prep.outputs.tags }}

@@ -59,16 +59,14 @@ jobs:
         run: |
           DOCKER_IMAGE=262life/bob-core
           DOCKER_PLATFORMS=linux/amd64,linux/arm64
-          VERSION=${RELEASE_VERSION}
 
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${VERSION}
-          echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
-            --build-arg VERSION=${VERSION} \
+          docker buildx build --output "type=image,push=true"  --platform ${DOCKER_PLATFORMS} \
+            --build-arg VERSION=${RELEASE_VERSION} \
             --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
-            --build-arg VCS_REF=${VERSION} \
-            ${VERSION} --file ./dockerfiles/Dockerfile-core  ./test
-          docker buildx build --output "type=image,push=true"  ${{ steps.prepare.outputs.buildx_args }}
+            --build-arg VCS_REF=${RELEASE_VERSION} \
+            --tag "${DOCKER_IMAGE}:${VERSION}" --file ./dockerfiles/Dockerfile-core 
 
       - name: Build Action
         env: # Or as an environment variable

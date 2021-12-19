@@ -164,7 +164,6 @@ jobs:
       #    file: helm/chart/templates/deployment.yaml
       #    command: test
       - name: push
-        if: matrix.X64
         uses: github-actions-x/commit@v2.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -176,7 +175,6 @@ jobs:
           email: bob@262.life
 
       - name: Release
-        if: matrix.X64
         uses: docker://antonyurchenko/git-release:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

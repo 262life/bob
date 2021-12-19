@@ -53,7 +53,6 @@ jobs:
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/ubuntu-focal-amd64-latest.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-arm64.tar.gz"
           bash -c "cd distro; wget https://github.com/262life/bob-ubuntu-image/releases/latest/download/squashed-lowcarb-amd64.tar.gz"
--
       - name: Set up Docker Buildx
         uses: crazy-max/ghaction-docker-buildx@v3
 
@@ -62,7 +61,6 @@ jobs:
           DOCKER_IMAGE=262life/bob-core
           DOCKER_PLATFORMS=linux/amd64,linux/arm64
           VERSION=${RELEASE_VERSION}
-          
 
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${VERSION}

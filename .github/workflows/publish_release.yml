@@ -81,7 +81,7 @@ jobs:
           fi
 
       - name: Prepare bob-core
-        id: prep
+        id: prep-core
         run: |
           DOCKER_IMAGE="262life/bob-core"
           TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
@@ -105,10 +105,10 @@ jobs:
           file: ./dockerfiles/Dockerfile-core
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: ${{ steps.prep-core.outputs.tags }}
 
       - name: Prepare bob-lowcarb
-        id: prep
+        id: prep-lowcarb
         run: |
           DOCKER_IMAGE="262life/bob-lowcarb"
           TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:${SHORTREF}"
@@ -132,7 +132,7 @@ jobs:
           file: ./dockerfiles/Dockerfile-lowcarb
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: ${{ steps.prep-lowcarb.outputs.tags }}
 
 ##          bash -c "chmod 755 files/*; chmod 644 files/*.conf files/README"
 ##          bash -c "chmod 755 .github/scripts/init.sh; LATEST=${{ env.RELEASE_LATEST }} PUBLISH=true TAG=$RELEASE_VERSION DOCKERFILE=dockerfiles/Dockerfile-core      .github/scripts/init.sh bob-core"

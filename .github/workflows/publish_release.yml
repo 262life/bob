@@ -70,7 +70,6 @@ jobs:
             ${VERSION} --file ./dockerfiles/Dockerfile-core  ./test
           docker buildx build --output "type=image,push=true"  ${{ steps.prepare.outputs.buildx_args }}
 
-
       - name: Build Action
         env: # Or as an environment variable
             docker_login: ${{ secrets.DOCKER_ID }}

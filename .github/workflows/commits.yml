@@ -19,8 +19,10 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
+          ```
           A new ${{ github.event_name }} event by 
             committer: ${{ github.actor }} 
             repo:      ${{ github.repository }} 
             id:        ${{ env.HASH }}
             ref:       ${{ env.BRANCH }}
+         ```

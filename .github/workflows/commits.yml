@@ -10,7 +10,8 @@ jobs:
 
     - name: Get References
       run: |
-        export HASH=$(git rev-parse --short "$GITHUB_SHA")
+
+        echo "HASH=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
         export BRANCH=${GITHUB_REF#refs/heads/}
 
     - name: send custom message with args

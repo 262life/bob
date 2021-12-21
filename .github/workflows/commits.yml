@@ -1,9 +1,9 @@
-name: telegram push
+name: commits
 on: [push]
 
 jobs:
   commit:
-    name: Commit
+    name: commit
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -19,4 +19,4 @@ jobs:
 
           repo: ${{ github.repository }} 
 
-          ref:   ${{ commit.ref }}
+          ref:   ${{ github.ref }}

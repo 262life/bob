@@ -22,5 +22,5 @@ jobs:
           A new ${{ github.event_name }} event by 
             committer: ${{ github.actor }} 
             repo:      ${{ github.repository }} 
-            id:        ${HASH }
-            ref:       ${BRANCH} 
+            id:        {{ HASH }}
+            ref:       {{ BRANCH }}

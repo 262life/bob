@@ -11,7 +11,7 @@ LABEL MAINTAINER "Bob Liotta" <bob@262.life>
 RUN ls /bin /usr/bin
 
 RUN echo "-- Testing Begins ---------" \ 
-    $$ echo "$ARCH" > /files/ARCH
+    && echo "$ARCH" > /files/ARCH \
     && echo "ls /bin ---" \
     && /usr/bin/ls /bin \
     && echo "ls /usr/bin ---" \

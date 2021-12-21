@@ -2,11 +2,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bob
+  name: bob-amd64
   namespace: {{ .Values.namespace}}
 spec:
   selector:
-    app: bob-core
+    app: bob-core-amd64
+  ports:
+    - protocol: TCP
+      port: 8873
+      targetPort: 8873
+      name: sync
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: ws-test-harness
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bob-arm64
+  namespace: {{ .Values.namespace}}
+spec:
+  selector:
+    app: bob-core-arm64
   ports:
     - protocol: TCP
       port: 8873
@@ -20,19 +38,21 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: bob-core
+  name: bob-core-amd64
   namespace: {{ .Values.namespace}}
 spec:
   selector:
     matchLabels:
-      app: bob-core
-  serviceName: bob-core
+      app: bob-core-amd64
+  serviceName: bob-core-amd64
   replicas: {{ .Values.image.replicas}}
   template:
     metadata:
       labels:
-        app: bob-core
+        app: bob-core-amd64
     spec:
+      nodeSelector:
+        beta.kubernetes.io/arch: amd64
       terminationGracePeriodSeconds: 10
       containers:
       - image: "{{ .Values.image.repo}}/bob-core:{{ .Values.image.version }}"
@@ -153,3 +173,51 @@ spec:
               fieldPath: metadata.namespace
       restartPolicy: Always
 {{- end }}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: bob-core-arm64
+  namespace: {{ .Values.namespace}}
+spec:
+  selector:
+    matchLabels:
+      app: bob-core-arm64
+  serviceName: bob-core-arm64
+  replicas: {{ .Values.image.replicas}}
+  template:
+    metadata:
+      labels:
+        app: bob-core-arm64
+    spec:
+      terminationGracePeriodSeconds: 10
+      nodeSelector:
+        beta.kubernetes.io/arch: arm64
+      containers:
+      - image: "{{ .Values.image.repo}}/bob-core:{{ .Values.image.version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: bob-core
+        ports:
+        - containerPort: 8873
+          name: sync
+          protocol: TCP
+        - containerPort: 80
+          name: ws-test-harness
+          protocol: TCP
+        volumeMounts:
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /data
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "300m"
+          requests:
+            memory: "100m"
+            cpu: "300m"
+      volumes:
+      - name: shared-volume
+        emptyDir:
+          medium: Memory
+          sizeLimit: "1Gi"
+---

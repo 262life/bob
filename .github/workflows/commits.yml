@@ -20,6 +20,10 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
         message: |
+        ## BOB - Bash On Board!
+
+<img alt="bob" align="left" src="https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png" width="20%" height="20%">
+
           ```
           A new ${{ github.event_name }} event by 
             committer: ${{ github.actor }} 

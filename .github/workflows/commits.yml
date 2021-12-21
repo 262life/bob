@@ -2,9 +2,8 @@ name: telegram push
 on: [push]
 
 jobs:
-
-  build:
-    name: Build
+  commit:
+    name: Commit
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master

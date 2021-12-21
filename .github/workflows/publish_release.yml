@@ -191,6 +191,7 @@ jobs:
             helm/bob-helm-${{ env.RELEASE_VERSION }}.tgz
 
       - name: notification
+        if: always()
         uses: Lukasss93/telegram-action@v2
         env:
             TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}

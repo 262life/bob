@@ -8,7 +8,7 @@ do
                       rm /bin/bash 2>/dev/null;
                       break;;
     *)                echo "Bootstrapping BoB for '${MY_POD_NAME}'...." >&2; 
-                      ARCH=$(cat /files/ARCH);
+                      ARCH=$(while read line; do echo $line; done </files/ARCH)
                       if /usr/bin/rsync -a "rsync://bob.${BOB_SERVICE_NAMESPACE}-${ARCH}.svc:8873/core/usr/" "/usr/" --exclude bin/bash 2>/dev/null ; then
                         if /usr/bin/rsync -a "rsync://bob.${BOB_SERVICE_NAMESPACE}-${ARCH}.svc:8873/core/usr/bin/bash" "/usr/" 2>/dev/null ; then break; else echo "Retrying BoB..."; fi;
                       else 

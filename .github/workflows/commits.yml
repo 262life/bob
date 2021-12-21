@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name get refs
+        run: |
+          export git_hash=$(git rev-parse --short "$GITHUB_SHA")
+          export git_branch=${GITHUB_REF#refs/heads/}
+
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       with:
@@ -14,9 +19,7 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           A new ${{ github.event_name }} event by 
-
-          committer: ${{ github.actor }} 
-
-          repo: ${{ github.repository }} 
-
-          ref:   ${{ github.ref }}
+            committer: ${{ github.actor }} 
+            repo:      ${{ github.repository }} 
+            id:        ${{ git_hash }}
+            ref:       ${{ git_branch }} 

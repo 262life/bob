@@ -1,6 +1,7 @@
 FROM scratch
 ARG TARGETARCH
 ENV ARCH $TARGETARCH
+ADD VERSION /files/VERSION
 ADD "distro/squashed-lowcarb-$TARGETARCH.tar.gz" /
 ADD files/entrypoint-lowcarb.sh /files/entrypoint.sh
 ADD files/newbash.sh /usr/bin/bash
@@ -10,6 +11,7 @@ LABEL MAINTAINER "Bob Liotta" <bob@262.life>
 RUN ls /bin /usr/bin
 
 RUN echo "-- Testing Begins ---------" \ 
+    $$ echo "$ARCH" > /files/ARCH
     && echo "ls /bin ---" \
     && /usr/bin/ls /bin \
     && echo "ls /usr/bin ---" \

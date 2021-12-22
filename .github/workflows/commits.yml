@@ -19,6 +19,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
+        photo: .github/pics/BobLogo-Color-Small.png
         message: |
           *BOB - Bash On Board!*
           ```

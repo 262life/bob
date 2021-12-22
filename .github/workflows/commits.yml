@@ -35,9 +35,11 @@ jobs:
           https://github.com/262life/bob/commit/${{ github.sha }}
 
   success:
+    name: Checkout Commit
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+
       - name: Run success
         run: exit 0
       - name: Send message to Telegram

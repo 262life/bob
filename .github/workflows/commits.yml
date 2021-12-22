@@ -22,7 +22,7 @@ jobs:
         format: markdown
         message: |
           *BOB - Bash On Board!*
-          sendPhoto https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png caption "Bash on Board!"
+          (https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png)
 
           ```
           A new ${{ github.event_name }} event by 

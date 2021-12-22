@@ -28,3 +28,4 @@ jobs:
             id:        ${{ env.HASH }}
             ref:       ${{ env.BRANCH }}
           ```
+          https://github.com/262life/bob/commit/${{ github.sha }}

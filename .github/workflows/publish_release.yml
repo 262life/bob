@@ -16,6 +16,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           export POSTFIX=" (Codename: '$(cat CODENAME)')"
           echo "RELEASE_NAME_SUFFIX=$POSTFIX" >> $GITHUB_ENV

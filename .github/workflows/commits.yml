@@ -43,7 +43,7 @@ jobs:
     - name: Run success
       run: exit 0
     - name: Send message to Telegram
-      uses: ./
+      uses: Lukasss93/telegram-action@v2
       if: always()
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -57,7 +57,7 @@ jobs:
     - name: Run fail
       run: exit 1
     - name: Send message to Telegram
-      uses: ./
+      uses: Lukasss93/telegram-action@v2
       if: always()
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -71,7 +71,7 @@ jobs:
     - name: Run success
       run: exit 0
     - name: Send message to Telegram
-      uses: ./
+      uses: Lukasss93/telegram-action@v2
       if: always()
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
@@ -83,7 +83,8 @@ jobs:
     - name: Run success
       run: exit 0
     - name: Send message to Telegram
-      uses: ./
+        env:
+      uses: Lukasss93/telegram-action@v2
       if: always()
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}

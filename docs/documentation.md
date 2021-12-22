@@ -14,7 +14,7 @@ If you're feeling lucky, a simple BoB! cluster can be created with the following
 helm repo add 262life https://262life.github.io/bob    
 helm repo update
 kubectl create namespace bob
-helm update --install bob 262life/bob --version 0.9.13 # or some other version
+helm upgrade --install bob 262life/bob --version 0.9.13 # or some other version
 ```
 
 After the cluster is running, you must now install the BoB! plugins.  You WILL require administrator proviledges on your workstation or server to do so.  This is NOT intended to be installed on the K8s hosts.

@@ -83,7 +83,6 @@ jobs:
     - name: Run success
       run: exit 0
     - name: Send message to Telegram
-        env:
       uses: Lukasss93/telegram-action@v2
       if: always()
       env:

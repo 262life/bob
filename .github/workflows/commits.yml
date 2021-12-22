@@ -1,7 +1,6 @@
 name: commits
 on: [push]
 
-
 jobs:
   commit:
     name: Checkout Commit

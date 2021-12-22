@@ -37,7 +37,7 @@ jobs:
   success:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@master
       - name: Run success
         run: exit 0
       - name: Send message to Telegram

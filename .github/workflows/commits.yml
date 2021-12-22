@@ -19,11 +19,9 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
-        photo: https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png
         message: |
           *BOB - Bash On Board!*
-          sendPhoto https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png
-          /sendPhoto https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png
+          sendPhoto https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png caption "Bash on Board!"
 
           ```
           A new ${{ github.event_name }} event by 

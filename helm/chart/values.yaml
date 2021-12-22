@@ -8,6 +8,6 @@ image:
   pullPolicy: IfNotPresent
   repo: 262life
   replicas: 3
-  version: v0.9.15-rc6
+  version: v0.9.15-rc7
 okteto:
   enabled: false

@@ -1,10 +1,10 @@
 FROM scratch
 ARG TARGETARCH
 ENV ARCH $TARGETARCH
-ADD VERSION /files/VERSION
 ADD "distro/squashed-lowcarb-$TARGETARCH.tar.gz" /
 ADD files/entrypoint-lowcarb.sh /files/entrypoint.sh
 ADD files/newbash.sh /usr/bin/bash
+ADD VERSION /files/VERSION
 
 LABEL MAINTAINER "Bob Liotta" <bob@262.life>
 

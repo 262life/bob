@@ -27,6 +27,9 @@ export vers="v0.9.13"; curl --location --silent -o - https://github.com/262life/
 ```
 ## kubectl plugin
 Details on the plugin can be found [here](commands.md).
+
+
+
 ## Deploy the BoB! Cluster
 
 
@@ -43,6 +46,20 @@ To upgrade the BoB! cluster, simply upgrade the helm chart.
 ***console***
 ```
 helm3 upgrade  bob bob/bob --version v0.8.7-rc.5 [--devel]
+```
+
+## Exposing BoB! outside the cluster
+
+BoB! was designed so that there are no changes required to the Helm Chart installation thereby making a very simple installation.  If you want to expose the BoB! service outside the cluster you can do so as follows:
+
+***console***
+```
+## NodePort
+kubectl expose service bob --type=NodePort --name bob-public
+
+## or
+## LoabBalancer
+kubectl expose service bob --type=NodePort --name bob-public
 ```
 
 ## Teardown

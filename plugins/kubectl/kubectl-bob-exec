@@ -50,7 +50,7 @@ else
 fi
 [ $VB -gt 0 ] && echo POD Options: $POD_OPTS
 
-kubectl $POD_CONTEXT $POD_NAMESPACE exec -it $POD_NAME /bin/bash  $POD_OPTS
+kubectl $POD_CONTEXT $POD_NAMESPACE exec -it $POD_NAME -- /bin/bash  $POD_OPTS
 echo "$POD_NAME" > $HOME/.kubectl-bob-last-pod
 
 

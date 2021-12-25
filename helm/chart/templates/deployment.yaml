@@ -2,6 +2,24 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: bob
+  namespace: {{ .Values.namespace}}
+spec:
+  selector:
+    services: bob-core-services
+  ports:
+    - protocol: TCP
+      port: 8873
+      targetPort: 8873
+      name: sync
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: ws-test-harness
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: bob-amd64
   namespace: {{ .Values.namespace}}
 spec:
@@ -44,12 +62,14 @@ spec:
   selector:
     matchLabels:
       app: bob-core-amd64
+      services: bob-core-services
   serviceName: bob-core-amd64
   replicas: {{ .Values.image.replicas}}
   template:
     metadata:
       labels:
         app: bob-core-amd64
+        services: bob-core-services
     spec:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
@@ -183,12 +203,14 @@ spec:
   selector:
     matchLabels:
       app: bob-core-arm64
+      services: bob-core-services
   serviceName: bob-core-arm64
   replicas: {{ .Values.image.replicas}}
   template:
     metadata:
       labels:
         app: bob-core-arm64
+        services: bob-core-services
     spec:
       terminationGracePeriodSeconds: 10
       nodeSelector:

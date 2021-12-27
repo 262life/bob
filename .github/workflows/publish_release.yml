@@ -139,7 +139,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: 262life/bob-core:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=high --debug
+          args: --severity-threshold=high --debug --org=262life
           command: monitor
       - name: Run Snyk to check Docker image for vulnerabilities - bob-lowcarb
         uses: snyk/actions/docker@master
@@ -147,7 +147,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: 262life/bob-lowcarb:${{ env.RELEASE_VERSION }}
-          args: --severity-threshold=high --debug
+          args: --severity-threshold=high --debug --org=262life
           command: monitor
       #- name: Run Snyk to check Kubernetes manifest file for issues
       #  uses: snyk/actions/iac@master

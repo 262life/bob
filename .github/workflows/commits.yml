@@ -23,10 +23,10 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         format: markdown
-        photo: .github/pics/BobLogo-Color-Small.png
+        #photo: .github/pics/BobLogo-Color-Small.png
         message: |
           *BOB - Bash On Board!*
-          <img alt="bob" align="left" src="https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png" width="20%" height="20%">&#8205;</img>
+          [ ](https://github.com/262life/artwork/raw/main/logos/BobLogo-Color-commit.png)
           ```
           A new ${{ github.event_name }} event by committer: ${{ github.actor }} 
             repo:      ${{ github.repository }} 

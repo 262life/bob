@@ -26,7 +26,7 @@ jobs:
         #photo: .github/pics/BobLogo-Color-Small.png
         message: |
           *BOB - Bash On Board!*
-          ![ ](https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png)
+          [ ](https://github.com/262life/artwork/raw/main/logos/BobLogo-Color.png)
           ```
           A new ${{ github.event_name }} event by committer: ${{ github.actor }} 
             repo:      ${{ github.repository }} 

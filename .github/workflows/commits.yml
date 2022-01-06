@@ -26,9 +26,7 @@ jobs:
         #photo: .github/pics/BobLogo-Color-Small.png 
         message: |
           *BOB - Bash On Board!*
-          <a href='https://github.com/262life/artwork/raw/main/logos/BobLogo-Color-commit.png'>&#8205;</a> 
-
-&#8205; → never show in message
+          <a href='https://github.com/262life/artwork/raw/main/logos/BobLogo-Color-commit.png'>&#8205;</a>&#8205; → never show in message
           [ ](https://github.com/262life/artwork/raw/main/logos/BobLogo-Color-commit.png) 
           ```
           A new ${{ github.event_name }} event by committer: ${{ github.actor }} 
